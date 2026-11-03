@@ -1,0 +1,13 @@
+{
+  "provider": "mock",
+  "currency": "IRT",
+  "note": "Amounts are toman in the catalog. Gateways that expect rial receive toman × 10. No live credentials are stored here.",
+  "zarinpal": {
+    "merchantId": "",
+    "sandbox": true
+  },
+  "idpay": {
+    "apiKey": "",
+    "sandbox": true
+  }
+}
