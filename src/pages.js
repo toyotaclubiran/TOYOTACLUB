@@ -10,133 +10,35 @@ function waText(site, product) {
   return `سلام، برای استعلام «${product.title}» از فروشگاه تویوتا کلاب ایران پیام می‌دهم.`;
 }
 
-function layout(opts) {
-  const { site, title, description, canonical, path, main, json, robots, product, files } = opts;
-  const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
-  const desc = description || site.description;
-  const canon = canonical || `${site.url}${path || "/"}`;
-  const wa = waLink(site.phoneIntl, waText(site, product));
-  return `<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(fullTitle)}</title>
-  <meta name="description" content="${esc(desc)}">
-  <link rel="canonical" href="${esc(canon)}">
-  ${robots ? `<meta name="robots" content="${esc(robots)}">` : ""}
-  <meta name="theme-color" content="#d71920">
-  <meta property="og:locale" content="fa_IR">
-  <meta property="og:title" content="${esc(fullTitle)}">
-  <meta property="og:description" content="${esc(desc)}">
-  <meta property="og:url" content="${esc(canon)}">
-  <meta property="og:image" content="${esc(site.url)}/images/hero/eglxen-d-series-studio.jpg">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/css/store.css">
-  ${json ? `<script type="application/ld+json">${jsonLd(json)}</script>` : ""}
-</head>
-<body data-prices="${site.showPrices ? "on" : "off"}">
-  <a class="skip" href="#content">رفتن به محتوا</a>
-  ${header(site, path)}
-  <main id="content">${main}</main>
-  ${footer(site)}
-  <a class="wa-float" href="${esc(wa)}" target="_blank" rel="noopener">واتساپ</a>
-  ${chatWidget(site, path)}
-  <script src="/js/store.js" defer></script>
-</body>
-</html>`;
-}
-
-function header(site, path) {
-  const link = (href, label) => `<a href="${href}" ${path === href ? 'aria-current="page"' : ""}>${label}</a>`;
-  return `<header class="site-header">
-    <div class="topbar">
-      <span>${esc(site.address)}</span>
-      <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a>
-    </div>
-    <div class="header-inner">
-      <a class="brand" href="/">
-        <span class="brand-mark">TC</span>
-        <span class="brand-name"><span class="red">Toyota</span> Club Iran</span>
-      </a>
-      <form class="search" action="/shop/" method="get" role="search">
-        <label class="sr-only" for="q">جستجو</label>
-        <input id="q" name="q" type="search" placeholder="جستجو، مثلاً هدلایت H7 یا پرادو">
-      </form>
-      <nav class="nav" aria-label="اصلی">
-        ${link("/shop/", "فروشگاه")}
-        ${link("/category/led/", "هدلایت")}
-        ${link("/category/monitor/", "مانیتور")}
-        <a href="/#models">مدل تویوتا</a>
-        ${link("/request/", "درخواست قطعه")}
-        ${link("/contact/", "تماس")}
-      </nav>
-      <a class="phone-link" href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a>
-      <details class="drawer">
-        <summary>منو</summary>
-        <div class="drawer-panel">
-          <a href="/shop/">فروشگاه</a>
-          <a href="/category/led/">هدلایت</a>
-          <a href="/category/monitor/">مانیتور</a>
-          <a href="/category/xenon/">سوکت D</a>
-          <a href="/#models">مدل تویوتا</a>
-          <a href="/request/">درخواست قطعه</a>
-          <a href="/contact/">تماس</a>
-          <a href="/cart/">سبد خرید</a>
-        </div>
-      </details>
-    </div>
-  </header>`;
-}
-
-function footer(site) {
-  return `<footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <strong>Toyota Club Iran</strong>
-        <p>فروشگاه مستقل آپشن و قطعه. هدلایت و بسیاری از تجهیزات برای همه خودروهاست و مرور مدل، مخصوص قطعات تویوتا است.</p>
-      </div>
-      <div>
-        <strong>تماس</strong>
-        <p>${esc(site.address)}</p>
-        <p><a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
-        <p><a href="${esc(waLink(site.phoneIntl, waText(site)))}">واتساپ</a></p>
-      </div>
-      <div>
-        <strong>فروشگاه</strong>
-        <p><a href="/category/led/">هدلایت LED</a></p>
-        <p><a href="/category/monitor/">مانیتور خودرو</a></p>
-        <p><a href="/request/">درخواست قطعه</a></p>
-        <p><a href="/checkout/">ثبت سفارش</a></p>
-      </div>
-    </div>
-    <p class="fine">${esc(site.stockNote)}</p>
-    <p class="fine">© ${faNum(2026)} Toyota Club Iran</p>
-  </footer>`;
-}
-
-function chatWidget() {
-  return `<details class="chat-float">
-    <summary>پیام</summary>
-    <form class="chat-form" name="message" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="message">
-      <p class="hp" hidden><label>این قسمت را خالی بگذارید <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <p class="form-title">پیام به فروشگاه</p>
-      <label>نام <input name="full-name" required autocomplete="name"></label>
-      <label>موبایل <input name="phone" required inputmode="tel" autocomplete="tel" dir="ltr"></label>
-      <label>پیام <textarea name="message" required rows="3"></textarea></label>
-      <button class="btn btn-primary" type="submit">ارسال</button>
-    </form>
-  </details>`;
-}
-
 function honeypot() {
   return `<p class="hp" hidden><label>این قسمت را خالی بگذارید <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>`;
 }
 
+function wattNumber(product) {
+  const map = { "۰": "0", "۱": "1", "۲": "2", "۳": "3", "۴": "4", "۵": "5", "۶": "6", "۷": "7", "۸": "8", "۹": "9" };
+  const latin = String(product.wattage || "").replace(/[۰-۹]/g, (digit) => map[digit]);
+  const match = latin.match(/\d+/);
+  return match ? match[0] : "";
+}
+
+function statusKey(product) {
+  if (product.example) return "sample";
+  if (isComingSoon(product)) return "soon";
+  const variants = variantList(product);
+  if (variants.length) return variants.some((item) => item.available) ? "available" : "unavailable";
+  return product.available === false ? "unavailable" : "available";
+}
+
+function statusBadge(product) {
+  const key = statusKey(product);
+  if (key === "sample") return `<span class="badge sample">نمونه</span>`;
+  if (key === "soon") return `<span class="badge soon">به‌زودی</span>`;
+  if (key === "unavailable") return `<span class="badge bad">ناموجود</span>`;
+  return `<span class="badge ok">موجود</span>`;
+}
+
 function businessJson(site) {
   return {
-    "@context": "https://schema.org",
     "@type": "AutoPartsStore",
     name: site.name,
     url: site.url,
@@ -152,280 +54,477 @@ function businessJson(site) {
   };
 }
 
+const faqs = [
+  ["چرا قیمت روی سایت نیست؟", "قیمت‌ها با استعلام اعلام می‌شود. شماره ۰۹۱۷۴۴۵۰۰۴۰ یا فرم همین صفحه را استفاده کنید."],
+  ["موجودی چطور تأیید می‌شود؟", "موجود یا ناموجود بودن روی کالا نوشته شده است. تعداد دقیق با فروش عوض می‌شود و پیش از ثبت نهایی سفارش تأیید می‌گردد."],
+  ["آیا فروشگاه فقط برای تویوتا است؟", "هدلایت و بسیاری از تجهیزات برای هر خودرویی با سوکت یا نصب مناسب است. بخش مدل‌های تویوتا مخصوص قطعاتی است که سازگاری‌شان با تویوتا ثبت شده."],
+  ["ارسال به کدام شهرهاست؟", "ارسال به سراسر ایران انجام می‌شود. هزینه و زمان ارسال همراه استعلام قیمت گفته می‌شود. فروشگاه در شهرستان لامرد استان فارس است."],
+];
+
+function layout(opts) {
+  const { site, catalog, title, description, path, main, json, robots, product } = opts;
+  const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+  const desc = description || site.description;
+  const canon = `${site.url}${path || "/"}`;
+  const index = (catalog?.products || []).map((item) => ({ t: item.title, s: item.slug }));
+  const current = (href) => (path === href ? ' aria-current="page"' : "");
+  return `<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${esc(fullTitle)}</title>
+  <meta name="description" content="${esc(desc)}">
+  <link rel="canonical" href="${esc(canon)}">
+  ${robots ? `<meta name="robots" content="${esc(robots)}">` : ""}
+  <meta name="theme-color" content="#0c0d10">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:title" content="${esc(fullTitle)}">
+  <meta property="og:description" content="${esc(desc)}">
+  <meta property="og:url" content="${esc(canon)}">
+  <meta property="og:image" content="${esc(site.url)}/images/hero/eglxen-d-series-studio.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/store.css">
+  ${json ? `<script type="application/ld+json">${jsonLd(json)}</script>` : ""}
+</head>
+<body data-prices="${site.showPrices ? "on" : "off"}">
+  <a class="skip" href="#content">رفتن به محتوا</a>
+  <div class="topbar"><div class="wrap topbar-inner">
+    <span>${esc(site.address)}</span>
+    <div class="top-links">
+      <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a>
+      <a href="${esc(waLink(site.phoneIntl, waText(site)))}">واتساپ</a>
+    </div>
+  </div></div>
+  <header class="site-header">
+    <div class="wrap header-main">
+      <a class="brand" href="/">
+        <span class="brand-mark">T<span>C</span></span>
+        <span class="brand-name">Toyota Club Iran<small>لامرد</small></span>
+      </a>
+      <form class="search" action="/shop/" method="get" role="search">
+        <label class="sr-only" for="q">جستجو</label>
+        <input id="q" data-search-input name="q" type="search" placeholder="جستجوی هدلایت، سوکت، مانیتور یا مدل تویوتا" autocomplete="off">
+        <div class="suggest" data-suggest hidden></div>
+      </form>
+      <div class="header-tools">
+        <a class="cart-link" href="/cart/" aria-label="سبد خرید"><span class="cart-count">۰</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 7h15l-1.5 9h-12L5 4H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <details class="drawer">
+          <summary class="icon-btn" aria-label="منو"><span class="menu-bars"></span></summary>
+          <div class="drawer-panel">
+            <a href="/category/led/">هدلایت LED</a>
+            <a href="/category/xenon/">زنون و سوکت D</a>
+            <a href="/category/monitor/">مانیتور خودرو</a>
+            <a href="/category/camera/">سنسور و دوربین</a>
+            <a href="/category/comfort/">آینه و صندوق</a>
+            <a href="/#models">قطعات تویوتا</a>
+            <a href="/category/projector/">لنز پروژکتور، به‌زودی</a>
+            <a href="/request/">درخواست قطعه</a>
+            <a href="/contact/">تماس</a>
+          </div>
+        </details>
+      </div>
+    </div>
+    <nav class="wrap mega" aria-label="دسته‌ها">
+      ${megaItem("هدلایت LED", "/category/led/", [["H7", "/socket/H7/"], ["H1", "/socket/H1/"], ["H11", "/socket/H11/"], ["9005", "/socket/9005/"], ["H4", "/socket/H4/"]])}
+      ${megaItem("زنون / HID", "/category/xenon/", [["D2S", "/socket/D2S/"], ["D4S", "/socket/D4S/"]])}
+      ${megaItem("مانیتور", "/category/monitor/", [["TS18", "/product/android-monitor-ts18/"], ["T9", "/product/android-monitor-t9/"]])}
+      ${megaItem("سنسور و دوربین", "/category/camera/", [["سنسور پارک", "/category/parking/"], ["ایمنی", "/category/safety/"], ["دوربین", "/category/camera/"]])}
+      ${megaItem("آینه و صندوق", "/category/comfort/", [["آسایش", "/category/comfort/"]])}
+      ${megaItem("قطعات تویوتا", "/#models", (catalog?.models || []).map((model) => [model.name, `/model/${model.id}/`]))}
+      ${megaItem("به‌زودی", "/category/projector/", [["لنز پروژکتور", "/category/projector/"]])}
+    </nav>
+  </header>
+  <main id="content">${main}</main>
+  <footer class="site-footer"><div class="wrap footer-grid">
+    <div>
+      <strong>Toyota Club Iran</strong>
+      <p class="muted">فروشگاه مستقل آپشن و قطعه در لامرد. هدلایت EGLXEN و تجهیزات عمومی برای همه خودروها، و قطعاتی که سازگاری‌شان با تویوتا ثبت شده است.</p>
+      <p class="muted">${esc(site.stockNote)}</p>
+    </div>
+    <div>
+      <strong>فروشگاه</strong>
+      <p><a href="/category/led/">هدلایت LED</a></p>
+      <p><a href="/category/monitor/">مانیتور</a></p>
+      <p><a href="/category/xenon/">سوکت D</a></p>
+      <p><a href="/shop/">همه کالاها</a></p>
+    </div>
+    <div>
+      <strong>تماس</strong>
+      <p>${esc(site.address)}</p>
+      <p><a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
+      <p><a href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ</a></p>
+      <p><a href="/request/">درخواست قطعه</a></p>
+    </div>
+    <div class="enamad">نماد اعتماد<small>پس از دریافت اینماد اینجا قرار می‌گیرد</small></div>
+  </div></footer>
+  <nav class="tabbar" aria-label="ناوبری موبایل">
+    <a href="/"${current("/")}>خانه</a>
+    <a href="/shop/"${current("/shop/")}>فروشگاه</a>
+    <a href="/category/led/"${current("/category/led/")}>هدلایت</a>
+    <a href="/cart/"${current("/cart/")}>سبد</a>
+    <a href="/contact/"${current("/contact/")}>تماس</a>
+  </nav>
+  <a class="wa-float" href="${esc(waLink(site.phoneIntl, waText(site, product)))}" target="_blank" rel="noopener">واتساپ</a>
+  <details class="chat-float">
+    <summary>پیام</summary>
+    <form class="chat-form" name="message" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="message">
+      ${honeypot()}
+      <p class="form-title">پیام به فروشگاه</p>
+      <label>نام <input name="full-name" required autocomplete="name"></label>
+      <label>موبایل <input name="phone" required inputmode="tel" autocomplete="tel" dir="ltr"></label>
+      <label>پیام <textarea name="message" required rows="3"></textarea></label>
+      <button class="btn btn-primary" type="submit">ارسال</button>
+    </form>
+  </details>
+  <script type="application/json" id="search-index">${jsonLd(index)}</script>
+  <script src="/js/store.js" defer></script>
+</body>
+</html>`;
+}
+
+function megaItem(label, href, links) {
+  return `<div class="mega-item"><a href="${href}">${esc(label)}</a><div class="mega-panel">${links
+    .map(([text, url]) => `<a href="${url}">${esc(text)}</a>`)
+    .join("")}</div></div>`;
+}
+
+function frame(images, alt) {
+  if (!images.length) return `<span class="fallback">${esc(alt)}</span>`;
+  const second = images[1] ? `<img class="alt" src="${esc(images[1].src)}" alt="">` : "";
+  return `<img class="main" src="${esc(images[0].src)}" alt="${esc(images[0].alt || alt)}">${second}`;
+}
+
 function productCard(product, catalog, files) {
   const images = usableImages(product, files);
-  const category = categoryById(catalog, product.category);
   const variants = variantList(product);
-  const available = variants.filter((item) => item.available).map((item) => item.socket || item.label);
-  let stock = "";
-  if (product.example) stock = `<span class="badge sample">نمونه</span>`;
-  else if (isComingSoon(product)) stock = `<span class="badge soon">به‌زودی</span>`;
-  else if (variants.length) {
-    stock = available.length
-      ? `<span class="badge ok">موجود: ${esc(available.join("، "))}</span>`
-      : `<span class="badge bad">ناموجود</span>`;
-  } else if (productIsAvailable(product)) stock = `<span class="badge ok">موجود</span>`;
-  else stock = `<span class="badge bad">ناموجود</span>`;
-  const media = images[0]
-    ? `<img src="${esc(images[0].src)}" alt="${esc(images[0].alt || product.title)}">`
-    : `<span class="fallback">${esc(product.title)}</span>`;
-  const search = esc(`${product.title} ${product.shortDescription || ""} ${product.sku} ${product.brand || ""}`.toLowerCase());
-  return `<article class="card" data-search="${search}">
-    <a class="card-media" href="/product/${esc(product.slug)}/">${media}</a>
+  const sockets = variants.map((item) => item.socket).filter(Boolean);
+  const open = variants.filter((item) => item.available).map((item) => item.socket || item.label);
+  const chips = [
+    product.wattage ? `<span class="chip">${esc(product.wattage)}</span>` : "",
+    ...open.slice(0, 3).map((name) => `<span class="chip">${esc(name)}</span>`),
+  ].join("");
+  const search = esc(`${product.title} ${product.shortDescription || ""} ${product.sku} ${sockets.join(" ")}`.toLowerCase());
+  const wa = `https://wa.me/989174450040?text=${encodeURIComponent(waText({ phoneIntl: "989174450040" }, product))}`;
+  return `<article class="card" data-search="${search}" data-sockets="${esc(sockets.join(" "))}" data-watt="${esc(wattNumber(product))}" data-status="${statusKey(product)}">
+    <a class="card-media" href="/product/${esc(product.slug)}/">${frame(images, product.title)}</a>
     <div class="card-body">
-      <p class="eyebrow">${esc(category ? category.name : "")}</p>
+      <div>${statusBadge(product)}</div>
       <h3><a href="/product/${esc(product.slug)}/">${esc(product.title)}</a></h3>
-      <p class="muted">${esc(product.shortDescription || "")}</p>
-      <div class="card-meta">${stock}</div>
-      <p class="inquiry-line"><a href="/product/${esc(product.slug)}/">استعلام قیمت</a></p>
+      <div class="chips">${chips}</div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="/product/${esc(product.slug)}/#inquiry">استعلام قیمت</a>
+        <a class="btn btn-wa" href="${esc(wa)}" aria-label="واتساپ">W</a>
+      </div>
     </div>
   </article>`;
 }
 
 function cardGrid(products, catalog, files) {
-  if (!products.length) {
-    return `<p class="empty">کالایی با این فیلتر پیدا نشد. <a href="/request/">درخواست قطعه</a> را ثبت کنید.</p>`;
-  }
+  if (!products.length) return `<p class="empty">کالایی با این فیلتر پیدا نشد. <a href="/request/">درخواست قطعه</a> را ثبت کنید.</p>`;
   return `<div class="product-grid">${products.map((product) => productCard(product, catalog, files)).join("")}</div>`;
 }
 
-function renderHome(site, catalog, files) {
-  const featured = ["led-d45", "led-d65", "led-d55", "led-d90", "monitor-ts18", "monitor-t9"]
-    .map((id) => catalog.products.find((product) => product.id === id))
-    .filter(Boolean);
-  const real = catalog.products.filter((product) => !product.example && !["led", "monitor"].includes(product.category)).slice(0, 8);
-  const samples = catalog.products.filter((product) => product.example);
-  const main = `
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="pill">لامرد · همه خودروها</p>
-        <h1>آپشن و قطعه، با انتخاب سوکت یا مدل <span class="red">Toyota</span></h1>
-        <p>هدلایت EGLXEN و تجهیزات عمومی برای هر خودرویی که سوکت یا نصبش جور باشد. قطعات مخصوص تویوتا را با مدل خودرو ببینید.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/category/led/">هدلایت‌ها</a>
-          <a class="btn btn-secondary" href="/#models">انتخاب تویوتا</a>
+function filters(catalog) {
+  const sockets = catalog.sockets.map((socket) => `<label><input type="checkbox" data-filter="socket" value="${esc(socket.id)}"> ${esc(socket.label)}</label>`).join("");
+  const watts = ["45", "55", "65", "75", "90", "100", "35"]
+    .map((watt) => `<label><input type="checkbox" data-filter="watt" value="${watt}"> ${faNum(Number(watt))} وات</label>`)
+    .join("");
+  return `<aside class="filters">
+    <h2>فیلتر</h2>
+    <div class="filter-block"><strong>سوکت</strong>${sockets}</div>
+    <div class="filter-block"><strong>توان</strong>${watts}</div>
+    <div class="filter-block"><strong>وضعیت</strong>
+      <label><input type="checkbox" data-filter="status" value="available"> موجود</label>
+      <label><input type="checkbox" data-filter="status" value="unavailable"> ناموجود</label>
+      <label><input type="checkbox" data-filter="status" value="soon"> به‌زودی</label>
+      <label><input type="checkbox" data-filter="status" value="sample"> نمونه</label>
+    </div>
+  </aside>`;
+}
+
+function listing(site, catalog, files, { title, description, path, crumbs, products }) {
+  const main = `<div class="wrap page">
+    <p class="crumbs">${crumbs}</p>
+    <div class="section-head"><div><h1>${esc(title)}</h1><p>${esc(description || "")}</p></div></div>
+    <div class="catalog" data-catalog>
+      ${filters(catalog)}
+      <div>
+        <div class="toolbar">
+          <span data-count>${faNum(products.length)} کالا</span>
+          <select data-sort aria-label="مرتب‌سازی">
+            <option value="default">پیش‌فرض</option>
+            <option value="name">نام</option>
+            <option value="watt">توان</option>
+          </select>
+          <button class="btn btn-line" type="button" data-view>لیست</button>
         </div>
+        ${cardGrid(products, catalog, files)}
       </div>
-      <div class="hero-media">
-        <img src="/images/hero/eglxen-d-series-studio.jpg" alt="جعبه هدلایت EGLXEN سری D">
+    </div>
+  </div>`;
+  return layout({ site, catalog, title, description, path, main });
+}
+
+function heroSlide(kicker, title, text, image, alt) {
+  return `<div class="hero-slide"><div>
+      <div class="kicker">${kicker}</div>
+      <h1>${title}</h1>
+      <p>${text}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/category/led/">مشاهده هدلایت‌ها</a>
+        <a class="btn btn-ghost" href="tel:+989174450040">مشاوره تلفنی</a>
       </div>
-    </section>
-    <section class="section">
-      <div class="section-head"><h2>سوکت لامپ را انتخاب کنید</h2><p>هدلایت‌ها محدود به تویوتا نیستند. سوکت حک‌شده روی لامپ فابریک را پیدا کنید.</p></div>
-      <div class="chip-row">
-        ${catalog.sockets.map((socket) => `<a class="chip" href="/socket/${esc(socket.id)}/">${esc(socket.label)}</a>`).join("")}
+    </div><div class="hero-visual"><img src="${image}" alt="${esc(alt)}"></div></div>`;
+}
+
+function renderHome(site, catalog, files) {
+  const led = catalog.products.filter((product) => product.category === "led" && !product.example);
+  const monitors = catalog.products.filter((product) => product.category === "monitor");
+  const cross = catalog.products.filter((product) => (product.fitment?.toyota || []).some((row) => row.model === "corolla-cross") && !product.example);
+  const tiles = [
+    ["led", "هدلایت LED", "/images/products/eglxen-d45-studio.jpg"],
+    ["xenon", "زنون و سوکت D", "/images/products/xenon-hid-2.jpg"],
+    ["monitor", "مانیتور خودرو", "/images/products/monitor-ts18.jpg"],
+    ["camera", "دوربین", "/images/products/cc-dashcam.jpg"],
+    ["parking", "سنسور پارک", "/images/products/parking-ors3313.jpg"],
+    ["safety", "ایمنی", "/images/products/blind-spot-sensors.jpg"],
+    ["comfort", "آینه و صندوق", "/images/products/cc-power-fold.jpg"],
+    ["projector", "لنز پروژکتور", "/images/products/projector-lens.jpg"],
+  ];
+  const main = `
+    <section class="hero hero-slider">
+      <input type="radio" name="hero" id="h1" checked>
+      <input type="radio" name="hero" id="h2">
+      <input type="radio" name="hero" id="h3">
+      <div class="hero-track wrap">
+        ${heroSlide("EGLXEN D Series", `نور بهتر، با انتخاب <span class="red">سوکت</span>`, "هدلایت سری D از ۴۵ تا ۱۰۰ وات. برای هر خودرویی که سوکت لامپش جور باشد، نه فقط تویوتا.", "/images/hero/eglxen-d-series-studio.jpg", "جعبه EGLXEN سری D")}
+        ${heroSlide("مدل D45", "درایور دوگانه و فن پرسرعت", "طرح نقره‌ای EGLXEN. سوکت‌های موجود و ناموجود روی کارت کالا مشخص است.", "/images/products/eglxen-d45-studio.jpg", "هدلایت EGLXEN مدل D45")}
+        ${heroSlide("مدل D65", "دمای ثابت، روشن‌شدن سریع", "طرح خاکستری EGLXEN با توان ۶۵ وات. سوکت H4 این مدل ناموجود است.", "/images/products/eglxen-d65-studio.jpg", "هدلایت EGLXEN مدل D65")}
       </div>
-      <figure class="banner">
-        <img src="/images/products/lineup-sockets.jpg" alt="چند شکل سوکت لامپ LED">
-        <figcaption>چند شکل بدنه لامپ. این عکس برچسب کد سوکت ندارد؛ کد را از روی لامپ خودرو بخوانید.</figcaption>
-      </figure>
+      <div class="hero-dots"><label for="h1"></label><label for="h2"></label><label for="h3"></label></div>
     </section>
-    <section class="section">
-      <div class="section-head"><h2>کالاهای فروشگاه</h2><p>قیمت همه کالاها با استعلام اعلام می‌شود. شماره ${esc(site.phoneDisplay)}</p></div>
-      ${cardGrid(featured, catalog, files)}
-    </section>
-    <section class="section" id="models">
-      <div class="section-head"><h2>Choose Your Toyota</h2><p>برای قطعاتی که به مدل تویوتا وابسته‌اند. هدلایت در این فیلتر حذف نمی‌شود.</p></div>
-      <div class="model-grid">
-        ${catalog.models
-          .map(
-            (model) => `<a class="model-card" href="/model/${esc(model.id)}/">
-            <span class="model-name">${esc(model.name)}</span>
-            <span>${esc(model.nameFa)}</span>
-          </a>`
-          )
-          .join("")}
-      </div>
-    </section>
-    <section class="section">
-      <div class="section-head"><h2>دسته‌ها</h2></div>
-      <div class="cat-grid">
-        ${catalog.categories
-          .filter((category) => category.group !== "example")
-          .map(
-            (category) => `<a class="cat-card" href="/category/${esc(category.id)}/"><strong>${esc(category.name)}</strong><span>${esc(category.blurb)}</span></a>`
-          )
-          .join("")}
-      </div>
-    </section>
-    <section class="section">
-      <div class="section-head"><h2>سایر قطعات</h2></div>
-      ${cardGrid(real, catalog, files)}
-    </section>
-    <section class="section">
-      <div class="section-head"><h2>نمونه‌های دسته‌های دیگر</h2><p>این کارت‌ها موجودی واقعی نیستند و فقط شکل کاتالوگ را نشان می‌دهند.</p></div>
-      ${cardGrid(samples, catalog, files)}
-    </section>
-    <section class="section split">
-      <article>
-        <h2>قطعه را پیدا نکردید؟</h2>
-        <p>مدل خودرو و شرح قطعه را بفرستید تا بررسی شود.</p>
-        <a class="btn btn-primary" href="/request/">درخواست قطعه</a>
-      </article>
-      <article>
-        <h2>همکاری تجاری</h2>
-        <p>برای تأمین عمده با فروشگاه در لامرد هماهنگ کنید.</p>
-        <a class="btn btn-secondary" href="/wholesale/">درخواست همکاری</a>
-      </article>
-    </section>`;
+    <div class="wrap"><div class="trust">
+      <article><strong>کالای قابل استعلام</strong><span>قیمت را تلفنی و در فرم می‌گیرید</span></article>
+      <article><strong>راهنمایی نصب</strong><span>تطبیق سوکت قبل از سفارش</span></article>
+      <article><strong>ارسال به سراسر ایران</strong><span>از لامرد</span></article>
+      <article><strong>مشاوره تلفنی</strong><span>${esc(site.phoneDisplay)}</span></article>
+    </div></div>
+    <section class="section"><div class="wrap">
+      <div class="section-head"><h2>دسته‌ها</h2><a class="link" href="/shop/">همه کالاها</a></div>
+      <div class="tile-grid">${tiles
+        .map(([id, name, src]) => {
+          const category = categoryById(catalog, id);
+          const image = files && !files.has(src) ? "" : src;
+          return `<a class="tile" href="/category/${id}/"><div class="frame">${image ? `<img src="${image}" alt="">` : ""}</div><div><strong>${name}</strong><span class="muted">${esc(category ? category.blurb : "")}</span></div></a>`;
+        })
+        .join("")}</div>
+    </div></section>
+    <section class="section" id="sockets"><div class="wrap">
+      <div class="section-head"><div><h2>سوکت لامپ را انتخاب کنید</h2><p>هدلایت محدود به تویوتا نیست. کد سوکت را از روی لامپ فابریک بخوانید.</p></div></div>
+      <div class="socket-grid">${catalog.sockets.map((socket) => `<a href="/socket/${esc(socket.id)}/">${esc(socket.label)}</a>`).join("")}</div>
+    </div></section>
+    <section class="section"><div class="wrap">
+      <div class="section-head"><h2>سری هدلایت EGLXEN</h2><a class="link" href="/category/led/">مشاهده دسته</a></div>
+      <div class="carousel">${led.map((product) => productCard(product, catalog, files)).join("")}</div>
+    </div></section>
+    <section class="section"><div class="wrap">
+      <div class="section-head"><h2>مانیتور خودرو</h2><a class="link" href="/category/monitor/">مشاهده دسته</a></div>
+      <div class="carousel">${monitors.map((product) => productCard(product, catalog, files)).join("")}</div>
+    </div></section>
+    <section class="section"><div class="wrap">
+      <div class="section-head"><h2>لوازم کرولا کراس</h2><a class="link" href="/model/corolla-cross/">مدل کرولا کراس</a></div>
+      <div class="carousel">${cross.map((product) => productCard(product, catalog, files)).join("")}</div>
+    </div></section>
+    <section class="section"><div class="wrap"><div class="compare">
+      <h2>مقایسه سری D اگلزن</h2>
+      <p>توان از فهرست موجودی فروشگاه است. لومن فقط جایی آمده که روی تصویر معرفی همان مدل نوشته شده باشد.</p>
+      <table>
+        <thead><tr><th>مدل</th><th>توان</th><th>لومن اعلام‌شده</th><th>سوکت موجود</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/product/eglxen-d45/">D45</a></td><td>۴۵ وات</td><td>۱۱۰۰۰، روی تصویر چیپ</td><td>H7، 9005، H4</td></tr>
+          <tr><td><a href="/product/eglxen-d55/">D55</a></td><td>۵۵ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
+          <tr><td><a href="/product/eglxen-d65/">D65</a></td><td>۶۵ وات</td><td>—</td><td>H7، H1، H11، 9005</td></tr>
+          <tr><td><a href="/product/eglxen-d90/">D90</a></td><td>۹۰ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
+          <tr><td><a href="/product/eglxen-d150/">D150</a></td><td>۱۰۰ وات</td><td>—</td><td>H7، H1، H11، H4</td></tr>
+        </tbody>
+      </table>
+    </div></div></section>
+    <section class="section" id="models"><div class="wrap">
+      <div class="section-head"><div><h2>Choose Your Toyota</h2><p>برای قطعاتی که سازگاری تویوتا دارند. هدلایت با این انتخاب حذف نمی‌شود.</p></div></div>
+      <div class="model-grid">${catalog.models
+        .map((model) => `<a href="/model/${esc(model.id)}/"><strong>${esc(model.name)}</strong><span>${esc(model.nameFa)}</span></a>`)
+        .join("")}</div>
+    </div></section>
+    <section class="section"><div class="wrap faq">
+      <h2>پرسش‌های رایج</h2>
+      ${faqs.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}
+    </div></section>`;
   return layout({
     site,
+    catalog,
     title: `${site.name} | هدلایت، مانیتور و قطعات خودرو`,
     description: site.description,
     path: "/",
-    canonical: `${site.url}/`,
-    files,
-    json: businessJson(site),
-    main,
-  });
-}
-
-function listingPage(site, catalog, files, { title, description, path, intro, products }) {
-  const main = `<section class="section page-intro"><h1>${esc(title)}</h1>${intro || ""}</section>
-    <section class="section">${cardGrid(products, catalog, files)}</section>`;
-  return layout({
-    site,
-    title,
-    description: description || title,
-    path,
-    canonical: `${site.url}${path}`,
-    files,
+    json: { "@context": "https://schema.org", "@graph": [businessJson(site), { "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] },
     main,
   });
 }
 
 function renderShop(site, catalog, files) {
-  return listingPage(site, catalog, files, {
+  return listing(site, catalog, files, {
     title: "فروشگاه",
-    description: "همه کالاهای تویوتا کلاب ایران",
+    description: "همه کالاها. قیمت با استعلام و شماره " + site.phoneDisplay,
     path: "/shop/",
-    intro: `<p>قیمت‌ها روی سایت نیست. برای هر کالا استعلام بگیرید یا با ${esc(site.phoneDisplay)} تماس بگیرید.</p>
-      <div class="chip-row">${catalog.categories.map((category) => `<a class="chip" href="/category/${esc(category.id)}/">${esc(category.name)}</a>`).join("")}</div>`,
+    crumbs: `<a href="/">خانه</a> / فروشگاه`,
     products: catalog.products,
   });
 }
 
 function renderCategory(site, catalog, files, category) {
-  const products = catalog.products.filter((product) => product.category === category.id);
-  return listingPage(site, catalog, files, {
+  return listing(site, catalog, files, {
     title: category.name,
     description: category.blurb,
     path: `/category/${category.id}/`,
-    intro: `<p>${esc(category.blurb)}</p>`,
-    products,
+    crumbs: `<a href="/">خانه</a> / <a href="/shop/">فروشگاه</a> / ${esc(category.name)}`,
+    products: catalog.products.filter((product) => product.category === category.id),
   });
 }
 
 function renderModel(site, catalog, files, model) {
-  const products = catalog.products.filter((product) => {
-    if (product.fitment?.scope === "socket" || product.fitment?.scope === "universal") return true;
-    return (product.fitment?.toyota || []).some((row) => row.model === model.id);
-  });
-  return listingPage(site, catalog, files, {
+  return listing(site, catalog, files, {
     title: model.name,
-    description: `قطعات مرتبط با ${model.nameFa}`,
+    description: `قطعات ${model.nameFa} به همراه کالاهای عمومی`,
     path: `/model/${model.id}/`,
-    intro: `<p>قطعاتی که برای ${esc(model.name)} ثبت شده‌اند، به همراه هدلایت و کالاهای عمومی که به برند خودرو محدود نیستند.</p>`,
-    products,
+    crumbs: `<a href="/">خانه</a> / ${esc(model.name)}`,
+    products: catalog.products.filter((product) => {
+      if (product.fitment?.scope === "socket" || product.fitment?.scope === "universal") return true;
+      return (product.fitment?.toyota || []).some((row) => row.model === model.id);
+    }),
   });
 }
 
 function renderSocket(site, catalog, files, socket) {
-  const products = catalog.products.filter((product) =>
-    (product.variants || []).some((variant) => variant.socket === socket.id)
-  );
-  return listingPage(site, catalog, files, {
+  return listing(site, catalog, files, {
     title: `سوکت ${socket.label}`,
     description: `کالاهای سوکت ${socket.label}`,
     path: `/socket/${socket.id}/`,
-    intro: `<p>کالاهایی که این سوکت را در تنوع خود دارند. موجود یا ناموجود بودن هر سوکت روی کارت نوشته شده است.</p>`,
-    products,
+    crumbs: `<a href="/">خانه</a> / <a href="/#sockets">سوکت</a> / ${esc(socket.label)}`,
+    products: catalog.products.filter((product) => (product.variants || []).some((variant) => variant.socket === socket.id)),
   });
 }
 
 function gallery(product, images) {
-  if (!images.length) {
-    return `<div class="media media-fallback"><span>${esc(product.title)}</span></div>`;
-  }
-  const radios = images
-    .map(
-      (image, index) =>
-        `<input type="radio" name="gal" id="g${index}" ${index === 0 ? "checked" : ""}>`
-    )
-    .join("");
+  if (!images.length) return `<div class="zoom"><span class="fallback">${esc(product.title)}</span></div>`;
+  const radios = images.map((_, index) => `<input type="radio" name="gal" id="g${index}" ${index === 0 ? "checked" : ""}>`).join("");
   const slides = images
     .map(
-      (image) => `<figure><div class="media"><img src="${esc(image.src)}" alt="${esc(image.alt || product.title)}"></div>${
-        image.caption ? `<figcaption>${esc(image.caption)}</figcaption>` : ""
-      }</figure>`
+      (image) => `<figure><button class="zoom" type="button" data-zoom="${esc(image.src)}" aria-label="بزرگ‌نمایی"><img src="${esc(image.src)}" alt="${esc(image.alt || product.title)}"></button>${image.caption ? `<figcaption class="muted">${esc(image.caption)}</figcaption>` : ""}</figure>`
     )
     .join("");
-  const thumbs = images
-    .map(
-      (image, index) =>
-        `<label for="g${index}"><img src="${esc(image.src)}" alt=""></label>`
-    )
-    .join("");
+  const thumbs = images.map((image, index) => `<label for="g${index}"><img src="${esc(image.src)}" alt=""></label>`).join("");
   return `<div class="gallery">${radios}<div class="slides">${slides}</div><div class="thumbs">${thumbs}</div></div>`;
 }
 
 function variantFields(product) {
   const variants = variantList(product);
-  if (!variants.length) return "";
-  const label = variants[0].socket ? "سوکت" : "حافظه";
-  const options = variants
-    .map((variant) => {
-      const name = variant.socket || variant.label;
-      const state = variant.available ? "موجود" : "ناموجود";
-      return `<option value="${esc(name)}">${esc(name)} — ${state}</option>`;
-    })
-    .join("");
-  const extra = (product.options || [])
+  const options = (product.options || [])
     .map(
-      (option) => `<label>${esc(option.label)}
-        <select name="option-${esc(option.id)}">${option.choices.map((choice) => `<option>${esc(choice)}</option>`).join("")}</select>
-      </label>`
+      (option) => `<label>${esc(option.label)}<select name="option-${esc(option.id)}">${option.choices
+        .map((choice) => `<option>${esc(choice)}</option>`)
+        .join("")}</select></label>`
     )
     .join("");
-  return `<label>${label}
-      <select name="variant">${options}</select>
-    </label>${extra}`;
-}
-
-function variantTable(product) {
-  const variants = variantList(product);
-  if (!variants.length) return "";
-  return `<ul class="variant-list">${variants
+  if (!variants.length) return options;
+  const label = variants[0].socket ? "سوکت" : "حافظه";
+  return `<label>${label}<select name="variant">${variants
     .map((variant) => {
       const name = variant.socket || variant.label;
-      const state = variant.available ? "موجود" : "ناموجود";
-      return `<li><span>${esc(name)}</span><strong class="${variant.available ? "ok-text" : "bad-text"}">${state}</strong></li>`;
+      return `<option value="${esc(name)}">${esc(name)} — ${variant.available ? "موجود" : "ناموجود"}</option>`;
     })
-    .join("")}</ul>`;
+    .join("")}</select></label>${options}`;
+}
+
+function d45Features() {
+  return `<div class="features">
+    <article><strong>۱۱۰۰۰ لومن</strong><span class="muted">روی تصویر چیپ</span></article>
+    <article><strong>۶۰ وات تصویر چیپ</strong><span class="muted">فهرست موجودی: ۴۵ وات</span></article>
+    <article><strong>فن ۱۲۰۰۰ دور</strong><span class="muted">دفع حرارت</span></article>
+    <article><strong>درایور دوگانه</strong><span class="muted">جدا از لامپ</span></article>
+    <article><strong>کن‌باس</strong><span class="muted">بعضی خودروها مقاومت بار می‌خواهند</span></article>
+  </div>`;
 }
 
 function renderProduct(site, catalog, files, product) {
   const images = usableImages(product, files);
   const category = categoryById(catalog, product.category);
-  const phone = `<a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a>`;
   const coming = isComingSoon(product);
   const formName = coming ? "interest" : "inquiry";
-  const formTitle = coming ? "خبرم کن" : "استعلام قیمت";
-  const specs = (product.specs || [])
-    .map((row) => `<div><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`)
-    .join("");
-  const claims = (product.claims || [])
-    .map((claim) => `<article><h3>${esc(claim.title)}</h3><p>${esc(claim.text)}</p></article>`)
-    .join("");
-  const fitment = product.fitment?.note ? `<p>${esc(product.fitment.note)}</p>` : "";
+  const variants = variantList(product);
   const toyota = (product.fitment?.toyota || [])
     .map((row) => {
       const model = modelById(catalog, row.model);
-      const also = row.also && row.also.length ? ` / ${row.also.join(" / ")}` : "";
+      const also = row.also?.length ? ` / ${row.also.join(" / ")}` : "";
       return `${model ? model.name : row.model}${also} ${faNum(row.yearFrom)}–${faNum(row.yearTo)}`;
     })
     .join("، ");
+  const specs = (product.specs || []).map((row) => `<div><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`).join("");
   const related = relatedProducts(catalog, product);
+  const phone = `<a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a>`;
+  const main = `<article class="wrap page product">
+    <p class="crumbs"><a href="/">خانه</a> / <a href="/category/${esc(product.category)}/">${esc(category ? category.name : "")}</a> / ${esc(product.title)}</p>
+    <div class="product-layout">
+      ${gallery(product, images)}
+      <div class="buy">
+        ${statusBadge(product)}
+        <h1>${esc(product.title)}</h1>
+        ${product.wattage ? `<p class="chip">${esc(product.wattage)}</p>` : ""}
+        <p>${esc(product.shortDescription || "")}</p>
+        ${variants.length ? `<ul class="variant-list">${variants
+          .map((variant) => `<li><span>${esc(variant.socket || variant.label)}</span><strong class="${variant.available ? "ok-text" : "bad-text"}">${variant.available ? "موجود" : "ناموجود"}</strong></li>`)
+          .join("")}</ul>` : ""}
+        ${product.id === "led-d45" ? d45Features() : ""}
+        <div class="price-box" id="inquiry">
+          <strong>استعلام قیمت</strong>
+          <p>تماس ${phone}</p>
+          <p><a href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ برای همین کالا</a></p>
+          <form class="stack-form" name="${formName}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="${formName}">
+            ${honeypot()}
+            <input type="hidden" name="product" value="${esc(product.title)}">
+            <input type="hidden" name="sku" value="${esc(product.sku)}">
+            ${variantFields(product)}
+            <label>نام <input name="full-name" required autocomplete="name"></label>
+            <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
+            <label>توضیح <textarea name="message" rows="3" placeholder="مدل خودرو یا سؤال"></textarea></label>
+            <button class="btn btn-primary" type="submit">${coming ? "خبرم کن" : "استعلام قیمت"}</button>
+          </form>
+          <p class="muted">${esc(site.stockNote)}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tabs">
+      <input type="radio" name="tab" id="tab1" checked>
+      <input type="radio" name="tab" id="tab2">
+      <input type="radio" name="tab" id="tab3">
+      <input type="radio" name="tab" id="tab4">
+      <div class="tab-nav"><label for="tab1">توضیحات</label><label for="tab2">مشخصات</label><label for="tab3">نصب</label><label for="tab4">پرسش</label></div>
+      <div class="tab-panels">
+        <div class="p1">${paragraphs(product.description)}${product.mappingNote ? `<p class="note">${esc(product.mappingNote)}</p>` : ""}${product.fitment?.note ? `<p>${esc(product.fitment.note)}</p>` : ""}${toyota ? `<p>سازگاری ثبت‌شده: ${esc(toyota)}</p>` : ""}</div>
+        <div class="p2">${specs ? `<dl class="specs">${specs}</dl>` : "<p>مشخصات بیشتری ثبت نشده است.</p>"}</div>
+        <div class="p3"><p>قبل از سفارش، سوکت لامپ فابریک یا مدل خودرو را با فروشگاه تطبیق دهید. نصب تجهیزات برقی خودرو را به کسی بسپارید که به سیم‌کشی آشناست. برای راهنمایی با ${phone} تماس بگیرید.</p></div>
+        <div class="p4">${faqs.map(([q, a]) => `<p><strong>${esc(q)}</strong><br>${esc(a)}</p>`).join("")}</div>
+      </div>
+    </div>
+    ${related.length ? `<h2>کالاهای مرتبط</h2><div class="product-grid">${related.map((item) => productCard(item, catalog, files)).join("")}</div>` : ""}
+    <div class="sticky-buy">
+      <a class="btn btn-primary" href="#inquiry">${coming ? "خبرم کن" : "استعلام قیمت"}</a>
+      <a class="btn btn-wa" href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ</a>
+    </div>
+  </article>`;
   const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -436,190 +535,97 @@ function renderProduct(site, catalog, files, product) {
     brand: product.brand ? { "@type": "Brand", name: product.brand } : undefined,
     category: category ? category.name : undefined,
   };
-  const main = `<article class="product">
-      <p class="crumbs"><a href="/">خانه</a> / <a href="/category/${esc(product.category)}/">${esc(category ? category.name : "")}</a></p>
-      <div class="product-layout">
-        ${gallery(product, images)}
-        <div class="buy">
-          ${product.example ? `<p class="badge sample">نمونه</p>` : ""}
-          ${coming ? `<p class="badge soon">به‌زودی</p>` : ""}
-          <h1>${esc(product.title)}</h1>
-          ${product.wattage ? `<p class="watt">${esc(product.wattage)}</p>` : ""}
-          <p>${esc(product.shortDescription || "")}</p>
-          ${variantTable(product)}
-          <div class="price-box">
-            <strong>استعلام قیمت</strong>
-            <p>تماس ${phone}</p>
-            <p><a href="${esc(waLink(site.phoneIntl, waText(site, product)))}">پیام واتساپ برای همین کالا</a></p>
-          </div>
-          <form class="stack-form" name="${formName}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="${formName}">
-            ${honeypot()}
-            <input type="hidden" name="product" value="${esc(product.title)}">
-            <input type="hidden" name="sku" value="${esc(product.sku)}">
-            ${variantFields(product)}
-            <label>نام <input name="full-name" required autocomplete="name"></label>
-            <label>موبایل <input name="phone" required inputmode="tel" autocomplete="tel" dir="ltr"></label>
-            <label>توضیح <textarea name="message" rows="3" placeholder="مدل خودرو یا سؤال"></textarea></label>
-            <button class="btn btn-primary" type="submit">${formTitle}</button>
-          </form>
-          <p class="fine">${esc(site.stockNote)}</p>
-        </div>
-      </div>
-      <div class="prose">${paragraphs(product.description)}</div>
-      ${product.mappingNote ? `<p class="note">${esc(product.mappingNote)}</p>` : ""}
-      ${fitment}
-      ${toyota ? `<p>سازگاری ثبت‌شده: ${esc(toyota)}</p>` : ""}
-      ${specs ? `<h2>مشخصات</h2><dl class="specs">${specs}</dl>` : ""}
-      ${claims ? `<div class="claims">${claims}</div>` : ""}
-      ${related.length ? `<h2>کالاهای مرتبط</h2>${cardGrid(related, catalog, files)}` : ""}
-    </article>`;
   return layout({
     site,
+    catalog,
     product,
     title: product.title,
     description: product.shortDescription,
     path: `/product/${product.slug}/`,
-    canonical: `${site.url}/product/${product.slug}/`,
-    files,
     json: productLd,
     main,
   });
 }
 
-function renderContact(site) {
-  const main = `<section class="section narrow">
-      <h1>تماس</h1>
-      <p>${esc(site.address)}</p>
-      <p>تلفن استعلام و سفارش: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
-      <p><a class="btn btn-primary" href="${esc(waLink(site.phoneIntl, waText(site)))}">گفتگو در واتساپ</a></p>
-      <p>${esc(site.stockNote)}</p>
-      <h2>پیام</h2>
-      <form class="stack-form" name="message" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="message">
-        ${honeypot()}
-        <label>نام <input name="full-name" required autocomplete="name"></label>
-        <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
-        <label>پیام <textarea name="message" required rows="5"></textarea></label>
-        <button class="btn btn-primary" type="submit">ارسال پیام</button>
-      </form>
-    </section>`;
-  return layout({
-    site,
-    title: "تماس با تویوتا کلاب ایران",
-    description: `${site.address}، تلفن ${site.phone}`,
-    path: "/contact/",
-    canonical: `${site.url}/contact/`,
-    json: businessJson(site),
-    main,
-  });
+function renderContact(site, catalog) {
+  const main = `<section class="wrap page narrow">
+    <h1>تماس</h1>
+    <p>${esc(site.address)}</p>
+    <p>استعلام و سفارش: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
+    <p><a class="btn btn-wa" href="${esc(waLink(site.phoneIntl, waText(site)))}">واتساپ</a></p>
+    <p class="muted">${esc(site.stockNote)}</p>
+    <form class="stack-form panel" name="message" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" style="padding:16px">
+      <input type="hidden" name="form-name" value="message">${honeypot()}
+      <label>نام <input name="full-name" required></label>
+      <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
+      <label>پیام <textarea name="message" required rows="5"></textarea></label>
+      <button class="btn btn-primary" type="submit">ارسال پیام</button>
+    </form>
+  </section>`;
+  return layout({ site, catalog, title: "تماس با تویوتا کلاب ایران", description: `${site.address}، تلفن ${site.phone}`, path: "/contact/", json: { "@context": "https://schema.org", ...businessJson(site) }, main });
 }
 
-function renderRequest(site, intent) {
+function renderRequest(site, intent, catalog) {
   const wholesale = intent === "wholesale";
-  const main = `<section class="section narrow">
-      <h1>${wholesale ? "درخواست همکاری" : "درخواست قطعه"}</h1>
-      <p>${wholesale ? "برای همکاری عمده پیام بگذارید." : "اگر قطعه را در فروشگاه ندیدید، مدل خودرو و شرح آن را بنویسید."}</p>
-      <p>تلفن: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
-      <form class="stack-form" name="part-request" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="part-request">
-        <input type="hidden" name="intent" value="${wholesale ? "wholesale" : "part"}">
-        ${honeypot()}
-        <label>نام <input name="full-name" required></label>
-        <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
-        <label>برند خودرو <input name="car-brand" placeholder="مثلاً تویوتا، پژو، کیا"></label>
-        <label>مدل <input name="car-model"></label>
-        <label>سال <input name="year" inputmode="numeric"></label>
-        <label>سوکت لامپ، اگر مربوط است <input name="socket" placeholder="H7"></label>
-        <label>شرح <textarea name="message" required rows="5"></textarea></label>
-        <button class="btn btn-primary" type="submit">ثبت درخواست</button>
-      </form>
-    </section>`;
   const path = wholesale ? "/wholesale/" : "/request/";
-  return layout({
-    site,
-    title: wholesale ? "همکاری تجاری" : "درخواست قطعه",
-    description: wholesale ? "درخواست همکاری با تویوتا کلاب ایران" : "ثبت درخواست قطعه",
-    path,
-    canonical: `${site.url}${path}`,
-    main,
-  });
+  const main = `<section class="wrap page narrow">
+    <h1>${wholesale ? "درخواست همکاری" : "درخواست قطعه"}</h1>
+    <p>${wholesale ? "برای همکاری عمده پیام بگذارید." : "اگر قطعه را در فروشگاه ندیدید، مدل خودرو و شرح آن را بنویسید."}</p>
+    <p>تلفن: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
+    <form class="stack-form panel" name="part-request" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" style="padding:16px">
+      <input type="hidden" name="form-name" value="part-request">
+      <input type="hidden" name="intent" value="${wholesale ? "wholesale" : "part"}">
+      ${honeypot()}
+      <label>نام <input name="full-name" required></label>
+      <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
+      <label>برند خودرو <input name="car-brand" placeholder="مثلاً تویوتا، پژو، کیا"></label>
+      <label>مدل <input name="car-model"></label>
+      <label>سال <input name="year" inputmode="numeric"></label>
+      <label>سوکت لامپ <input name="socket" placeholder="H7"></label>
+      <label>شرح <textarea name="message" required rows="5"></textarea></label>
+      <button class="btn btn-primary" type="submit">ثبت درخواست</button>
+    </form>
+  </section>`;
+  return layout({ site, catalog, title: wholesale ? "همکاری تجاری" : "درخواست قطعه", description: "ثبت درخواست", path, main });
 }
 
-function renderCart(site) {
-  const main = `<section class="section narrow">
-      <h1>سبد خرید</h1>
-      <p>تا وقتی قیمت‌ها روی سایت منتشر نشده، سبد و پرداخت نمایش داده نمی‌شود. سفارش را با استعلام قیمت ثبت کنید.</p>
-      <p>تلفن استعلام: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
-      <p><a class="btn btn-primary" href="/shop/">بازگشت به فروشگاه</a> <a class="btn btn-secondary" href="/checkout/">ثبت درخواست سفارش</a></p>
-      <div id="cart-root" hidden></div>
-    </section>`;
-  return layout({
-    site,
-    title: "سبد خرید",
-    description: "سبد خرید تویوتا کلاب ایران",
-    path: "/cart/",
-    canonical: `${site.url}/cart/`,
-    robots: "noindex",
-    main,
-  });
+function renderCart(site, catalog) {
+  const main = `<section class="wrap page narrow">
+    <h1>سبد خرید</h1>
+    <p>تا وقتی قیمت‌ها روی سایت منتشر نشده، سبد و پرداخت نمایش داده نمی‌شود. سفارش را با استعلام قیمت ثبت کنید.</p>
+    <p>تلفن استعلام: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
+    <p><a class="btn btn-primary" href="/shop/">بازگشت به فروشگاه</a> <a class="btn btn-line" href="/checkout/">ثبت درخواست سفارش</a></p>
+  </section>`;
+  return layout({ site, catalog, title: "سبد خرید", description: "سبد خرید", path: "/cart/", robots: "noindex", main });
 }
 
-function renderCheckout(site) {
-  const main = `<section class="section narrow">
-      <h1>ثبت سفارش</h1>
-      <p class="price-off">قیمت‌ها هنوز روی سایت نیست. این فرم درخواست سفارش است و پرداخت آنلاین بعد از اعلام قیمت فعال می‌شود. درگاه زرین‌پال یا آیدی‌پی از تنظیمات محیط وصل می‌شود و الان اطلاعات ورود ندارد.</p>
-      <p>هماهنگی فوری: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
-      <form class="stack-form" name="order" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="order">
-        ${honeypot()}
-        <input type="hidden" name="items" id="order-items" value="">
-        <label>نام <input name="full-name" required autocomplete="name"></label>
-        <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
-        <label>شهر <input name="city" autocomplete="address-level2"></label>
-        <label>آدرس <textarea name="address" rows="3"></textarea></label>
-        <label>شرح کالاها <textarea name="message" required rows="4" placeholder="نام کالا، سوکت یا حافظه، تعداد"></textarea></label>
-        <button class="btn btn-primary" type="submit">ثبت درخواست سفارش</button>
-      </form>
-    </section>`;
-  return layout({
-    site,
-    title: "ثبت سفارش",
-    description: "ثبت درخواست سفارش تویوتا کلاب ایران",
-    path: "/checkout/",
-    canonical: `${site.url}/checkout/`,
-    robots: "noindex",
-    main,
-  });
+function renderCheckout(site, catalog) {
+  const main = `<section class="wrap page narrow">
+    <h1>ثبت سفارش</h1>
+    <p>قیمت‌ها هنوز روی سایت نیست. این فرم درخواست سفارش است و پرداخت آنلاین بعد از اعلام قیمت فعال می‌شود. درگاه زرین‌پال یا آیدی‌پی از تنظیمات محیط وصل می‌شود و الان اطلاعات ورود ندارد.</p>
+    <p>هماهنگی فوری: <a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a></p>
+    <form class="stack-form panel" name="order" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" style="padding:16px">
+      <input type="hidden" name="form-name" value="order">${honeypot()}
+      <input type="hidden" name="items" id="order-items" value="">
+      <label>نام <input name="full-name" required autocomplete="name"></label>
+      <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
+      <label>شهر <input name="city"></label>
+      <label>آدرس <textarea name="address" rows="3"></textarea></label>
+      <label>شرح کالاها <textarea name="message" required rows="4" placeholder="نام کالا، سوکت یا حافظه، تعداد"></textarea></label>
+      <button class="btn btn-primary" type="submit">ثبت درخواست سفارش</button>
+    </form>
+  </section>`;
+  return layout({ site, catalog, title: "ثبت سفارش", description: "ثبت درخواست سفارش", path: "/checkout/", robots: "noindex", main });
 }
 
-function renderThanks(site) {
-  const main = `<section class="section narrow">
-      <h1>پیام شما ثبت شد</h1>
-      <p>فروشگاه در ${esc(site.address)} آن را می‌بیند. برای پیگیری سریع‌تر با ${esc(site.phoneDisplay)} تماس بگیرید.</p>
-      <a class="btn btn-primary" href="/">بازگشت به خانه</a>
-    </section>`;
-  return layout({
-    site,
-    title: "ثبت شد",
-    description: "پیام شما ثبت شد",
-    path: "/thanks/",
-    canonical: `${site.url}/thanks/`,
-    robots: "noindex",
-    main,
-  });
+function renderThanks(site, catalog) {
+  const main = `<section class="wrap page narrow"><h1>پیام شما ثبت شد</h1><p>فروشگاه در ${esc(site.address)} آن را می‌بیند. برای پیگیری با ${esc(site.phoneDisplay)} تماس بگیرید.</p><a class="btn btn-primary" href="/">بازگشت به خانه</a></section>`;
+  return layout({ site, catalog, title: "ثبت شد", description: "پیام ثبت شد", path: "/thanks/", robots: "noindex", main });
 }
 
-function renderNotFound(site) {
-  const main = `<section class="section narrow"><h1>این صفحه پیدا نشد</h1><p><a href="/shop/">رفتن به فروشگاه</a></p></section>`;
-  return layout({
-    site,
-    title: "صفحه پیدا نشد",
-    description: "صفحه پیدا نشد",
-    path: "/404.html",
-    robots: "noindex",
-    main,
-  });
+function renderNotFound(site, catalog) {
+  const main = `<section class="wrap page narrow"><h1>این صفحه پیدا نشد</h1><p><a href="/shop/">رفتن به فروشگاه</a></p></section>`;
+  return layout({ site, catalog, title: "صفحه پیدا نشد", description: "صفحه پیدا نشد", path: "/404.html", robots: "noindex", main });
 }
 
 module.exports = {

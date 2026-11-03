@@ -27,7 +27,7 @@ For the two Android monitors, add:
 - `public/images/products/monitor-t9.jpg`
 - `public/images/products/monitor-t9-full.jpg`
 
-The screenshots were not in the workspace when this store was built, so those pages use a text frame until the files are added.
+`monitor-ts18.jpg` and `monitor-t9.jpg` are the head unit only. The full screenshots, including the spec strip, are `monitor-ts18-full.jpg` and `monitor-t9-full.jpg`.
 
 Redeploy by pushing to the branch Netlify builds. There is no separate admin login: the catalog file is the admin, and messages arrive in Netlify Forms.
 

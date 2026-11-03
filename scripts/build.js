@@ -44,13 +44,13 @@ function build() {
 
   write("index.html", pages.renderHome(site, catalog, files));
   write("shop/index.html", pages.renderShop(site, catalog, files));
-  write("contact/index.html", pages.renderContact(site));
-  write("request/index.html", pages.renderRequest(site, "part"));
-  write("wholesale/index.html", pages.renderRequest(site, "wholesale"));
-  write("cart/index.html", pages.renderCart(site));
-  write("checkout/index.html", pages.renderCheckout(site));
-  write("thanks/index.html", pages.renderThanks(site));
-  write("404.html", pages.renderNotFound(site));
+  write("contact/index.html", pages.renderContact(site, catalog));
+  write("request/index.html", pages.renderRequest(site, "part", catalog));
+  write("wholesale/index.html", pages.renderRequest(site, "wholesale", catalog));
+  write("cart/index.html", pages.renderCart(site, catalog));
+  write("checkout/index.html", pages.renderCheckout(site, catalog));
+  write("thanks/index.html", pages.renderThanks(site, catalog));
+  write("404.html", pages.renderNotFound(site, catalog));
 
   for (const category of catalog.categories) {
     write(`category/${category.id}/index.html`, pages.renderCategory(site, catalog, files, category));

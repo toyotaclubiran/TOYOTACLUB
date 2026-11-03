@@ -375,8 +375,8 @@ catalog.products.push(
       { label: "صدا", value: "DSP" },
     ],
     images: [
-      img("/images/products/monitor-ts18.jpg", "مانیتور اندروید TS18", "برش دستگاه، اگر فایل عکس اضافه شده باشد."),
-      img("/images/products/monitor-ts18-full.jpg", "تصویر کامل معرفی TS18", "نسخه کامل اسکرین‌شات در گالری."),
+      img("/images/products/monitor-ts18.jpg", "مانیتور اندروید TS18", "نمای دستگاه."),
+      img("/images/products/monitor-ts18-full.jpg", "تصویر معرفی مانیتور TS18", "عکس کامل، با فهرست مشخصات زیر دستگاه."),
     ],
   }),
   base({
@@ -412,8 +412,8 @@ catalog.products.push(
       { label: "سیم‌کارت", value: "قابل سفارش با 4G یا بدون آن" },
     ],
     images: [
-      img("/images/products/monitor-t9.jpg", "مانیتور اندروید T9", "برش دستگاه، اگر فایل عکس اضافه شده باشد."),
-      img("/images/products/monitor-t9-full.jpg", "تصویر کامل معرفی T9", "نسخه کامل اسکرین‌شات در گالری."),
+      img("/images/products/monitor-t9.jpg", "مانیتور اندروید T9", "نمای دستگاه."),
+      img("/images/products/monitor-t9-full.jpg", "تصویر معرفی مانیتور T9", "عکس کامل، با فهرست مشخصات زیر دستگاه."),
     ],
   }),
   base({
