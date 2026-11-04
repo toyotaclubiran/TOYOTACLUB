@@ -98,9 +98,11 @@ function layout(opts) {
   </div></div>
   <header class="site-header">
     <div class="wrap header-main">
-      <a class="brand" href="/">
-        <span class="brand-mark">T<span>C</span></span>
-        <span class="brand-name">Toyota Club Iran<small>لامرد</small></span>
+      <a class="brand" href="/" aria-label="Toyota Club Iran">
+        <span class="wordmark">
+          <span class="wm-line"><span class="wm-toyota">Toyota</span> <span class="wm-club">Club</span></span>
+          <span class="wm-iran">IRAN</span>
+        </span>
       </a>
       <form class="search" action="/shop/" method="get" role="search">
         <label class="sr-only" for="q">جستجو</label>
@@ -230,7 +232,7 @@ function cardGrid(products, catalog, files) {
 
 function filters(catalog) {
   const sockets = catalog.sockets.map((socket) => `<label><input type="checkbox" data-filter="socket" value="${esc(socket.id)}"> ${esc(socket.label)}</label>`).join("");
-  const watts = ["45", "55", "65", "75", "90", "100", "35"]
+  const watts = ["35", "45", "55", "60", "65", "75", "90", "100"]
     .map((watt) => `<label><input type="checkbox" data-filter="watt" value="${watt}"> ${faNum(Number(watt))} وات</label>`)
     .join("");
   return `<aside class="filters">
@@ -270,7 +272,7 @@ function listing(site, catalog, files, { title, description, path, crumbs, produ
 }
 
 function heroSlide(kicker, title, text, image, alt) {
-  return `<div class="hero-slide"><div>
+  return `<div class="hero-slide"><div class="hero-copy">
       <div class="kicker">${kicker}</div>
       <h1>${title}</h1>
       <p>${text}</p>
@@ -278,7 +280,7 @@ function heroSlide(kicker, title, text, image, alt) {
         <a class="btn btn-primary" href="/category/led/">مشاهده هدلایت‌ها</a>
         <a class="btn btn-ghost" href="tel:+989174450040">مشاوره تلفنی</a>
       </div>
-    </div><div class="hero-visual"><img src="${image}" alt="${esc(alt)}"></div></div>`;
+    </div><div class="hero-visual" aria-hidden="true"><img src="${image}" alt="${esc(alt)}"></div></div>`;
 }
 
 function renderHome(site, catalog, files) {
@@ -300,16 +302,16 @@ function renderHome(site, catalog, files) {
       <input type="radio" name="hero" id="h1" checked>
       <input type="radio" name="hero" id="h2">
       <input type="radio" name="hero" id="h3">
-      <div class="hero-track wrap">
-        ${heroSlide("EGLXEN D Series", `نور بهتر، با انتخاب <span class="red">سوکت</span>`, "هدلایت سری D از ۴۵ تا ۱۰۰ وات. برای هر خودرویی که سوکت لامپش جور باشد، نه فقط تویوتا.", "/images/hero/eglxen-d-series-studio.jpg", "جعبه EGLXEN سری D")}
+      <div class="hero-track">
+        ${heroSlide("EGLXEN D Series", `نور بهتر، با انتخاب <span class="red">سوکت</span>`, "سری D اگلزن، از مدل D45 تا D150. برای هر خودرویی که سوکت لامپش جور باشد، نه فقط تویوتا.", "/images/hero/eglxen-d-series-studio.jpg", "جعبه EGLXEN سری D")}
         ${heroSlide("مدل D45", "درایور دوگانه و فن پرسرعت", "طرح نقره‌ای EGLXEN. سوکت‌های موجود و ناموجود روی کارت کالا مشخص است.", "/images/products/eglxen-d45-studio.jpg", "هدلایت EGLXEN مدل D45")}
         ${heroSlide("مدل D65", "دمای ثابت، روشن‌شدن سریع", "طرح خاکستری EGLXEN با توان ۶۵ وات. سوکت H4 این مدل ناموجود است.", "/images/products/eglxen-d65-studio.jpg", "هدلایت EGLXEN مدل D65")}
       </div>
       <div class="hero-dots"><label for="h1"></label><label for="h2"></label><label for="h3"></label></div>
     </section>
     <div class="wrap"><div class="trust">
-      <article><strong>کالای قابل استعلام</strong><span>قیمت را تلفنی و در فرم می‌گیرید</span></article>
-      <article><strong>راهنمایی نصب</strong><span>تطبیق سوکت قبل از سفارش</span></article>
+      <article><strong>قیمت با یک تماس</strong><span>استعلام سریع، بدون پرداخت آنلاین</span></article>
+      <article><strong>انتخاب سوکت درست</strong><span>قبل از ارسال، سوکت را چک می‌کنیم</span></article>
       <article><strong>ارسال به سراسر ایران</strong><span>از لامرد</span></article>
       <article><strong>مشاوره تلفنی</strong><span>${esc(site.phoneDisplay)}</span></article>
     </div></div>
@@ -341,11 +343,11 @@ function renderHome(site, catalog, files) {
     </div></section>
     <section class="section"><div class="wrap"><div class="compare">
       <h2>مقایسه سری D اگلزن</h2>
-      <p>توان از فهرست موجودی فروشگاه است. لومن فقط جایی آمده که روی تصویر معرفی همان مدل نوشته شده باشد.</p>
+      <p>توان، روشنایی و سوکت‌های آماده ارسال.</p>
       <table>
-        <thead><tr><th>مدل</th><th>توان</th><th>لومن اعلام‌شده</th><th>سوکت موجود</th></tr></thead>
+        <thead><tr><th>مدل</th><th>توان</th><th>روشنایی</th><th>سوکت موجود</th></tr></thead>
         <tbody>
-          <tr><td><a href="/product/eglxen-d45/">D45</a></td><td>۴۵ وات</td><td>۱۱۰۰۰، روی تصویر چیپ</td><td>H7، 9005، H4</td></tr>
+          <tr><td><a href="/product/eglxen-d45/">D45</a></td><td>۶۰ وات</td><td>۱۱۰۰۰ لومن</td><td>H7، 9005، H4</td></tr>
           <tr><td><a href="/product/eglxen-d55/">D55</a></td><td>۵۵ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
           <tr><td><a href="/product/eglxen-d65/">D65</a></td><td>۶۵ وات</td><td>—</td><td>H7، H1، H11، 9005</td></tr>
           <tr><td><a href="/product/eglxen-d90/">D90</a></td><td>۹۰ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
@@ -422,7 +424,7 @@ function gallery(product, images) {
   const radios = images.map((_, index) => `<input type="radio" name="gal" id="g${index}" ${index === 0 ? "checked" : ""}>`).join("");
   const slides = images
     .map(
-      (image) => `<figure><button class="zoom" type="button" data-zoom="${esc(image.src)}" aria-label="بزرگ‌نمایی"><img src="${esc(image.src)}" alt="${esc(image.alt || product.title)}"></button>${image.caption ? `<figcaption class="muted">${esc(image.caption)}</figcaption>` : ""}</figure>`
+      (image) => `<figure><button class="zoom" type="button" data-zoom="${esc(image.src)}" aria-label="بزرگ‌نمایی"><img src="${esc(image.src)}" alt="${esc(image.alt || product.title)}"></button></figure>`
     )
     .join("");
   const thumbs = images.map((image, index) => `<label for="g${index}"><img src="${esc(image.src)}" alt=""></label>`).join("");
@@ -430,7 +432,6 @@ function gallery(product, images) {
 }
 
 function variantFields(product) {
-  const variants = variantList(product);
   const options = (product.options || [])
     .map(
       (option) => `<label>${esc(option.label)}<select name="option-${esc(option.id)}">${option.choices
@@ -438,24 +439,32 @@ function variantFields(product) {
         .join("")}</select></label>`
     )
     .join("");
-  if (!variants.length) return options;
-  const label = variants[0].socket ? "سوکت" : "حافظه";
-  return `<label>${label}<select name="variant">${variants
-    .map((variant) => {
-      const name = variant.socket || variant.label;
-      return `<option value="${esc(name)}">${esc(name)} — ${variant.available ? "موجود" : "ناموجود"}</option>`;
-    })
-    .join("")}</select></label>${options}`;
+  return options;
 }
 
 function d45Features() {
   return `<div class="features">
-    <article><strong>۱۱۰۰۰ لومن</strong><span class="muted">روی تصویر چیپ</span></article>
-    <article><strong>۶۰ وات تصویر چیپ</strong><span class="muted">فهرست موجودی: ۴۵ وات</span></article>
-    <article><strong>فن ۱۲۰۰۰ دور</strong><span class="muted">دفع حرارت</span></article>
-    <article><strong>درایور دوگانه</strong><span class="muted">جدا از لامپ</span></article>
-    <article><strong>کن‌باس</strong><span class="muted">بعضی خودروها مقاومت بار می‌خواهند</span></article>
+    <article><strong>۱۱٬۰۰۰ لومن</strong><span>روشنایی</span></article>
+    <article><strong>۶۰ وات توان</strong><span>هر لامپ</span></article>
+    <article><strong>فن ۱۲٬۰۰۰ دور</strong><span>خنک‌کاری</span></article>
+    <article><strong>درایور دوگانه</strong><span>روشن‌شدن پایدار</span></article>
+    <article><strong>کن‌باس</strong><span>نصب روی خودروهای جدید</span></article>
   </div>`;
+}
+
+function socketPills(product) {
+  const variants = variantList(product);
+  if (!variants.length) return "";
+  return `<div class="socket-pills">${variants
+    .map((variant, index) => {
+      const name = variant.socket || variant.label;
+      return `<label class="avail-pill ${variant.available ? "is-on" : "is-off"}">
+        <input type="radio" name="variant" value="${esc(name)}" ${index === 0 ? "checked" : ""}>
+        <span>${esc(name)}</span>
+        <small>${variant.available ? "موجود" : "ناموجود"}</small>
+      </label>`;
+    })
+    .join("")}</div>`;
 }
 
 function renderProduct(site, catalog, files, product) {
@@ -483,26 +492,25 @@ function renderProduct(site, catalog, files, product) {
         <h1>${esc(product.title)}</h1>
         ${product.wattage ? `<p class="chip">${esc(product.wattage)}</p>` : ""}
         <p>${esc(product.shortDescription || "")}</p>
-        ${variants.length ? `<ul class="variant-list">${variants
-          .map((variant) => `<li><span>${esc(variant.socket || variant.label)}</span><strong class="${variant.available ? "ok-text" : "bad-text"}">${variant.available ? "موجود" : "ناموجود"}</strong></li>`)
-          .join("")}</ul>` : ""}
         ${product.id === "led-d45" ? d45Features() : ""}
-        <div class="price-box" id="inquiry">
-          <strong>استعلام قیمت</strong>
-          <p>تماس ${phone}</p>
-          <p><a href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ برای همین کالا</a></p>
+        <div class="inquiry-card" id="inquiry">
+          <div class="inquiry-actions">
+            <a class="btn btn-primary btn-xl" href="tel:+${site.phoneIntl}">${coming ? "خبرم کن" : "استعلام قیمت"}</a>
+            <a class="btn btn-wa btn-xl" href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ</a>
+          </div>
           <form class="stack-form" name="${formName}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="${formName}">
             ${honeypot()}
             <input type="hidden" name="product" value="${esc(product.title)}">
             <input type="hidden" name="sku" value="${esc(product.sku)}">
+            ${socketPills(product)}
             ${variantFields(product)}
             <label>نام <input name="full-name" required autocomplete="name"></label>
             <label>موبایل <input name="phone" required inputmode="tel" dir="ltr"></label>
-            <label>توضیح <textarea name="message" rows="3" placeholder="مدل خودرو یا سؤال"></textarea></label>
-            <button class="btn btn-primary" type="submit">${coming ? "خبرم کن" : "استعلام قیمت"}</button>
+            <label>پیام <textarea name="message" rows="3" placeholder="مدل خودرو یا سؤال"></textarea></label>
+            <button class="btn btn-line" type="submit">ارسال درخواست</button>
           </form>
-          <p class="muted">${esc(site.stockNote)}</p>
+          <p class="muted">${esc(site.stockNote)} تماس ${phone}</p>
         </div>
       </div>
     </div>
@@ -513,9 +521,9 @@ function renderProduct(site, catalog, files, product) {
       <input type="radio" name="tab" id="tab4">
       <div class="tab-nav"><label for="tab1">توضیحات</label><label for="tab2">مشخصات</label><label for="tab3">نصب</label><label for="tab4">پرسش</label></div>
       <div class="tab-panels">
-        <div class="p1">${paragraphs(product.description)}${product.mappingNote ? `<p class="note">${esc(product.mappingNote)}</p>` : ""}${product.fitment?.note ? `<p>${esc(product.fitment.note)}</p>` : ""}${toyota ? `<p>سازگاری ثبت‌شده: ${esc(toyota)}</p>` : ""}</div>
-        <div class="p2">${specs ? `<dl class="specs">${specs}</dl>` : "<p>مشخصات بیشتری ثبت نشده است.</p>"}</div>
-        <div class="p3"><p>قبل از سفارش، سوکت لامپ فابریک یا مدل خودرو را با فروشگاه تطبیق دهید. نصب تجهیزات برقی خودرو را به کسی بسپارید که به سیم‌کشی آشناست. برای راهنمایی با ${phone} تماس بگیرید.</p></div>
+        <div class="p1">${paragraphs(product.description)}${product.fitment?.note ? `<p>${esc(product.fitment.note)}</p>` : ""}${toyota ? `<p>مناسب برای ${esc(toyota)}</p>` : ""}</div>
+        <div class="p2">${specs ? `<dl class="specs">${specs}</dl>` : "<p>جزئیات بیشتر را از فروشگاه بپرسید.</p>"}</div>
+        <div class="p3"><p>سوکت لامپ فابریک یا مدل خودرو را موقع سفارش بگویید تا قطعه درست برایتان کنار گذاشته شود. اگر به سیم‌کشی خودرو آشنا نیستید، نصب را به برق‌کار بسپارید. برای راهنمایی با ${phone} تماس بگیرید.</p></div>
         <div class="p4">${faqs.map(([q, a]) => `<p><strong>${esc(q)}</strong><br>${esc(a)}</p>`).join("")}</div>
       </div>
     </div>

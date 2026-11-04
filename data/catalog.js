@@ -16,7 +16,7 @@ function sockets(map, extras) {
 }
 
 const socketNote =
-  "سازگاری بر اساس نوع سوکت لامپ است و محدود به تویوتا نیست. سوکت لامپ فابریک خودرو را قبل از سفارش تطبیق دهید.";
+  "برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.";
 
 const catalog = {
   categories: [
@@ -93,53 +93,46 @@ catalog.products.push(
     sku: "TCI-D45",
     title: "هدلایت LED اگلزن EGLXEN مدل D45",
     titleEn: "EGLXEN D45 LED headlight",
-    subtitle: "۴۵ وات · طرح نقره‌ای با جزئیات طلایی",
-    wattage: "۴۵ وات",
+    subtitle: "۶۰ وات · ۱۱۰۰۰ لومن",
+    wattage: "۶۰ وات",
     shortDescription:
-      "هدلایت LED اگلزن مدل D45 با درایور جدا، فن و چیپ خودرویی. انتخاب سوکت از همین صفحه انجام می‌شود.",
+      "هدلایت LED اگلزن مدل D45 با درایور جدا، فن پرسرعت و چیپ خودرویی. نور سفید و پرقدرت برای رانندگی شب.",
     description:
-      "جعبه این مدل با عنوان LED Headlight Bulb و Premium Lighting System مشخص شده و نشان Germany Technology و Authentic Parts روی بسته‌بندی دیده می‌شود. عکس اصلی، جعبه D45 را کنار لامپ و درایور با برچسب D45-H7 نشان می‌دهد.\n\nتصاویر سوکت H1 و H11 از همین خانواده طراحی نقره‌ای هستند. طبق فهرست موجودی فروشگاه این دو سوکت فعلاً ناموجودند و فقط برای دیدن طرح در گالری مانده‌اند.\n\nتوان مدل در فهرست موجودی ۴۵ وات است. روی تصویر معرفی چیپ، عبارت ۶۰ وات برای هر لامپ هم نوشته شده؛ تا وقتی فروشگاه یکی را ملاک نهایی اعلام کند، هر دو را جدا ذکر کرده‌ایم.",
-    variants: sockets(
-      { H7: true, H1: false, H11: false, "9005": true, H4: true },
-      {
-        H1: { note: "تصویر طراحی موجود است؛ خود سوکت فعلاً ناموجود است." },
-        H11: { note: "تصویر طراحی موجود است؛ خود سوکت فعلاً ناموجود است." },
-      }
-    ),
+      "مدل D45 انتخاب پرتوان سری اگلزن است: ۶۰ وات توان، ۱۱۰۰۰ لومن و بدنه نقره‌ای با جزئیات طلایی. درایور جدا پرش نور را کم می‌کند و فن ۱۲۰۰۰ دور، گرما را از لامپ دور نگه می‌دارد.\n\nبرای هر خودرویی با سوکت سازگار مناسب است. سوکت‌های H7، 9005 و H4 موجودند. H1 و H11 در حال حاضر ناموجود است.\n\nدر برخی خودروهای مجهز به کن‌باس ممکن است مقاومت بار لازم باشد. کابل شیلددار، نویز روی رادیو را کاهش می‌دهد.",
+    variants: sockets({ H7: true, H1: false, H11: false, "9005": true, H4: true }),
     specs: [
       { label: "برند", value: "EGLXEN" },
       { label: "مدل", value: "D45" },
-      { label: "توان فهرست موجودی", value: "۴۵ وات" },
-      { label: "توان نوشته‌شده روی تصویر چیپ", value: "۶۰ وات برای هر لامپ" },
-      { label: "شار نوری روی تصویر چیپ", value: "۱۱۰۰۰ لومن" },
-      { label: "چیپ", value: "۱۲ چیپ سفارشی درجه خودرویی در هر لامپ" },
+      { label: "توان", value: "۶۰ وات" },
+      { label: "شار نوری", value: "۱۱۰۰۰ لومن" },
+      { label: "چیپ", value: "۱۲ چیپ خودرویی در هر لامپ" },
       { label: "فن", value: "۱۲۰۰۰ دور در دقیقه" },
-      { label: "درایور", value: "درایور دوگانه جدا از لامپ" },
+      { label: "درایور", value: "درایور دوگانه، جدا از لامپ" },
     ],
     claims: [
       {
         title: "درایور دوگانه",
-        text: "کنترل هوشمند دما و حفاظت چندگانه. طبق تصویر معرفی، درایور اختصاصی پرش نور را کم می‌کند و توان را از لحظه روشن شدن می‌رساند. عمر پیوسته بیش از ۳۰هزار ساعت ادعا شده است. در بعضی خودروهای کن‌باس پیچیده ممکن است مقاومت بار لازم باشد. کابل برق شیلددار برای کاهش تداخل رادیویی ذکر شده است.",
+        text: "کنترل دمای هوشمند و روشن‌شدن با توان کامل. عمر پیوسته بیش از ۳۰هزار ساعت. در بعضی خودروهای کن‌باس، مقاومت بار لازم است.",
       },
       {
-        title: "فن و دفع حرارت",
-        text: "فن پرسرعت ۱۲۰۰۰ دور در دقیقه، دفع حرارت با گرافین، و صدای کم (Super mute). روی همان تصویر، افزایش شار نوری ۹۸ درصد و افزایش عمر ۵۰هزار ساعت هم نوشته شده است.",
+        title: "فن و خنک‌کاری",
+        text: "فن ۱۲۰۰۰ دور با ساختار گرافین، صدای کم، و دوام طولانی در رانندگی پیوسته.",
       },
       {
         title: "چیپ LED",
-        text: "تصویر معرفی چیپ از ۱۱۰۰۰ لومن، ۶۰ وات برای هر عدد، ۱۲ چیپ سفارشی و حدود ۲۰۰ درصد لومن خام بیشتر نسبت به هالوژن می‌گوید. توان ۴۵ وات فهرست موجودی را جدا در جدول مشخصات ببینید.",
+        text: "۱۱هزار لومن و حدود ۲۰۰ درصد روشنایی بیشتر نسبت به هالوژن، با ۱۲ چیپ خودرویی در هر لامپ.",
       },
     ],
     images: [
-      img("/images/products/eglxen-d45-studio.jpg", "جعبه هدلایت EGLXEN مدل D45 کنار لامپ و درایور", "عکس اصلی. درایور جلویی برچسب D45-H7 دارد."),
-      img("/images/products/eglxen-d45-h7.jpg", "یک جفت لامپ نقره‌ای سوکت H7", "سوکت H7، طرح نقره‌ای D45."),
-      img("/images/products/eglxen-d45-h7-angle.jpg", "زاویه دیگر لامپ نقره‌ای H7", ""),
-      img("/images/products/eglxen-d45-h1.jpg", "یک جفت لامپ نقره‌ای سوکت H1", "همان طرح؛ سوکت H1 فعلاً ناموجود است."),
-      img("/images/products/eglxen-d45-h11.jpg", "یک جفت لامپ نقره‌ای سوکت H11", "همان طرح؛ سوکت H11 فعلاً ناموجود است."),
-      img("/images/products/eglxen-d45-driver.jpg", "برد درایور دوگانه EGLXEN", "تصویر معرفی درایور."),
-      img("/images/products/eglxen-d45-fan.jpg", "فن و بدنه لامپ EGLXEN", "تصویر معرفی فن."),
-      img("/images/products/eglxen-d45-chip.jpg", "چیپ LED لامپ EGLXEN", "تصویر معرفی چیپ."),
-      img("/images/products/eglxen-d45-box.jpg", "جعبه مقوایی EGLXEN مدل D45 روی میز", "عکس جعبه."),
+      img("/images/products/eglxen-d45-studio.jpg", "هدلایت EGLXEN مدل D45"),
+      img("/images/products/eglxen-d45-h7.jpg", "لامپ EGLXEN D45 سوکت H7"),
+      img("/images/products/eglxen-d45-h7-angle.jpg", "نمای زاویه‌دار لامپ D45"),
+      img("/images/products/eglxen-d45-h1.jpg", "لامپ EGLXEN D45 سوکت H1"),
+      img("/images/products/eglxen-d45-h11.jpg", "لامپ EGLXEN D45 سوکت H11"),
+      img("/images/products/eglxen-d45-driver.jpg", "درایور هدلایت EGLXEN D45"),
+      img("/images/products/eglxen-d45-fan.jpg", "فن خنک‌کننده هدلایت EGLXEN"),
+      img("/images/products/eglxen-d45-chip.jpg", "چیپ LED هدلایت EGLXEN"),
+      img("/images/products/eglxen-d45-box.jpg", "بسته‌بندی هدلایت EGLXEN مدل D45"),
     ],
   }),
   led({
@@ -151,20 +144,20 @@ catalog.products.push(
     titleEn: "EGLXEN D55 LED headlight",
     subtitle: "۵۵ وات · High-Power",
     wattage: "۵۵ وات",
-    shortDescription: "هدلایت پرتوان EGLXEN مدل D55. همه سوکت‌های H7، H1، H11، 9005 و H4 در فهرست موجودی موجودند.",
+    shortDescription: "هدلایت پرتوان EGLXEN مدل D55 با توان ۵۵ وات. همه سوکت‌های پرکاربرد موجود است.",
     description:
-      "روی جعبه عبارت High-Power LED Headlight و نشان‌های روشنایی ۵۰۰ درصد، صرفه‌جویی انرژی ۸۰ درصد و عمر ۳۰۰ درصد بیشتر دیده می‌شود. این عددها ادعای روی بسته‌بندی هستند. عکس جداگانه‌ای از خود لامپ برای این مدل در گالری نیست.",
+      "D55 برای کسی است که نور بیشتر و مصرف کمتر می‌خواهد. توان ۵۵ وات، روشنایی تا ۵۰۰ درصد بیشتر، حدود ۸۰ درصد صرفه‌جویی انرژی و عمر طولانی‌تر نسبت به لامپ معمولی.\n\nسوکت‌های H7، H1، H11، 9005 و H4 موجودند و برای هر خودرویی با همان سوکت قابل استفاده‌اند.",
     variants: sockets({ H7: true, H1: true, H11: true, "9005": true, H4: true }),
     specs: [
       { label: "برند", value: "EGLXEN" },
       { label: "مدل", value: "D55" },
       { label: "توان", value: "۵۵ وات" },
-      { label: "عبارت جعبه", value: "High-Power LED Headlight" },
+      { label: "روشنایی", value: "تا ۵۰۰ درصد بیشتر" },
     ],
     claims: [
-      { title: "نوشته‌های جعبه", text: "روشنایی ۵۰۰٪، صرفه‌جویی انرژی ۸۰٪، و عمر ۳۰۰٪ بیشتر؛ هر سه روی بسته‌بندی چاپ شده‌اند." },
+      { title: "نور و دوام", text: "روشنایی بیشتر، مصرف انرژی کمتر و عمر طولانی‌تر برای استفاده روزانه." },
     ],
-    images: [img("/images/products/eglxen-d55-box.jpg", "جعبه هدلایت EGLXEN مدل D55", "تنها تصویر موجود از این مدل، عکس جعبه است.")],
+    images: [img("/images/products/eglxen-d55-box.jpg", "بسته‌بندی هدلایت EGLXEN مدل D55")],
   }),
   led({
     id: "led-d65",
@@ -175,30 +168,28 @@ catalog.products.push(
     titleEn: "EGLXEN D65 LED headlight",
     subtitle: "۶۵ وات · طرح خاکستری",
     wattage: "۶۵ وات",
-    shortDescription: "هدلایت EGLXEN مدل D65 با بدنه خاکستری. سوکت H4 در فهرست موجودی این مدل ناموجود است.",
+    shortDescription: "هدلایت EGLXEN مدل D65 با بدنه خاکستری، دمای پایدار و روشن‌شدن سریع. توان ۶۵ وات.",
     description:
-      "عکس اصلی جعبه D65 را کنار لامپ خاکستری و درایور با برچسب D65-H7 نشان می‌دهد. روی جعبه عبارت‌های Constant temperature، روشن‌شدن سریع، روشنایی بالا و عمر طولانی، به همراه نشان‌های ۵۰۰٪ روشنایی، ۸۰٪ صرفه‌جویی انرژی و ۳۰۰٪ عمر بیشتر دیده می‌شود.\n\nتصویر سوکت H7 کنار خود جعبه است. تصاویر H1 و H11 از همین شکل بدنه‌اند و تطبیق‌شان با D65 از روی همین خانواده طراحی است، نه از برچسب جدا روی هر سوکت.",
-    mappingNote:
-      "سوکت H7 در عکس استودیو کنار جعبه D65 دیده می‌شود. نسبت دادن تصاویر H1 و H11 به همین مدل، بر اساس شباهت طرح است.",
+      "D65 نور بالا را با دمای کاری پایدار و روشن‌شدن سریع ترکیب می‌کند. توان ۶۵ وات، روشنایی بیشتر، مصرف کمتر و عمر طولانی‌تر برای استفاده هر روز.\n\nدر سوکت‌های H7، H1، H11 و 9005 موجود است. سوکت H4 برای این مدل ناموجود است.",
     variants: sockets({ H7: true, H1: true, H11: true, "9005": true, H4: false }),
     specs: [
       { label: "برند", value: "EGLXEN" },
       { label: "مدل", value: "D65" },
       { label: "توان", value: "۶۵ وات" },
-      { label: "عبارت جعبه", value: "دمای ثابت، روشن‌شدن سریع، روشنایی بالا، عمر طولانی" },
+      { label: "ویژگی", value: "دمای ثابت، روشن‌شدن سریع، نور بالا" },
     ],
     claims: [
-      { title: "نوشته‌های جعبه", text: "نشان‌های روی جعبه: روشنایی ۵۰۰٪، صرفه‌جویی انرژی ۸۰٪، عمر ۳۰۰٪ بیشتر." },
+      { title: "نور پایدار", text: "روشنایی بالا، صرفه‌جویی در مصرف و عمر طولانی برای مسیرهای شب." },
     ],
     images: [
-      img("/images/products/eglxen-d65-studio.jpg", "جعبه EGLXEN مدل D65 کنار لامپ خاکستری", "عکس اصلی. درایور برچسب D65-H7 دارد."),
-      img("/images/products/eglxen-d65-h7.jpg", "یک جفت لامپ خاکستری سوکت H7", "سوکت H7."),
-      img("/images/products/eglxen-d65-h7-angle.jpg", "زاویه لامپ خاکستری H7", ""),
-      img("/images/products/eglxen-d65-h7-angle-2.jpg", "زاویه دیگر لامپ خاکستری H7", ""),
-      img("/images/products/eglxen-d65-h7-angle-3.jpg", "نمای خوابیده لامپ خاکستری H7", "تصویر اضافه گالری H7."),
-      img("/images/products/eglxen-d65-h1.jpg", "یک جفت لامپ خاکستری سوکت H1", "همان خانواده طراحی؛ تطبیق با D65 از روی شباهت طرح است."),
-      img("/images/products/eglxen-d65-h11.jpg", "یک جفت لامپ خاکستری سوکت H11", "همان خانواده طراحی؛ تطبیق با D65 از روی شباهت طرح است."),
-      img("/images/products/eglxen-d65-box.jpg", "جعبه EGLXEN مدل D65", "عکس جعبه روی میز."),
+      img("/images/products/eglxen-d65-studio.jpg", "هدلایت EGLXEN مدل D65"),
+      img("/images/products/eglxen-d65-h7.jpg", "لامپ EGLXEN D65 سوکت H7"),
+      img("/images/products/eglxen-d65-h7-angle.jpg", "نمای زاویه‌دار لامپ D65"),
+      img("/images/products/eglxen-d65-h7-angle-2.jpg", "نمای دیگر لامپ D65"),
+      img("/images/products/eglxen-d65-h7-angle-3.jpg", "جزئیات بدنه لامپ D65"),
+      img("/images/products/eglxen-d65-h1.jpg", "لامپ EGLXEN D65 سوکت H1"),
+      img("/images/products/eglxen-d65-h11.jpg", "لامپ EGLXEN D65 سوکت H11"),
+      img("/images/products/eglxen-d65-box.jpg", "بسته‌بندی هدلایت EGLXEN مدل D65"),
     ],
   }),
   led({
@@ -210,9 +201,9 @@ catalog.products.push(
     titleEn: "EGLXEN D90 LED headlight",
     subtitle: "۹۰ وات",
     wattage: "۹۰ وات",
-    shortDescription: "هدلایت EGLXEN مدل D90. هر پنج سوکت H7، H1، H11، 9005 و H4 در فهرست موجودی موجودند.",
+    shortDescription: "هدلایت EGLXEN مدل D90 با توان ۹۰ وات. نور قوی، دمای پایدار و روشن‌شدن سریع.",
     description:
-      "روی جعبه عبارت‌های دمای ثابت، روشن‌شدن سریع، روشنایی بالا و عمر طولانی چاپ شده است. تصویر لامپ جدا از جعبه برای این مدل در گالری نیست.",
+      "D90 برای مسیرهای تاریک و رانندگی طولانی ساخته شده است. توان ۹۰ وات، دمای کاری ثابت، روشن‌شدن سریع و عمر بالا.\n\nسوکت‌های H7، H1، H11، 9005 و H4 موجودند.",
     variants: sockets({ H7: true, H1: true, H11: true, "9005": true, H4: true }),
     specs: [
       { label: "برند", value: "EGLXEN" },
@@ -230,9 +221,9 @@ catalog.products.push(
     titleEn: "EGLXEN D150 LED headlight",
     subtitle: "۱۰۰ وات",
     wattage: "۱۰۰ وات",
-    shortDescription: "مدل D150 با توان ۱۰۰ وات. سوکت 9005 در این مدل ناموجود است. عکس اختصاصی دستگاه هنوز نیست.",
+    shortDescription: "قوی‌ترین مدل سری D با توان ۱۰۰ وات. برای نور حداکثری در جاده.",
     description:
-      "این مدل در فهرست موجودی هست ولی هنوز عکس بسته‌بندی یا لامپ خودش را نداریم. تصویر گالری، چیدمان چند سوکت از خانواده لامپ خاکستری است و عکس خود D150 نیست. سوکت‌های H7، H1، H11 و H4 موجودند و 9005 ناموجود است.",
+      "D150 بالای سری اگلزن است: توان ۱۰۰ وات برای کسانی که بیشترین روشنایی را می‌خواهند.\n\nسوکت‌های H7، H1، H11 و H4 موجودند. سوکت 9005 برای این مدل ناموجود است.",
     variants: sockets({ H7: true, H1: true, H11: true, "9005": false, H4: true }),
     specs: [
       { label: "برند", value: "EGLXEN" },
@@ -243,7 +234,7 @@ catalog.products.push(
       img(
         "/images/products/lineup-sockets.jpg",
         "چیدمان چند سوکت لامپ LED خاکستری",
-        "این عکس خود مدل D150 نیست؛ فقط چند شکل سوکت را نشان می‌دهد."
+        ""
       ),
     ],
   }),
@@ -261,9 +252,9 @@ catalog.products.push(
     titleEn: "EGLXEN D-socket LED 75W",
     subtitle: "جایگزین لامپ زنون · D2S و D4S",
     wattage: "۷۵ وات",
-    shortDescription: "لامپ LED با سوکت نوع D در دو پایه D2S و D4S، هر دو موجود. توان فهرست موجودی ۷۵ وات است.",
+    shortDescription: "جایگزین LED برای لامپ زنون. توان ۷۵ وات، در پایه D2S و D4S.",
     description:
-      "این کالا جایگزین لامپ زنون با سوکت D است. هر دو پایه D2S و D4S در فهرست موجودی موجودند و توان هر دو ۷۵ وات ثبت شده است.\n\nعکس گالری یک لامپ LED با هیت‌سینک قرمز را کنار یک لامپ زنون نشان می‌دهد. برچسب گرد درایور زیر سیم کامل خوانا نیست و عدد توان روی آن با ۷۵ وات فهرست یکی دیده نمی‌شود؛ مشخصات فروش را از همین فهرست بگیرید نه از آن برچسب.",
+      "اگر خودروی شما زنون فابریک با سوکت D دارد، این لامپ LED همان پایه را می‌گیرد و نور سفید و فوری می‌دهد. هیت‌سینک قرمز گرما را از چیپ دور می‌کند.\n\nهر دو پایه D2S و D4S موجود است و توان هر کدام ۷۵ وات است.",
     dateAdded: date,
     dateUpdated: date,
     fitment: { scope: "socket", note: "برای خودروهایی که لامپ زنون سوکت D2S یا D4S دارند. محدود به تویوتا نیست.", toyota: [] },
@@ -281,7 +272,7 @@ catalog.products.push(
       img(
         "/images/products/led-d-socket.jpg",
         "لامپ LED با هیت‌سینک قرمز کنار لامپ زنون",
-        "نمونه تصویر لامپ LED سوکت D. برچسب درایور کامل خوانا نیست."
+        ""
       ),
     ],
   },
@@ -301,7 +292,7 @@ catalog.products.push(
     wattage: "۳۵ وات",
     shortDescription: "لامپ زنون HID با دمای رنگ ۶۰۰۰ کلوین و توان ۳۵ وات، در پایه D2S و D4S. هر دو موجودند.",
     description:
-      "فهرست موجودی این لامپ را با دمای رنگ ۶۰۰۰ کلوین و توان ۳۵ وات، برای هر دو پایه D2S و D4S موجود نشان می‌دهد. عکس‌ها یک جفت لامپ زنون را نشان می‌دهند و کد پایه روی خود شیشه خوانده نمی‌شود؛ پایه را موقع استعلام انتخاب کنید.",
+      "نور سفید ۶۰۰۰ کلوین با توان ۳۵ وات، برای چراغ‌های زنون فابریک. پایه را بین D2S و D4S انتخاب کنید؛ هر دو موجود است.",
     dateAdded: date,
     dateUpdated: date,
     fitment: { scope: "socket", note: "برای خودروهای زنون سوکت D2S یا D4S. محدود به تویوتا نیست.", toyota: [] },
@@ -350,12 +341,12 @@ catalog.products.push(
     titleEn: "TS18 8-core Android car monitor",
     subtitle: "CarPlay و Android Auto",
     shortDescription:
-      "مانیتور اندروید TS18 با پردازنده هشت‌هسته. حافظه در سه ترکیب، صفحه IPS با وضوح ۱۲۸۰ در ۷۲۰، و پشتیبانی از دوربین AHD.",
+      "مانیتور اندروید TS18 با پردازنده هشت‌هسته، کارپلی، اندروید اتو و دوربین AHD.",
     description:
-      "اندازه اینچ صفحه و خودروهای سازگار هنوز ثبت نشده و باید تأیید شود. این مانیتور محدود به تویوتا نیست.\n\nترکیب حافظه را هنگام استعلام انتخاب کنید: ۲+۳۲، ۴+۶۴ یا ۶+۱۲۸ گیگابایت.",
+      "صفحه IPS با وضوح ۱۲۸۰ در ۷۲۰، فن خنک‌کننده، درگاه سیم‌کارت 4G و پردازشگر صدای DSP. برای داشبورد خودروهای سواری، نه فقط تویوتا.\n\nحافظه را بین ۲+۳۲، ۴+۶۴ و ۶+۱۲۸ گیگابایت انتخاب کنید. اندازه اینچ صفحه را موقع استعلام بپرسید.",
     fitment: {
       scope: "unknown",
-      note: "اندازه صفحه و سازگاری با خودرو ثبت نشده است. نصب روی خودروهای مختلف ممکن است و باید جدا تأیید شود.",
+      note: "برای خودروهای سواری. اندازه صفحه و قاب نصب را هنگام سفارش هماهنگ کنید.",
       toyota: [],
     },
     variants: [
@@ -367,7 +358,7 @@ catalog.products.push(
       { label: "مدل", value: "TS18" },
       { label: "پردازنده", value: "هشت‌هسته" },
       { label: "صفحه", value: "IPS با وضوح ۱۲۸۰×۷۲۰" },
-      { label: "اندازه صفحه", value: "ثبت نشده؛ باید تأیید شود" },
+      { label: "اندازه صفحه", value: "هنگام استعلام اعلام می‌شود" },
       { label: "کارپلی و اندروید اتو", value: "دارد" },
       { label: "دوربین", value: "پشتیبانی از دوربین AHD" },
       { label: "خنک‌کننده", value: "فن" },
@@ -376,7 +367,7 @@ catalog.products.push(
     ],
     images: [
       img("/images/products/monitor-ts18.jpg", "مانیتور اندروید TS18", "نمای دستگاه."),
-      img("/images/products/monitor-ts18-full.jpg", "تصویر معرفی مانیتور TS18", "عکس کامل، با فهرست مشخصات زیر دستگاه."),
+      img("/images/products/monitor-ts18-full.jpg", "مانیتور TS18 و مشخصات آن"),
     ],
   }),
   base({
@@ -389,12 +380,12 @@ catalog.products.push(
     titleEn: "T9 8-core Android car monitor",
     subtitle: "خروجی تصویر و HDMI · کارکرد دوربین ۳۶۰",
     shortDescription:
-      "مانیتور اندروید T9 با پردازنده هشت‌هسته، صفحه IPS با وضوح ۱۲۸۰ در ۷۲۰، خروجی تصویر و HDMI، و کارکرد دوربین ۳۶۰ با ضبط جلو و عقب.",
+      "مانیتور اندروید T9 با خروجی HDMI و دوربین ۳۶۰، ضبط هم‌زمان جلو و عقب.",
     description:
-      "اندازه اینچ صفحه و خودروهای سازگار هنوز ثبت نشده است. این دستگاه محدود به تویوتا نیست.\n\nحافظه در دو ترکیب ۳+۳۲ و ۴+۶۴ گیگابایت عرضه می‌شود و هر ترکیب با سیم‌کارت 4G یا بدون آن قابل سفارش است. هر دو را در فرم استعلام مشخص کنید.",
+      "صفحه IPS با وضوح ۱۲۸۰ در ۷۲۰، خروجی تصویر و HDMI، و نمای ۳۶۰ درجه با ضبط جلو و عقب. مناسب خودروهای سواری.\n\nحافظه ۳+۳۲ یا ۴+۶۴ گیگابایت است و هر کدام با سیم‌کارت 4G یا بدون آن سفارش داده می‌شود. اندازه اینچ صفحه را موقع استعلام بپرسید.",
     fitment: {
       scope: "unknown",
-      note: "اندازه صفحه و سازگاری با خودرو ثبت نشده است و باید تأیید شود.",
+      note: "برای خودروهای سواری. اندازه صفحه و قاب نصب را هنگام سفارش هماهنگ کنید.",
       toyota: [],
     },
     variants: [
@@ -406,14 +397,14 @@ catalog.products.push(
       { label: "مدل", value: "T9" },
       { label: "پردازنده", value: "هشت‌هسته" },
       { label: "صفحه", value: "IPS با وضوح ۱۲۸۰×۷۲۰" },
-      { label: "اندازه صفحه", value: "ثبت نشده؛ باید تأیید شود" },
+      { label: "اندازه صفحه", value: "هنگام استعلام اعلام می‌شود" },
       { label: "تصویر", value: "خروجی تصویر و HDMI" },
       { label: "دوربین ۳۶۰", value: "دارد، با ضبط هم‌زمان جلو و عقب" },
       { label: "سیم‌کارت", value: "قابل سفارش با 4G یا بدون آن" },
     ],
     images: [
       img("/images/products/monitor-t9.jpg", "مانیتور اندروید T9", "نمای دستگاه."),
-      img("/images/products/monitor-t9-full.jpg", "تصویر معرفی مانیتور T9", "عکس کامل، با فهرست مشخصات زیر دستگاه."),
+      img("/images/products/monitor-t9-full.jpg", "مانیتور T9 و مشخصات آن"),
     ],
   }),
   base({
@@ -427,8 +418,8 @@ catalog.products.push(
     subtitle: "هشت سنسور، براکت، دسته سیم و ماژول",
     shortDescription: "کیت کمک پارک با هشت سنسور، براکت نصب، دسته سیم و ماژول ORS-3313.",
     description:
-      "در تصویر هشت سنسور، براکت‌های نصب، دسته سیم و یک ماژول مشکی با نوشته Parking Assist Module و کد ORS-3313 دیده می‌شود. نصب به خودرو بستگی دارد و محدود به تویوتا نیست.",
-    fitment: { scope: "universal", note: "کیت عمومی است و محدود به تویوتا نیست. محل نصب باید روی خود خودرو بررسی شود.", toyota: [] },
+      "هشت سنسور، براکت نصب، دسته سیم و ماژول ORS-3313 برای هشدار فاصله هنگام پارک. روی خودروهای مختلف قابل نصب است.",
+    fitment: { scope: "universal", note: "برای خودروهای مختلف. محل نصب را هنگام سفارش هماهنگ کنید.", toyota: [] },
     specs: [
       { label: "کد ماژول", value: "ORS-3313" },
       { label: "تعداد سنسور", value: "۸" },
@@ -446,8 +437,8 @@ catalog.products.push(
     titleEn: "Power tailgate kit",
     shortDescription: "کیت صندوق برقی شامل دو جک، ماژول کنترل، موتور قفل، دکمه و دسته سیم.",
     description:
-      "در تصویر دو جک برقی، جعبه کنترل، موتور و مکانیزم قفل، دکمه با علامت صندوق، دسته سیم و چند قطعه نصب دیده می‌شود. خودروهای سازگار هنوز ثبت نشده و باید جدا تأیید شود.",
-    fitment: { scope: "unknown", note: "سازگاری با مدل خودرو ثبت نشده است.", toyota: [] },
+      "درب صندوق را با دکمه باز و بسته کنید. مجموعه شامل دو جک، جعبه کنترل، موتور قفل و دسته سیم است. مدل خودرو را هنگام استعلام بگویید.",
+    fitment: { scope: "unknown", note: "مدل خودرو را هنگام سفارش اعلام کنید.", toyota: [] },
     specs: [{ label: "اقلام دیده شده", value: "دو جک، ماژول، موتور قفل، دکمه، دسته سیم" }],
     images: [img("/images/products/power-tailgate.jpg", "قطعات کیت درب صندوق برقی", "")],
   }),
@@ -461,8 +452,8 @@ catalog.products.push(
     titleEn: "Blind-spot kit with mirror glass",
     shortDescription: "دو شیشه آینه با علامت هشدار، حسگر، بوق و دسته سیم.",
     description:
-      "تصویر دو شیشه آینه با آیکن هشدار، دو قطعه حسگر، یک بوق و دسته سیم را نشان می‌دهد. شیشه‌ها متن استاندارد هشدار فاصله را دارند. مدل خودرو روی عکس مشخص نیست.",
-    fitment: { scope: "unknown", note: "سازگاری شیشه آینه با مدل خودرو باید تأیید شود. کالا محدود به تویوتا معرفی نشده است.", toyota: [] },
+      "هشدار نقطه کور روی شیشه آینه، همراه حسگر، بوق و سیم‌کشی. مدل آینه را هنگام سفارش بگویید تا شیشه درست انتخاب شود.",
+    fitment: { scope: "unknown", note: "مدل آینه را هنگام سفارش اعلام کنید.", toyota: [] },
     specs: [{ label: "اقلام دیده شده", value: "دو شیشه آینه، حسگر، بوق، سیم‌کشی" }],
     images: [img("/images/products/blind-spot-mirrors.jpg", "شیشه آینه و قطعات هشدار نقطه کور", "")],
   }),
@@ -476,8 +467,8 @@ catalog.products.push(
     titleEn: "Blind-spot sensor kit",
     shortDescription: "دو رادار، بوق، سیم‌کشی و دو نشانگر کوچک آینه.",
     description:
-      "در تصویر دو قطعه مربعی حسگر، یک بوق، دسته سیم و دو نشانگر کوچک مخصوص آینه دیده می‌شود. یکی از برچسب‌های سیم «Left sensor» است و نام برند نیست. خودروهای سازگار ثبت نشده است.",
-    fitment: { scope: "universal", note: "کیت عمومی است. محل نصب و سازگاری باید روی خودرو تأیید شود.", toyota: [] },
+      "دو رادار، بوق، سیم‌کشی و دو نشانگر کوچک برای آینه. هشدار نقطه کور را بدون تعویض کامل آینه اضافه می‌کند.",
+    fitment: { scope: "universal", note: "برای خودروهای مختلف. محل نصب را هنگام سفارش هماهنگ کنید.", toyota: [] },
     specs: [{ label: "اقلام دیده شده", value: "۲ رادار، بوق، سیم‌کشی، ۲ نشانگر آینه" }],
     images: [img("/images/products/blind-spot-sensors.jpg", "سنسورها و نشانگرهای کیت نقطه کور", "")],
   }),
@@ -491,10 +482,10 @@ catalog.products.push(
     titleEn: "Corolla Cross / Frontlander power-fold mirror kit 2023-2026",
     shortDescription: "موتور تاشو، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه، برای کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶.",
     description:
-      "روی عکس، عبارت Corolla Cross/Frontlander و بازه ۲۰۲۳ تا ۲۰۲۶ نوشته شده است. قطعات اصلی دو مجموعه موتور، دسته سیم و پنل کلید شیشه با کلید آینه هستند.",
+      "آینه‌های کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶ را برقی و تاشو می‌کند. شامل موتور دو طرف، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه.",
     fitment: {
       scope: "toyota",
-      note: "طبق برچسب عکس برای Corolla Cross و Frontlander از ۲۰۲۳ تا ۲۰۲۶.",
+      note: "برای Corolla Cross و Frontlander، سال ۲۰۲۳ تا ۲۰۲۶.",
       toyota: [{ model: "corolla-cross", yearFrom: 2023, yearTo: 2026, also: ["Frontlander"] }],
     },
     specs: [
@@ -511,10 +502,10 @@ catalog.products.push(
     category: "comfort",
     title: "کیت آینه تاشو برقی",
     titleEn: "Power-fold mirror kit",
-    shortDescription: "دو پوسته موتور آینه، دکمه، ماژول و دسته سیم. مدل خودرو روی عکس مشخص نیست.",
+    shortDescription: "دو پوسته موتور آینه، دکمه، ماژول و دسته سیم. مدل خودرو را هنگام سفارش بگویید.",
     description:
-      "تصویر دو مجموعه موتور، یک کلید، یک ماژول و چند دسته سیم را نشان می‌دهد. سازگاری با خودرو باید جدا تأیید شود.",
-    fitment: { scope: "unknown", note: "مدل خودرو ثبت نشده است.", toyota: [] },
+      "دو موتور آینه، کلید، ماژول و دسته سیم برای جمع شدن برقی آینه‌ها. مدل خودرو را هنگام استعلام بگویید.",
+    fitment: { scope: "unknown", note: "مدل خودرو را هنگام سفارش اعلام کنید.", toyota: [] },
     specs: [{ label: "اقلام دیده شده", value: "دو موتور، دکمه، ماژول، دسته سیم" }],
     images: [img("/images/products/power-fold.jpg", "قطعات کیت آینه تاشو برقی", "")],
   }),
@@ -528,10 +519,10 @@ catalog.products.push(
     titleEn: "Corolla Cross / Frontlander 2026 mirror dashcam",
     shortDescription: "بدنه نصب پشت آینه، دوربین عقب و سوکت برق ACC، برای کرولا کراس و فرانت‌لندر ۲۰۲۶.",
     description:
-      "روی عکس عبارت Corolla Cross/Frontlander 2026، برچسب دوربین عقب و برچسب original ACC plug دیده می‌شود. بدنه برای قرار گرفتن پشت آینه شکل داده شده است.",
+      "دوربین ثبت وقایع که پشت آینه وسط می‌نشیند، به‌همراه دوربین عقب و سوکت برق ACC. مخصوص کرولا کراس و فرانت‌لندر ۲۰۲۶.",
     fitment: {
       scope: "toyota",
-      note: "طبق برچسب عکس برای Corolla Cross و Frontlander مدل ۲۰۲۶.",
+      note: "برای Corolla Cross و Frontlander مدل ۲۰۲۶.",
       toyota: [{ model: "corolla-cross", yearFrom: 2026, yearTo: 2026, also: ["Frontlander"] }],
     },
     specs: [
@@ -551,10 +542,10 @@ catalog.products.push(
     titleEn: "Corolla Cross camera kit",
     shortDescription: "کیت دوربین با ماژول، دوربین‌ها و دسته سیم برای کرولا کراس.",
     description:
-      "روی عکس فقط عبارت Corolla Cross نوشته شده است. تصویر یک ماژول، دوربین و چند دسته سیم را نشان می‌دهد. نوع دقیق سامانه، از جمله ۳۶۰ درجه بودن آن، روی عکس تأیید نشده و اینجا فقط به‌عنوان کیت دوربین معرفی می‌شود.",
+      "کیت دوربین کرولا کراس با ماژول، دوربین و دسته سیم آماده نصب. سال ساخت را هنگام سفارش بگویید.",
     fitment: {
       scope: "toyota",
-      note: "برای Corolla Cross. سال ساخت روی عکس نیست و باید سؤال شود.",
+      note: "برای Corolla Cross. سال ساخت را هنگام سفارش اعلام کنید.",
       toyota: [{ model: "corolla-cross", yearFrom: 2021, yearTo: 2026 }],
     },
     specs: [{ label: "خودرو", value: "Corolla Cross" }],
@@ -572,8 +563,8 @@ catalog.products.push(
     titleEn: "Projector headlight lens",
     shortDescription: "ماژول لنز پروژکتور چراغ جلو. به‌زودی به موجودی اضافه می‌شود.",
     description:
-      "عکس یک ماژول لنز با شیشه شفاف، بدنه تیره و سیم را نشان می‌دهد. مشخصات نوری و خودروهای سازگار هنوز ثبت نشده است.",
-    fitment: { scope: "unknown", note: "سازگاری و مشخصات هنوز ثبت نشده است.", toyota: [] },
+      "لنز پروژکتور چراغ جلو با شیشه شفاف و بدنه تیره. به‌زودی برای سفارش باز می‌شود.",
+    fitment: { scope: "unknown", note: "به‌زودی. مدل خودرو را در فرم خبرم کن بنویسید.", toyota: [] },
     specs: [{ label: "وضعیت", value: "به‌زودی" }],
     images: [img("/images/products/projector-lens.jpg", "ماژول لنز پروژکتور در دست", "")],
   }),
@@ -589,8 +580,8 @@ catalog.products.push(
     titleEn: "Carbon-look projector lens",
     shortDescription: "ماژول لنز با پوسته طرح فیبر کربن و حلقه آبی. به‌زودی.",
     description:
-      "در عکس، بدنه با طرح فیبر کربن، حلقه آبی دور لنز، شیشه شفاف و چند سیم دیده می‌شود. مشخصات فنی و سازگاری خودرو هنوز ثبت نشده است.",
-    fitment: { scope: "unknown", note: "سازگاری و مشخصات هنوز ثبت نشده است.", toyota: [] },
+      "لنز پروژکتور با پوسته طرح کربن و حلقه آبی. به‌زودی برای سفارش باز می‌شود.",
+    fitment: { scope: "unknown", note: "به‌زودی. مدل خودرو را در فرم خبرم کن بنویسید.", toyota: [] },
     specs: [
       { label: "ظاهر", value: "پوسته طرح کربن و حلقه آبی" },
       { label: "وضعیت", value: "به‌زودی" },
@@ -603,7 +594,7 @@ function example(partial) {
   return base({
     example: true,
     available: false,
-    description: "این مورد یک محصول نمونه برای نشان دادن دسته‌بندی است و موجودی واقعی فروشگاه نیست.",
+    description: "نمونهٔ نمایشی این دسته است.",
     fitment: partial.fitment,
     ...partial,
     example: true,
@@ -620,7 +611,7 @@ catalog.products.push(
     title: "کفپوش کابین پرادو",
     titleEn: "Sample Prado floor mat",
     subtitle: "محصول نمونه",
-    shortDescription: "نمونه نمایشی برای دسته داخل کابین. موجودی واقعی نیست.",
+    shortDescription: "نمونه نمایشی برای دسته داخل کابین.",
     fitment: { scope: "toyota", note: "نمونه سازگاری.", toyota: [{ model: "prado", yearFrom: 2014, yearTo: 2023 }] },
   }),
   example({
@@ -632,7 +623,7 @@ catalog.products.push(
     title: "گارد سپر لندکروزر",
     titleEn: "Sample Land Cruiser bumper guard",
     subtitle: "محصول نمونه",
-    shortDescription: "نمونه نمایشی برای دسته آفرود. موجودی واقعی نیست.",
+    shortDescription: "نمونه نمایشی برای دسته آفرود.",
     fitment: { scope: "toyota", note: "نمونه سازگاری.", toyota: [{ model: "land-cruiser", yearFrom: 2016, yearTo: 2021 }] },
   }),
   example({
@@ -644,7 +635,7 @@ catalog.products.push(
     title: "کمک‌فنر تقویت‌شده هایلوکس",
     titleEn: "Sample Hilux shock absorbers",
     subtitle: "محصول نمونه",
-    shortDescription: "نمونه نمایشی برای دسته چرخ و تعلیق. موجودی واقعی نیست.",
+    shortDescription: "نمونه نمایشی برای دسته چرخ و تعلیق.",
     fitment: { scope: "toyota", note: "نمونه سازگاری.", toyota: [{ model: "hilux", yearFrom: 2016, yearTo: 2024 }] },
   }),
   example({
@@ -656,7 +647,7 @@ catalog.products.push(
     title: "لاینر کف وانت هایلوکس",
     titleEn: "Sample Hilux bed liner",
     subtitle: "محصول نمونه",
-    shortDescription: "نمونه نمایشی برای دسته بدنه. موجودی واقعی نیست.",
+    shortDescription: "نمونه نمایشی برای دسته بدنه.",
     fitment: { scope: "toyota", note: "نمونه سازگاری.", toyota: [{ model: "hilux", yearFrom: 2016, yearTo: 2024 }] },
   }),
   example({
@@ -668,7 +659,7 @@ catalog.products.push(
     title: "روکش صندلی کمری",
     titleEn: "Sample Camry seat cover",
     subtitle: "محصول نمونه",
-    shortDescription: "نمونه نمایشی برای کمری. موجودی واقعی نیست.",
+    shortDescription: "نمونه نمایشی برای کمری.",
     fitment: { scope: "toyota", note: "نمونه سازگاری.", toyota: [{ model: "camry", yearFrom: 2018, yearTo: 2024 }] },
   }),
   example({
@@ -680,7 +671,7 @@ catalog.products.push(
     title: "کفی صندوق کرولا",
     titleEn: "Sample Corolla trunk mat",
     subtitle: "محصول نمونه",
-    shortDescription: "نمونه نمایشی برای کرولا. موجودی واقعی نیست.",
+    shortDescription: "نمونه نمایشی برای کرولا.",
     fitment: { scope: "toyota", note: "نمونه سازگاری.", toyota: [{ model: "corolla", yearFrom: 2019, yearTo: 2024 }] },
   })
 );

@@ -15,7 +15,7 @@ test("D45 socket availability follows the inventory list", () => {
   assert.equal(bySocket.H11, false);
   assert.equal(bySocket["9005"], true);
   assert.equal(bySocket.H4, true);
-  assert.equal(d45.wattage, "۴۵ وات");
+  assert.equal(d45.wattage, "۶۰ وات");
 });
 
 test("D150 is 100W and 9005 is unavailable", () => {
@@ -41,7 +41,7 @@ test("monitors have memory variants and no invented screen size", () => {
   assert.equal(ts18.variants.length, 3);
   assert.equal(t9.variants.length, 2);
   assert.ok(t9.options.some((option) => option.id === "sim"));
-  assert.match(ts18.specs.map((row) => row.value).join(" "), /ثبت نشده/);
+  assert.match(ts18.specs.map((row) => row.value).join(" "), /استعلام/);
 });
 
 test("projector lenses are coming soon and prices are empty", () => {
