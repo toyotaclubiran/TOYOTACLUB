@@ -15,16 +15,31 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# Canonical host is https://toyotaclubiran.com (no www).
-[[redirects]]
-  from = "http://toyotaclubiran.com/*"
-  to = "https://toyotaclubiran.com/:splat"
-  status = 301
-  force = true
+# Canonical host is the apex domain. Page canonical URLs stay https
+# in the HTML. Do not force the browser onto https until Netlify has
+# issued a Let's Encrypt certificate for toyotaclubiran.com. The host
+# still presents the *.netlify.app certificate, so an http->https
+# redirect sends every visitor into a certificate error.
+#
+# Re-enable the http->https rules below once that certificate is active,
+# and remove the Strict-Transport-Security max-age=0 override.
+#
+# [[redirects]]
+#   from = "http://toyotaclubiran.com/*"
+#   to = "https://toyotaclubiran.com/:splat"
+#   status = 301
+#   force = true
+#
+# [[redirects]]
+#   from = "http://www.toyotaclubiran.com/*"
+#   to = "https://toyotaclubiran.com/:splat"
+#   status = 301
+#   force = true
 
+# www stays on the same scheme. http://www must not be upgraded to https.
 [[redirects]]
   from = "http://www.toyotaclubiran.com/*"
-  to = "https://toyotaclubiran.com/:splat"
+  to = "http://toyotaclubiran.com/:splat"
   status = 301
   force = true
 
@@ -50,6 +65,10 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Clears any HSTS pin so browsers do not upgrade http to https
+    # while the custom-domain certificate is still *.netlify.app.
+    # Remove this line when the Let's Encrypt certificate is active.
+    Strict-Transport-Security = "max-age=0"
 
 [[headers]]
   for = "/fonts/*"
