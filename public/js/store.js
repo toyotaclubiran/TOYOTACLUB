@@ -23,7 +23,9 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.querySelectorAll(".reveal").forEach(function (el) {
-    if (reduceMotion || !("IntersectionObserver" in window)) { el.classList.add("is-in"); return; }
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    el.classList.add("will-reveal");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
