@@ -47,7 +47,7 @@ slides:
     cta: مشاهده مانیتورهای هوشمند
     kicker: مانیتور هوشمند خودرو
     highlight: هوشمند
-    strong: true
+    strong: false
     title: تجربه‌ای هوشمند در هر سفر
     image: داشبورد-مدرن-تویوتا-با-نمایشگر-اندروید.png
   - alt: تجهیزات و لوازم جانبی تویوتا کرولا کراس
@@ -85,22 +85,22 @@ tiles:
     name: لامپ زنون و LED مدل D2S و D4S
     blurb: لامپ‌های D2S و D4S در مدل‌های زنون و LED
     image: لامپ_های-led-و-زنون-خودرو-eglxen.png
-    photo: false
+    photo: true
   - href: /category/monitor/
     name: مانیتور هوشمند خودرو
     blurb: مانیتور اندروید TS18 و T9 با امکانات هوشمند
     image: نمایشگر-اندرویدی-داشبورد-تویوتا-راو۴.png
-    photo: false
+    photo: true
   - href: /category/parking/
     name: سنسور پارک خودرو
     blurb: سنسور دنده عقب و تجهیزات کمک‌پارک خودرو
     image: هشدار-نقطه-کور-و-سنسور-پارک.png
-    photo: false
+    photo: true
   - href: /category/comfort/
     name: آینه و تجهیزات رفاهی خودرو
     blurb: آینه تاشو برقی و تجهیزات رفاهی خودرو
     image: سیستم-آینه-تاشو-برقی-تویوتا.png
-    photo: false
+    photo: true
   - href: /model/corolla-cross/
     name: تویوتا کرولا کراس
     blurb: لوازم جانبی و آپشن‌های کاربردی تویوتا کرولا کراس
