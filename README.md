@@ -18,22 +18,24 @@ Open `http://localhost:3000`.
 
 Edit `data/catalog.js`. Each product needs a stable `id`, `slug`, `sku`, `title`, `category`, and `price: null` until you are ready to show prices. Socket or memory choices go in `variants` with `available: true` or `false`. Do not put stock counts in the file; the site only says موجود or ناموجود.
 
-Images live in `public/images/products/`. The build skips a path that is not there, so a missing photo does not break the page.
+Product photos live in `public/images/products/<slug>/`. Name them `1.jpg`, `2.jpg`, `3.jpg` in the order they should appear. The build uses those numbered files when the folder exists, and otherwise falls back to the paths listed on the product. A missing file is skipped, so a page never shows a broken image.
 
-For the two Android monitors, add:
+صفحه کالا اول عکس‌های `public/images/products/نامک-کالا/1.jpg` و بعد `2.jpg` و `3.jpg` را نشان می‌دهد. نامک همان `slug` داخل `data/catalog.js` است. عکس را مربع و با پس‌زمینه روشن بگیرید؛ قاب سایت خودش نور ملایم می‌گذارد و عکس را کش نمی‌آید. اگر پوشه خالی باشد، مسیرهای قدیمی همان کالا استفاده می‌شود.
+
+Home banners live in `public/images/banners/`. The site serves WebP at 768 and 1280 pixels for heroes, and 480 and 800 for category tiles, because the source files were upscaled. Product pages stay on the real product photos, not the banners.
+
+For the two Android monitors, the older flat files are still in the repo:
 
 - `public/images/products/monitor-ts18.jpg` cropped to the unit
 - `public/images/products/monitor-ts18-full.jpg` the original screenshot
 - `public/images/products/monitor-t9.jpg`
 - `public/images/products/monitor-t9-full.jpg`
 
-`monitor-ts18.jpg` and `monitor-t9.jpg` are the head unit only. The full screenshots, including the spec strip, are `monitor-ts18-full.jpg` and `monitor-t9-full.jpg`.
-
 Redeploy by pushing to the branch Netlify builds. There is no separate admin login: the catalog file is the admin, and messages arrive in Netlify Forms.
 
 کالا را در `data/catalog.js` اضافه کنید. `id` و `slug` و `sku` را ثابت نگه دارید. تا روز اعلام قیمت، `price` را `null` بگذارید. برای سوکت یا حافظه، `variants` بسازید و فقط `available` را true یا false کنید. تعداد موجودی را در سایت ننویسید.
 
-عکس را در `public/images/products/` بگذارید. اگر مسیر عکس وجود نداشته باشد، صفحه به‌جای عکس خراب، یک کادر متنی نشان می‌دهد.
+عکس کالا را با نام `1.jpg` و `2.jpg` داخل پوشه همان کالا بگذارید. بنر صفحه اول را عوض نکنید مگر فایل هم‌نام در `public/images/banners/` را جایگزین کنید.
 
 پیام‌های مشتری در Netlify Forms جمع می‌شود: فرم‌های `message`، `inquiry`، `part-request`، `interest` و `order`.
 

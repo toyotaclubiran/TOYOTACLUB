@@ -5,6 +5,40 @@ function usableImages(product, files) {
   return (product.images || []).filter((image) => image.src && (!files || files.has(image.src)));
 }
 
+function productImages(product, files) {
+  if (files && product.slug) {
+    const prefix = `/images/products/${product.slug}/`;
+    const found = [...files]
+      .filter((file) => file.startsWith(prefix) && /^\d+\.(jpe?g|png|webp)$/i.test(file.slice(prefix.length)))
+      .sort((a, b) => Number(a.match(/(\d+)\./)[1]) - Number(b.match(/(\d+)\./)[1]));
+    if (found.length) return found.map((src) => ({ src, alt: product.title, caption: "" }));
+  }
+  return usableImages(product, files);
+}
+
+const ICONS = {
+  search: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.25" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.2 16.2 20.5 20.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  cart: '<svg viewBox="0 0 24 24"><path d="M6 7h15l-1.4 8.2a1 1 0 0 1-1 .8H8.2a1 1 0 0 1-1-.8L5.2 4H3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.2" fill="currentColor"/><circle cx="18" cy="20" r="1.2" fill="currentColor"/></svg>',
+  phone: '<svg viewBox="0 0 24 24"><path d="M8 3.5h2.2l1.2 3.2-1.6 1a12 12 0 0 0 6.5 6.5l1-1.6 3.2 1.2V16a2 2 0 0 1-2.2 2A14.5 14.5 0 0 1 6 6.7 2 2 0 0 1 8 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  wa: '<svg viewBox="0 0 24 24"><path d="M12 3.5a8.2 8.2 0 0 0-7.1 12.2L4 20.5l4.9-.9A8.2 8.2 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.2 8.6c.2 1.6 1.6 3.1 3.2 3.6l.7-.7c.2-.2.5-.2.7 0l1 .5c.2.1.3.4.2.6-.2.6-.7 1.2-1.4 1.3-2.2.2-5.4-2.4-5.8-4.6-.1-.6.3-1.2.9-1.4.2-.1.5 0 .6.2l.5 1c.1.2 0 .4-.2.5l-.4.4Z" fill="currentColor"/></svg>',
+  menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  home: '<svg viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-8.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  grid: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  bulb: '<svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 14a5.5 5.5 0 1 1 8 0c-.7.7-1.2 1.5-1.4 2.4H9.4C9.2 15.5 8.7 14.7 8 14Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  truck: '<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3V7Zm11 3h4l3 3v2h-7v-5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="17.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  shield: '<svg viewBox="0 0 24 24"><path d="M12 3 19 6v6c0 4.2-2.8 7-7 9-4.2-2-7-4.8-7-9V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  chat: '<svg viewBox="0 0 24 24"><path d="M5 6.5h14v9H8l-3 2.5v-11.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+};
+function icon(name) {
+  return `<span class="ico">${ICONS[name] || ""}</span>`;
+}
+function picture(base, widths, sizes, alt, ratio = 9 / 16, loading = "lazy") {
+  const stem = base.replace(/\.jpe?g$/, "");
+  const srcset = widths.map((w) => `${stem}-${w}.webp ${w}w`).join(", ");
+  const w = widths[widths.length - 1];
+  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}"><img src="${base}" alt="${esc(alt)}" width="${w}" height="${Math.round(w * ratio)}" loading="${loading}" decoding="async"></picture>`;
+}
+
 function waText(site, product) {
   if (!product) return "سلام، از سایت تویوتا کلاب ایران پیام می‌دهم.";
   return `سلام، برای استعلام «${product.title}» از فروشگاه تویوتا کلاب ایران پیام می‌دهم.`;
@@ -87,7 +121,7 @@ function layout(opts) {
   <link rel="stylesheet" href="/css/store.css">
   ${json ? `<script type="application/ld+json">${jsonLd(json)}</script>` : ""}
 </head>
-<body data-prices="${site.showPrices ? "on" : "off"}">
+<body class="${opts.bodyClass || ""}" data-prices="${site.showPrices ? "on" : "off"}">
   <a class="skip" href="#content">رفتن به محتوا</a>
   <div class="topbar"><div class="wrap topbar-inner">
     <span>${esc(site.address)}</span>
@@ -106,15 +140,14 @@ function layout(opts) {
       </a>
       <form class="search" action="/shop/" method="get" role="search">
         <label class="sr-only" for="q">جستجو</label>
-        <input id="q" data-search-input name="q" type="search" placeholder="جستجوی هدلایت، سوکت، مانیتور یا مدل تویوتا" autocomplete="off">
+        <span class="search-ico">${icon("search")}</span>
+        <input id="q" data-search-input name="q" type="search" placeholder="جستجو" autocomplete="off">
         <div class="suggest" data-suggest hidden></div>
       </form>
       <div class="header-tools">
-        <a class="cart-link" href="/cart/" aria-label="سبد خرید"><span class="cart-count">۰</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 7h15l-1.5 9h-12L5 4H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <a class="cart-link" href="/cart/" aria-label="سبد خرید"><span class="cart-count">۰</span>${icon("cart")}</a>
         <details class="drawer">
-          <summary class="icon-btn" aria-label="منو"><span class="menu-bars"></span></summary>
+          <summary class="icon-btn" aria-label="منو">${icon("menu")}</summary>
           <div class="drawer-panel">
             <a href="/category/led/">هدلایت LED</a>
             <a href="/category/xenon/">زنون و سوکت D</a>
@@ -163,15 +196,15 @@ function layout(opts) {
     <div class="enamad">نماد اعتماد<small>پس از دریافت اینماد اینجا قرار می‌گیرد</small></div>
   </div></footer>
   <nav class="tabbar" aria-label="ناوبری موبایل">
-    <a href="/"${current("/")}>خانه</a>
-    <a href="/shop/"${current("/shop/")}>فروشگاه</a>
-    <a href="/category/led/"${current("/category/led/")}>هدلایت</a>
-    <a href="/cart/"${current("/cart/")}>سبد</a>
-    <a href="/contact/"${current("/contact/")}>تماس</a>
+    <a href="/"${current("/")}>${icon("home")}<span>خانه</span></a>
+    <a href="/shop/"${current("/shop/")}>${icon("grid")}<span>فروشگاه</span></a>
+    <a href="/category/led/"${current("/category/led/")}>${icon("bulb")}<span>هدلایت</span></a>
+    <a href="/cart/"${current("/cart/")}>${icon("cart")}<span>سبد</span></a>
+    <a href="/contact/"${current("/contact/")}>${icon("phone")}<span>تماس</span></a>
   </nav>
-  <a class="wa-float" href="${esc(waLink(site.phoneIntl, waText(site, product)))}" target="_blank" rel="noopener">واتساپ</a>
+  <a class="wa-float" href="${esc(waLink(site.phoneIntl, waText(site, product)))}" target="_blank" rel="noopener">${icon("wa")}<span>واتساپ</span></a>
   <details class="chat-float">
-    <summary>پیام</summary>
+    <summary>${icon("chat")}<span>پیام</span></summary>
     <form class="chat-form" name="message" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="message">
       ${honeypot()}
@@ -201,7 +234,7 @@ function frame(images, alt) {
 }
 
 function productCard(product, catalog, files) {
-  const images = usableImages(product, files);
+  const images = productImages(product, files);
   const variants = variantList(product);
   const sockets = variants.map((item) => item.socket).filter(Boolean);
   const open = variants.filter((item) => item.available).map((item) => item.socket || item.label);
@@ -219,7 +252,7 @@ function productCard(product, catalog, files) {
       <div class="chips">${chips}</div>
       <div class="card-actions">
         <a class="btn btn-primary" href="/product/${esc(product.slug)}/#inquiry">استعلام قیمت</a>
-        <a class="btn btn-wa" href="${esc(wa)}" aria-label="واتساپ">W</a>
+        <a class="btn btn-wa" href="${esc(wa)}" aria-label="واتساپ">${icon("wa")}</a>
       </div>
     </div>
   </article>`;
@@ -235,8 +268,8 @@ function filters(catalog) {
   const watts = ["35", "45", "55", "60", "65", "75", "90", "100"]
     .map((watt) => `<label><input type="checkbox" data-filter="watt" value="${watt}"> ${faNum(Number(watt))} وات</label>`)
     .join("");
-  return `<aside class="filters">
-    <h2>فیلتر</h2>
+  return `<details class="filters">
+    <summary>فیلتر</summary>
     <div class="filter-block"><strong>سوکت</strong>${sockets}</div>
     <div class="filter-block"><strong>توان</strong>${watts}</div>
     <div class="filter-block"><strong>وضعیت</strong>
@@ -245,7 +278,8 @@ function filters(catalog) {
       <label><input type="checkbox" data-filter="status" value="soon"> به‌زودی</label>
       <label><input type="checkbox" data-filter="status" value="sample"> نمونه</label>
     </div>
-  </aside>`;
+  </details>
+  <script>if (matchMedia("(min-width: 900px)").matches) document.currentScript.previousElementSibling.open = true;</script>`;
 }
 
 function listing(site, catalog, files, { title, description, path, crumbs, products }) {
@@ -271,80 +305,130 @@ function listing(site, catalog, files, { title, description, path, crumbs, produ
   return layout({ site, catalog, title, description, path, main });
 }
 
-function heroSlide(kicker, title, text, image, alt) {
-  return `<div class="hero-slide"><div class="hero-copy">
+function heroSlide({ kicker, title, text, href, cta, base, alt, strong, loading }) {
+  return `<div class="hero-slide${strong ? " shade-strong" : ""}">
+    <div class="hero-visual">${picture(base, [768, 1280], "100vw", alt, 9 / 16, loading || "lazy")}</div>
+    <div class="hero-copy">
       <div class="kicker">${kicker}</div>
       <h1>${title}</h1>
       <p>${text}</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="/category/led/">مشاهده هدلایت‌ها</a>
-        <a class="btn btn-ghost" href="tel:+989174450040">مشاوره تلفنی</a>
+        <a class="btn btn-primary" href="${href}">${cta}</a>
+        <a class="btn btn-ghost" href="tel:+989174450040">${icon("phone")} مشاوره تلفنی</a>
       </div>
-    </div><div class="hero-visual" aria-hidden="true"><img src="${image}" alt="${esc(alt)}"></div></div>`;
+    </div>
+  </div>`;
+}
+
+function bannerTile(href, name, blurb, base) {
+  return `<a class="tile cine" href="${href}">
+    <div class="frame">${picture(base, [480, 800], "(min-width: 900px) 24vw, 46vw", name, 0.75)}</div>
+    <div class="tile-copy"><strong>${esc(name)}</strong><span>${esc(blurb)}</span></div>
+  </a>`;
+}
+
+function photoTile(href, name, blurb, src) {
+  return `<a class="tile cine photo" href="${href}">
+    <div class="frame"><img src="${src}" alt="${esc(name)}" loading="lazy"></div>
+    <div class="tile-copy"><strong>${esc(name)}</strong><span>${esc(blurb)}</span></div>
+  </a>`;
 }
 
 function renderHome(site, catalog, files) {
   const led = catalog.products.filter((product) => product.category === "led" && !product.example);
   const monitors = catalog.products.filter((product) => product.category === "monitor");
   const cross = catalog.products.filter((product) => (product.fitment?.toyota || []).some((row) => row.model === "corolla-cross") && !product.example);
-  const tiles = [
-    ["led", "هدلایت LED", "/images/products/eglxen-d45-studio.jpg"],
-    ["xenon", "زنون و سوکت D", "/images/products/xenon-hid-2.jpg"],
-    ["monitor", "مانیتور خودرو", "/images/products/monitor-ts18.jpg"],
-    ["camera", "دوربین", "/images/products/cc-dashcam.jpg"],
-    ["parking", "سنسور پارک", "/images/products/parking-ors3313.jpg"],
-    ["safety", "ایمنی", "/images/products/blind-spot-sensors.jpg"],
-    ["comfort", "آینه و صندوق", "/images/products/cc-power-fold.jpg"],
-    ["projector", "لنز پروژکتور", "/images/products/projector-lens.jpg"],
-  ];
   const main = `
     <section class="hero hero-slider">
       <input type="radio" name="hero" id="h1" checked>
       <input type="radio" name="hero" id="h2">
       <input type="radio" name="hero" id="h3">
       <div class="hero-track">
-        ${heroSlide("EGLXEN D Series", `نور بهتر، با انتخاب <span class="red">سوکت</span>`, "سری D اگلزن، از مدل D45 تا D150. برای هر خودرویی که سوکت لامپش جور باشد، نه فقط تویوتا.", "/images/hero/eglxen-d-series-studio.jpg", "جعبه EGLXEN سری D")}
-        ${heroSlide("مدل D45", "درایور دوگانه و فن پرسرعت", "طرح نقره‌ای EGLXEN. سوکت‌های موجود و ناموجود روی کارت کالا مشخص است.", "/images/products/eglxen-d45-studio.jpg", "هدلایت EGLXEN مدل D45")}
-        ${heroSlide("مدل D65", "دمای ثابت، روشن‌شدن سریع", "طرح خاکستری EGLXEN با توان ۶۵ وات. سوکت H4 این مدل ناموجود است.", "/images/products/eglxen-d65-studio.jpg", "هدلایت EGLXEN مدل D65")}
+        ${heroSlide({
+          kicker: "EGLXEN",
+          title: `نور جاده، با انتخاب <span class="red">سوکت</span>`,
+          text: "سری D اگلزن برای هر خودرویی که سوکت لامپش جور باشد. موجودی هر سوکت روی کارت کالا نوشته شده است.",
+          href: "/category/led/",
+          cta: "هدلایت LED",
+          base: "/images/banners/hero-led.jpg",
+          alt: "خودرو با چراغ LED روشن",
+          loading: "eager",
+        })}
+        ${heroSlide({
+          kicker: "مانیتور اندروید",
+          title: "صفحه بزرگ، داخل کابین",
+          text: "مانیتور TS18 و T9. اندازه صفحه هنگام استعلام اعلام می‌شود.",
+          href: "/category/monitor/",
+          cta: "مانیتورها",
+          base: "/images/banners/hero-monitor.jpg",
+          alt: "مانیتور خودرو در کابین",
+        })}
+        ${heroSlide({
+          kicker: "کرولا کراس",
+          title: "قطعاتی که برای این مدل ثبت شده",
+          text: "آینه تاشو برقی، دوربین و سنسور. هدلایت همچنان با سوکت انتخاب می‌شود، نه با مدل خودرو.",
+          href: "/model/corolla-cross/",
+          cta: "لوازم کرولا کراس",
+          base: "/images/banners/hero-corolla-cross.jpg",
+          alt: "تویوتا کرولا کراس",
+          strong: true,
+        })}
       </div>
       <div class="hero-dots"><label for="h1"></label><label for="h2"></label><label for="h3"></label></div>
     </section>
-    <div class="wrap"><div class="trust">
-      <article><strong>قیمت با یک تماس</strong><span>استعلام سریع، بدون پرداخت آنلاین</span></article>
-      <article><strong>انتخاب سوکت درست</strong><span>قبل از ارسال، سوکت را چک می‌کنیم</span></article>
-      <article><strong>ارسال به سراسر ایران</strong><span>از لامرد</span></article>
-      <article><strong>مشاوره تلفنی</strong><span>${esc(site.phoneDisplay)}</span></article>
+    <div class="wrap"><div class="trust reveal">
+      <article>${icon("phone")}<div><strong>قیمت با یک تماس</strong><span>${esc(site.phoneDisplay)}</span></div></article>
+      <article>${icon("bulb")}<div><strong>پنج مدل سری D</strong><span>از D45 تا D150</span></div></article>
+      <article>${icon("shield")}<div><strong>سوکت را چک می‌کنیم</strong><span>قبل از ارسال</span></div></article>
+      <article>${icon("truck")}<div><strong>ارسال از لامرد</strong><span>به سراسر ایران</span></div></article>
     </div></div>
-    <section class="section"><div class="wrap">
+    <section class="section reveal"><div class="wrap">
       <div class="section-head"><h2>دسته‌ها</h2><a class="link" href="/shop/">همه کالاها</a></div>
-      <div class="tile-grid">${tiles
-        .map(([id, name, src]) => {
-          const category = categoryById(catalog, id);
-          const image = files && !files.has(src) ? "" : src;
-          return `<a class="tile" href="/category/${id}/"><div class="frame">${image ? `<img src="${image}" alt="">` : ""}</div><div><strong>${name}</strong><span class="muted">${esc(category ? category.blurb : "")}</span></div></a>`;
-        })
-        .join("")}</div>
+      <div class="tile-grid">
+        ${bannerTile("/category/led/", "هدلایت LED", "سری D اگلزن، بر اساس سوکت", "/images/banners/cat-led.jpg")}
+        ${bannerTile("/category/xenon/", "زنون و سوکت D", "جایگزین D2S و D4S", "/images/banners/cat-xenon.jpg")}
+        ${bannerTile("/category/monitor/", "مانیتور خودرو", "TS18 و T9", "/images/banners/cat-monitor.jpg")}
+        ${bannerTile("/category/parking/", "سنسور", "پارک و نقطه کور", "/images/banners/cat-sensors.jpg")}
+        ${bannerTile("/category/comfort/", "آینه", "تاشو برقی و راهنما", "/images/banners/cat-mirror.jpg")}
+        ${photoTile("/model/corolla-cross/", "کرولا کراس", "قطعات ثبت‌شده برای این مدل", "/images/products/cc-power-fold.jpg")}
+        ${photoTile("/category/camera/", "دوربین", "ثبت‌شده برای مدل‌های مشخص", "/images/products/cc-dashcam.jpg")}
+        ${photoTile("/category/projector/", "لنز پروژکتور", "به‌زودی", "/images/products/projector-lens.jpg")}
+      </div>
     </div></section>
-    <section class="section" id="sockets"><div class="wrap">
+    <section class="section reveal" id="compare-light"><div class="wrap ba-layout">
+      <div>
+        <p class="kicker">یک جاده، دو نور</p>
+        <h2>هالوژن در برابر LED</h2>
+        <p>نیمه چپ همان مسیر با نور هالوژن است و نیمه راست با نور LED. جداکننده را بکشید.</p>
+      </div>
+      <div class="ba" data-ba>
+        <img class="ba-after" src="/images/banners/headlight-after.webp" alt="نور LED روی جاده" width="800" height="900">
+        <div class="ba-before"><img src="/images/banners/headlight-before.webp" alt="نور هالوژن روی جاده" width="800" height="900"></div>
+        <span class="ba-tag ba-tag-before">هالوژن</span>
+        <span class="ba-tag ba-tag-after">LED</span>
+        <button class="ba-handle" type="button" aria-label="کشیدن جداکننده هالوژن و LED"></button>
+      </div>
+    </div></section>
+    <section class="section reveal" id="sockets"><div class="wrap">
       <div class="section-head"><div><h2>سوکت لامپ را انتخاب کنید</h2><p>هدلایت محدود به تویوتا نیست. کد سوکت را از روی لامپ فابریک بخوانید.</p></div></div>
-      <div class="socket-grid">${catalog.sockets.map((socket) => `<a href="/socket/${esc(socket.id)}/">${esc(socket.label)}</a>`).join("")}</div>
+      <div class="socket-row">${catalog.sockets.map((socket) => `<a href="/socket/${esc(socket.id)}/">${esc(socket.label)}</a>`).join("")}</div>
     </div></section>
-    <section class="section"><div class="wrap">
+    <section class="section reveal"><div class="wrap">
       <div class="section-head"><h2>سری هدلایت EGLXEN</h2><a class="link" href="/category/led/">مشاهده دسته</a></div>
       <div class="carousel">${led.map((product) => productCard(product, catalog, files)).join("")}</div>
     </div></section>
-    <section class="section"><div class="wrap">
+    <section class="section reveal"><div class="wrap">
       <div class="section-head"><h2>مانیتور خودرو</h2><a class="link" href="/category/monitor/">مشاهده دسته</a></div>
       <div class="carousel">${monitors.map((product) => productCard(product, catalog, files)).join("")}</div>
     </div></section>
-    <section class="section"><div class="wrap">
+    <section class="section reveal"><div class="wrap">
       <div class="section-head"><h2>لوازم کرولا کراس</h2><a class="link" href="/model/corolla-cross/">مدل کرولا کراس</a></div>
       <div class="carousel">${cross.map((product) => productCard(product, catalog, files)).join("")}</div>
     </div></section>
-    <section class="section"><div class="wrap"><div class="compare">
+    <section class="section reveal"><div class="wrap"><div class="compare">
       <h2>مقایسه سری D اگلزن</h2>
-      <p>توان، روشنایی و سوکت‌های آماده ارسال.</p>
-      <table>
+      <p>توان و سوکت‌های آماده ارسال. روشنایی فقط جایی آمده که روی کالا ثبت شده است.</p>
+      <div class="table-scroll"><table>
         <thead><tr><th>مدل</th><th>توان</th><th>روشنایی</th><th>سوکت موجود</th></tr></thead>
         <tbody>
           <tr><td><a href="/product/eglxen-d45/">D45</a></td><td>۶۰ وات</td><td>۱۱۰۰۰ لومن</td><td>H7، 9005، H4</td></tr>
@@ -353,15 +437,26 @@ function renderHome(site, catalog, files) {
           <tr><td><a href="/product/eglxen-d90/">D90</a></td><td>۹۰ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
           <tr><td><a href="/product/eglxen-d150/">D150</a></td><td>۱۰۰ وات</td><td>—</td><td>H7، H1، H11، H4</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div></div></section>
-    <section class="section" id="models"><div class="wrap">
-      <div class="section-head"><div><h2>Choose Your Toyota</h2><p>برای قطعاتی که سازگاری تویوتا دارند. هدلایت با این انتخاب حذف نمی‌شود.</p></div></div>
+    <section class="section reveal brand-strip"><div class="wrap">
+      <p>برندهای همین فروشگاه</p>
+      <div class="brands"><span>EGLXEN</span><span>Toyota Club</span></div>
+    </div></section>
+    <section class="section reveal" id="models"><div class="wrap">
+      <div class="section-head"><div><h2>مدل تویوتا</h2><p>فقط برای قطعاتی که سازگاری تویوتا دارند. هدلایت با این انتخاب حذف نمی‌شود.</p></div></div>
       <div class="model-grid">${catalog.models
         .map((model) => `<a href="/model/${esc(model.id)}/"><strong>${esc(model.name)}</strong><span>${esc(model.nameFa)}</span></a>`)
         .join("")}</div>
     </div></section>
-    <section class="section"><div class="wrap faq">
+    <section class="section reveal quotes"><div class="wrap">
+      <div class="section-head"><h2>نظر مشتریان</h2></div>
+      <p class="quote-empty">هنوز نظری منتشر نشده است. بعد از خرید، نظر واقعی همین‌جا می‌آید.</p>
+    </div></section>
+    <section class="ig-slot" hidden aria-hidden="true">
+      <div class="wrap"><h2>اینستاگرام</h2></div>
+    </section>
+    <section class="section reveal"><div class="wrap faq">
       <h2>پرسش‌های رایج</h2>
       ${faqs.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}
     </div></section>`;
@@ -371,6 +466,7 @@ function renderHome(site, catalog, files) {
     title: `${site.name} | هدلایت، مانیتور و قطعات خودرو`,
     description: site.description,
     path: "/",
+    bodyClass: "home",
     json: { "@context": "https://schema.org", "@graph": [businessJson(site), { "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] },
     main,
   });
@@ -468,7 +564,7 @@ function socketPills(product) {
 }
 
 function renderProduct(site, catalog, files, product) {
-  const images = usableImages(product, files);
+  const images = productImages(product, files);
   const category = categoryById(catalog, product.category);
   const coming = isComingSoon(product);
   const formName = coming ? "interest" : "inquiry";
