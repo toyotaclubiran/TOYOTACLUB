@@ -98,15 +98,11 @@ The message box on every page is a Netlify Form (`data-netlify="true"`, hidden `
 
 ## Netlify
 
-`netlify.toml` builds with `node scripts/build.js` and publishes `dist/`. `www` redirects to the apex domain on the same scheme (`http` stays `http`). The forced `http` to `https` redirect is commented out until Netlify issues a Let's Encrypt certificate for `toyotaclubiran.com`. Canonical URLs in the HTML stay `https`. There is no single-page fallback, because each catalog URL is a real HTML file.
+`netlify.toml` builds with `node scripts/build.js` and publishes `dist/`. `http://toyotaclubiran.com`, `http://www.toyotaclubiran.com`, and `https://www.toyotaclubiran.com` redirect with 301 to `https://toyotaclubiran.com`. Canonical URLs, the sitemap, `robots.txt`, the Torob feed, and Open Graph tags use that https address. There is no single-page fallback, because each catalog URL is a real HTML file.
 
-### HTTPS currently fails before the site
+Let's Encrypt for `toyotaclubiran.com` and `*.toyotaclubiran.com` was issued on 4 Nov 2026. `Strict-Transport-Security` is `max-age=31536000` without `preload`.
 
-`https://toyotaclubiran.com` presents Netlify’s `*.netlify.app` certificate, so browsers reject the name. `http://toyotaclubiran.com` returns the current homepage with HTTP 200. A request that ignores the certificate also gets HTTP 200 from the same site, so this is not a crash in the repository and there is no redirect loop in the code today.
-
-In Netlify: Domain management → the custom domain → HTTPS → provision or renew the certificate for `toyotaclubiran.com`. Confirm DNS points at Netlify in the way the dashboard asks. After the certificate is active, uncomment the `http` to `https` redirects in `netlify.toml` and remove the `Strict-Transport-Security = "max-age=0"` header. Until then, `http://toyotaclubiran.com` must keep serving the site.
-
-هیچ تنظیم داخل مخزن، خطای ۵۰۰ را نمی‌سازد. گواهی HTTPS هنوز برای دامنه فروشگاه صادر نشده و گواهی پیش‌فرض `*.netlify.app` نشان داده می‌شود. صدور گواهی را از داشبورد نتفلی انجام دهید.
+گواهی Let's Encrypt برای دامنه و زیردامنه‌ها صادر شده است. ورود با `http` یا `www` به `https://toyotaclubiran.com` منتقل می‌شود.
 
 ## Brand / برند
 
