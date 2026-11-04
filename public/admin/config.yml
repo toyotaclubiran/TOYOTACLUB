@@ -6,6 +6,7 @@ backend:
   auth_endpoint: auth
 
 locale: fa
+local_backend: true
 site_url: https://toyotaclubiran.com
 display_url: https://toyotaclubiran.com
 publish_mode: simple
@@ -163,6 +164,13 @@ collections:
         widget: select
         options: [led, xenon, projector, monitor, parking, safety, comfort, camera, interior, exterior, wheels, offroad]
       - { label: نام کالا, name: title, widget: string }
+      - label: عکس کارت
+        name: image
+        widget: image
+        required: false
+        hint: "همین عکس روی کارت فهرست کالا نشان داده می‌شود. همان اولین عکس را بگذارید. فایل JPG کافی است؛ سایت WebP می‌سازد."
+        media_folder: public/images/products
+        public_folder: /images/products
       - { label: نام انگلیسی, name: titleEn, widget: string, required: false }
       - { label: زیرعنوان, name: subtitle, widget: string, required: false }
       - { label: توضیح کوتاه, name: shortDescription, widget: text }

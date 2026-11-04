@@ -1,0 +1,58 @@
+/* Decap lays the collection sidebar out with physical left padding.
+   In RTL that parks the fixed sidebar on top of the cards. Keep the
+   sidebar in the row, on the right, and let the entries use the rest. */
+@media (min-width: 800px) {
+  html[dir="rtl"] div:has(> aside):has(> main) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  html[dir="rtl"] div:has(> aside):has(> main) > aside {
+    position: relative !important;
+    top: auto !important;
+    right: auto;
+    left: auto;
+    flex: 0 0 250px;
+    width: 250px;
+    max-width: 34vw;
+    z-index: 1;
+  }
+
+  html[dir="rtl"] div:has(> aside):has(> main) > main {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 0 !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* The editor split pane measures from the physical left. Keep that
+   geometry, and put Persian text direction back inside each pane. */
+/* Decap's editor is position:absolute with min-width:800px. That clips
+   the preview on a narrower laptop. Let it fit the window. */
+html[dir="rtl"] div:has(.SplitPane) {
+  min-width: 0 !important;
+}
+
+html[dir="rtl"] .SplitPane {
+  direction: ltr;
+}
+
+html[dir="rtl"] .SplitPane > .Pane {
+  direction: rtl;
+  overflow: auto;
+}
+
+html[dir="rtl"] .SplitPane > .Resizer.vertical {
+  cursor: col-resize;
+}
+
+@media (max-width: 900px) {
+  html[dir="rtl"] .SplitPane {
+    min-width: 0 !important;
+  }
+
+  html[dir="rtl"] .SplitPane > .Pane1 {
+    min-width: 0 !important;
+  }
+}
