@@ -100,6 +100,12 @@ test("static build has inquiry UI, Netlify forms, address, and no prices", async
   assert.match(home, /property="og:title" content="تویوتا کلاب ایران \| آپشن و نور خودرو، مانیتور و دوربین خودرو"/);
   assert.match(home, /content="فروشگاه تخصصی آپشن و نور خودرو: هدلایت LED و زنون EGLXEN، مانیتور اندروید و سیستم دوربین محافظتی خودرو، سنسور پارک، مناسب همه خودروها\. ارسال به سراسر ایران\. استعلام قیمت: ۰۹۱۷۴۴۵۰۰۴۰"/);
   assert.match(home, /class="brand-tagline">آپشن و نور خودرو، مانیتور و دوربین</);
+  assert.match(home, /class="brand-logo"/);
+  assert.match(home, /alt="تویوتا کلاب ایران"/);
+  assert.match(home, /\/images\/brand\/logo-h-96\.webp/);
+  assert.match(home, /\/images\/brand\/og\.jpg/);
+  assert.match(home, /apple-touch-icon/);
+  assert.doesNotMatch(home, /class="wordmark"/);
   assert.match(home, /"@type":"WebSite"/);
   assert.doesNotMatch(home, /مرکز تخصصی آپشن و قطعات/);
   assert.doesNotMatch(home, /مدل خود را انتخاب کنید/);
