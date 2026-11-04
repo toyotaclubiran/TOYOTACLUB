@@ -227,10 +227,19 @@ function megaItem(label, href, links) {
     .join("")}</div></div>`;
 }
 
+function productImg(src, alt, className, sizes) {
+  const match = String(src).match(/^(\/images\/products\/.+)\.(jpe?g|png)$/i);
+  const cls = className ? ` class="${className}"` : "";
+  const img = `<img${cls} src="${esc(src)}" alt="${esc(alt)}">`;
+  if (!match) return img;
+  const srcset = [640, 1200].map((w) => `${match[1]}-${w}.webp ${w}w`).join(", ");
+  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}">${img}</picture>`;
+}
+
 function frame(images, alt) {
   if (!images.length) return `<span class="fallback">${esc(alt)}</span>`;
-  const second = images[1] ? `<img class="alt" src="${esc(images[1].src)}" alt="">` : "";
-  return `<img class="main" src="${esc(images[0].src)}" alt="${esc(images[0].alt || alt)}">${second}`;
+  const second = images[1] ? productImg(images[1].src, "", "alt", "(min-width: 900px) 280px, 46vw") : "";
+  return `${productImg(images[0].src, images[0].alt || alt, "main", "(min-width: 900px) 280px, 46vw")}${second}`;
 }
 
 function productCard(product, catalog, files) {
@@ -520,10 +529,10 @@ function gallery(product, images) {
   const radios = images.map((_, index) => `<input type="radio" name="gal" id="g${index}" ${index === 0 ? "checked" : ""}>`).join("");
   const slides = images
     .map(
-      (image) => `<figure><button class="zoom" type="button" data-zoom="${esc(image.src)}" aria-label="بزرگ‌نمایی"><img src="${esc(image.src)}" alt="${esc(image.alt || product.title)}"></button></figure>`
+      (image) => `<figure><button class="zoom" type="button" data-zoom="${esc(image.src)}" aria-label="بزرگ‌نمایی">${productImg(image.src, image.alt || product.title, "", "(min-width: 900px) 640px, 100vw")}</button></figure>`
     )
     .join("");
-  const thumbs = images.map((image, index) => `<label for="g${index}"><img src="${esc(image.src)}" alt=""></label>`).join("");
+  const thumbs = images.map((image, index) => `<label for="g${index}">${productImg(image.src, "", "", "72px")}</label>`).join("");
   return `<div class="gallery">${radios}<div class="slides">${slides}</div><div class="thumbs">${thumbs}</div></div>`;
 }
 
@@ -573,7 +582,8 @@ function renderProduct(site, catalog, files, product) {
     .map((row) => {
       const model = modelById(catalog, row.model);
       const also = row.also?.length ? ` / ${row.also.join(" / ")}` : "";
-      return `${model ? model.name : row.model}${also} ${faNum(row.yearFrom)}–${faNum(row.yearTo)}`;
+      const year = (n) => String(n).replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
+      return `${model ? model.name : row.model}${also} ${year(row.yearFrom)}–${year(row.yearTo)}`;
     })
     .join("، ");
   const specs = (product.specs || []).map((row) => `<div><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`).join("");

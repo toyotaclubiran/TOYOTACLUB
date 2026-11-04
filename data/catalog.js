@@ -343,7 +343,7 @@ catalog.products.push(
     shortDescription:
       "مانیتور اندروید TS18 با پردازنده هشت‌هسته، کارپلی، اندروید اتو و دوربین AHD.",
     description:
-      "صفحه IPS با وضوح ۱۲۸۰ در ۷۲۰، فن خنک‌کننده، درگاه سیم‌کارت 4G و پردازشگر صدای DSP. برای داشبورد خودروهای سواری، نه فقط تویوتا.\n\nحافظه را بین ۲+۳۲، ۴+۶۴ و ۶+۱۲۸ گیگابایت انتخاب کنید. اندازه اینچ صفحه را موقع استعلام بپرسید.",
+      "مشخصات TS18: پردازنده هشت‌هسته، صفحه IPS با وضوح ۱۲۸۰×۷۲۰، CarPlay و Android Auto، دوربین AHD، فن خنک‌کننده، سیم‌کارت 4G و پردازشگر صدای DSP. برای داشبورد خودروهای سواری، نه فقط تویوتا.\n\nحافظه را بین ۲+۳۲، ۴+۶۴ و ۶+۱۲۸ گیگابایت انتخاب کنید. اندازه اینچ صفحه هنگام استعلام اعلام می‌شود.",
     fitment: {
       scope: "unknown",
       note: "برای خودروهای سواری. اندازه صفحه و قاب نصب را هنگام سفارش هماهنگ کنید.",
@@ -382,7 +382,7 @@ catalog.products.push(
     shortDescription:
       "مانیتور اندروید T9 با خروجی HDMI و دوربین ۳۶۰، ضبط هم‌زمان جلو و عقب.",
     description:
-      "صفحه IPS با وضوح ۱۲۸۰ در ۷۲۰، خروجی تصویر و HDMI، و نمای ۳۶۰ درجه با ضبط جلو و عقب. مناسب خودروهای سواری.\n\nحافظه ۳+۳۲ یا ۴+۶۴ گیگابایت است و هر کدام با سیم‌کارت 4G یا بدون آن سفارش داده می‌شود. اندازه اینچ صفحه را موقع استعلام بپرسید.",
+      "مشخصات T9: پردازنده هشت‌هسته، صفحه IPS با وضوح ۱۲۸۰×۷۲۰، خروجی تصویر و HDMI، کارکرد دوربین ۳۶۰ با ضبط هم‌زمان جلو و عقب، و سفارش با سیم‌کارت 4G یا بدون آن. مناسب خودروهای سواری.\n\nحافظه ۳+۳۲ یا ۴+۶۴ گیگابایت است. اندازه اینچ صفحه هنگام استعلام اعلام می‌شود.",
     fitment: {
       scope: "unknown",
       note: "برای خودروهای سواری. اندازه صفحه و قاب نصب را هنگام سفارش هماهنگ کنید.",
@@ -482,15 +482,14 @@ catalog.products.push(
     titleEn: "Corolla Cross / Frontlander power-fold mirror kit 2023-2026",
     shortDescription: "موتور تاشو، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه، برای کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶.",
     description:
-      "آینه‌های کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶ را برقی و تاشو می‌کند. شامل موتور دو طرف، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه.",
+      "آینه‌های کرولا کراس و فرانت‌لندر را برقی و تاشو می‌کند. سازگاری: Corolla Cross / Frontlander 2023–2026. شامل موتور دو طرف، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه.",
     fitment: {
       scope: "toyota",
       note: "برای Corolla Cross و Frontlander، سال ۲۰۲۳ تا ۲۰۲۶.",
       toyota: [{ model: "corolla-cross", yearFrom: 2023, yearTo: 2026, also: ["Frontlander"] }],
     },
     specs: [
-      { label: "خودرو", value: "Corolla Cross / Frontlander" },
-      { label: "سال", value: "۲۰۲۳ تا ۲۰۲۶" },
+      { label: "سازگاری", value: "Corolla Cross / Frontlander 2023–2026" },
     ],
     images: [img("/images/products/cc-power-fold.jpg", "کیت آینه تاشو برقی کرولا کراس", "")],
   }),
@@ -519,16 +518,15 @@ catalog.products.push(
     titleEn: "Corolla Cross / Frontlander 2026 mirror dashcam",
     shortDescription: "بدنه نصب پشت آینه، دوربین عقب و سوکت برق ACC، برای کرولا کراس و فرانت‌لندر ۲۰۲۶.",
     description:
-      "دوربین ثبت وقایع که پشت آینه وسط می‌نشیند، به‌همراه دوربین عقب و سوکت برق ACC. مخصوص کرولا کراس و فرانت‌لندر ۲۰۲۶.",
+      "دوربین ثبت وقایع که پشت آینه وسط می‌نشیند، به‌همراه دوربین عقب و سوکت برق ACC. سازگاری: Corolla Cross / Frontlander 2026.",
     fitment: {
       scope: "toyota",
       note: "برای Corolla Cross و Frontlander مدل ۲۰۲۶.",
       toyota: [{ model: "corolla-cross", yearFrom: 2026, yearTo: 2026, also: ["Frontlander"] }],
     },
     specs: [
-      { label: "خودرو", value: "Corolla Cross / Frontlander" },
-      { label: "سال", value: "۲۰۲۶" },
-      { label: "اقلام دیده شده", value: "بدنه پشت آینه، دوربین عقب، سوکت ACC" },
+      { label: "سازگاری", value: "Corolla Cross / Frontlander 2026" },
+      { label: "دوربین عقب", value: "دارد، همراه سوکت برق ACC" },
     ],
     images: [img("/images/products/cc-dashcam.jpg", "دوربین ثبت وقایع کرولا کراس ۲۰۲۶", "")],
   }),
@@ -538,17 +536,20 @@ catalog.products.push(
     slug: "corolla-cross-camera-kit",
     sku: "TCI-CC-CAMERA",
     category: "camera",
-    title: "کیت دوربین کرولا کراس",
-    titleEn: "Corolla Cross camera kit",
-    shortDescription: "کیت دوربین با ماژول، دوربین‌ها و دسته سیم برای کرولا کراس.",
+    title: "کیت دوربین عقب کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶",
+    titleEn: "Corolla Cross / Frontlander 2023–2026 rear camera kit",
+    shortDescription: "دوربین عقب، ماژول و دسته سیم برای Corolla Cross / Frontlander 2023–2026.",
     description:
-      "کیت دوربین کرولا کراس با ماژول، دوربین و دسته سیم آماده نصب. سال ساخت را هنگام سفارش بگویید.",
+      "کیت دوربین عقب برای کرولا کراس و فرانت‌لندر. سازگاری: Corolla Cross / Frontlander 2023–2026. شامل دوربین عقب، ماژول و دسته سیم.",
     fitment: {
       scope: "toyota",
-      note: "برای Corolla Cross. سال ساخت را هنگام سفارش اعلام کنید.",
-      toyota: [{ model: "corolla-cross", yearFrom: 2021, yearTo: 2026 }],
+      note: "دوربین عقب برای Corolla Cross / Frontlander 2023–2026.",
+      toyota: [{ model: "corolla-cross", yearFrom: 2023, yearTo: 2026, also: ["Frontlander"] }],
     },
-    specs: [{ label: "خودرو", value: "Corolla Cross" }],
+    specs: [
+      { label: "سازگاری", value: "Corolla Cross / Frontlander 2023–2026" },
+      { label: "نوع", value: "دوربین عقب" },
+    ],
     images: [img("/images/products/cc-camera.jpg", "قطعات کیت دوربین کرولا کراس", "")],
   }),
   base({
