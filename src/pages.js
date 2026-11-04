@@ -236,13 +236,43 @@ function productImg(src, alt, className, sizes) {
   return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}">${img}</picture>`;
 }
 
-function frame(images, alt) {
-  if (!images.length) return `<span class="fallback">${esc(alt)}</span>`;
-  const second = images[1] ? productImg(images[1].src, "", "alt", "(min-width: 900px) 280px, 46vw") : "";
-  return `${productImg(images[0].src, images[0].alt || alt, "main", "(min-width: 900px) 280px, 46vw")}${second}`;
+function cardSrc(src) {
+  const match = String(src).match(/^(\/images\/products\/.+)\.(jpe?g|png|webp)$/i);
+  if (!match || /-640\.webp$/i.test(src)) return src;
+  return `${match[1]}-640.webp`;
 }
 
-function productCard(product, catalog, files) {
+function cardImg(src, alt, className, eager) {
+  const priority = eager ? ' loading="eager" fetchpriority="high"' : ' loading="lazy" fetchpriority="low"';
+  return `<img class="${className}" src="${esc(cardSrc(src))}" alt="${esc(alt)}" width="640" height="640"${priority} decoding="async">`;
+}
+
+function frame(images, alt, eager) {
+  if (!images.length) return `<span class="fallback">${esc(alt)}</span>`;
+  const second = images[1] ? cardImg(images[1].src, "", "alt", false) : "";
+  return `${cardImg(images[0].src, images[0].alt || alt, "main", eager)}${second}`;
+}
+
+function memoryIds(product) {
+  return (product.variants || []).map((item) => item.id).filter((id) => ["2-32", "3-32", "4-64", "6-128"].includes(id));
+}
+
+function simModes(product) {
+  const option = (product.options || []).find((item) => item.id === "sim");
+  if (option) {
+    const modes = [];
+    option.choices.forEach((choice) => {
+      if (/بدون/.test(choice)) modes.push("no");
+      else if (/4G/.test(choice)) modes.push("yes");
+    });
+    return [...new Set(modes)];
+  }
+  const text = (product.specs || []).map((row) => `${row.label} ${row.value}`).join(" ");
+  if (/4G/.test(text) && !/بدون/.test(text)) return ["yes"];
+  return [];
+}
+
+function productCard(product, catalog, files, eager) {
   const images = productImages(product, files);
   const variants = variantList(product);
   const sockets = variants.map((item) => item.socket).filter(Boolean);
@@ -253,8 +283,8 @@ function productCard(product, catalog, files) {
   ].join("");
   const search = esc(`${product.title} ${product.shortDescription || ""} ${product.sku} ${sockets.join(" ")}`.toLowerCase());
   const wa = `https://wa.me/989174450040?text=${encodeURIComponent(waText({ phoneIntl: "989174450040" }, product))}`;
-  return `<article class="card" data-search="${search}" data-sockets="${esc(sockets.join(" "))}" data-watt="${esc(wattNumber(product))}" data-status="${statusKey(product)}">
-    <a class="card-media" href="/product/${esc(product.slug)}/">${frame(images, product.title)}</a>
+  return `<article class="card" data-search="${search}" data-sockets="${esc(sockets.join(" "))}" data-memory="${esc(memoryIds(product).join(" "))}" data-sim="${esc(simModes(product).join(" "))}" data-watt="${esc(wattNumber(product))}" data-status="${statusKey(product)}">
+    <a class="card-media" href="/product/${esc(product.slug)}/">${frame(images, product.title, eager)}</a>
     <div class="card-body">
       <div>${statusBadge(product)}</div>
       <h3><a href="/product/${esc(product.slug)}/">${esc(product.title)}</a></h3>
@@ -269,24 +299,62 @@ function productCard(product, catalog, files) {
 
 function cardGrid(products, catalog, files) {
   if (!products.length) return `<p class="empty">کالایی با این فیلتر پیدا نشد. <a href="/request/">درخواست قطعه</a> را ثبت کنید.</p>`;
-  return `<div class="product-grid">${products.map((product) => productCard(product, catalog, files)).join("")}</div>`;
+  return `<div class="product-grid">${products.map((product, index) => productCard(product, catalog, files, index < 4)).join("")}</div>`;
 }
 
-function filters(catalog) {
-  const sockets = catalog.sockets.map((socket) => `<label><input type="checkbox" data-filter="socket" value="${esc(socket.id)}"> ${esc(socket.label)}</label>`).join("");
-  const watts = ["35", "45", "55", "60", "65", "75", "90", "100"]
-    .map((watt) => `<label><input type="checkbox" data-filter="watt" value="${watt}"> ${faNum(Number(watt))} وات</label>`)
-    .join("");
+function filters(catalog, products) {
+  const usedSockets = new Set(products.flatMap((product) => (product.variants || []).map((item) => item.socket).filter(Boolean)));
+  const usedWatts = new Set(products.map((product) => wattNumber(product)).filter(Boolean));
+  const usedMemory = new Set(products.flatMap(memoryIds));
+  const usedSim = new Set(products.flatMap(simModes));
+  const usedStatus = new Set(products.map(statusKey).filter((key) => key !== "sample"));
+  const blocks = [];
+  const sockets = catalog.sockets.filter((socket) => usedSockets.has(socket.id));
+  if (sockets.length) {
+    blocks.push(`<div class="filter-block"><strong>سوکت</strong>${sockets
+      .map((socket) => `<label><input type="checkbox" data-filter="socket" value="${esc(socket.id)}"> ${esc(socket.label)}</label>`)
+      .join("")}</div>`);
+  }
+  const watts = ["35", "45", "55", "60", "65", "75", "90", "100"].filter((watt) => usedWatts.has(watt));
+  if (watts.length) {
+    blocks.push(`<div class="filter-block"><strong>توان</strong>${watts
+      .map((watt) => `<label><input type="checkbox" data-filter="watt" value="${watt}"> ${faNum(Number(watt))} وات</label>`)
+      .join("")}</div>`);
+  }
+  const memories = [
+    ["2-32", "۲ + ۳۲"],
+    ["3-32", "۳ + ۳۲"],
+    ["4-64", "۴ + ۶۴"],
+    ["6-128", "۶ + ۱۲۸"],
+  ].filter(([id]) => usedMemory.has(id));
+  if (memories.length) {
+    blocks.push(`<div class="filter-block"><strong>حافظه</strong>${memories
+      .map(([id, label]) => `<label><input type="checkbox" data-filter="memory" value="${id}"> ${label}</label>`)
+      .join("")}</div>`);
+  }
+  const sims = [
+    ["yes", "با سیم‌کارت 4G"],
+    ["no", "بدون سیم‌کارت 4G"],
+  ].filter(([id]) => usedSim.has(id));
+  if (sims.length) {
+    blocks.push(`<div class="filter-block"><strong>سیم‌کارت 4G</strong>${sims
+      .map(([id, label]) => `<label><input type="checkbox" data-filter="sim" value="${id}"> ${label}</label>`)
+      .join("")}</div>`);
+  }
+  const statuses = [
+    ["available", "موجود"],
+    ["unavailable", "ناموجود"],
+    ["soon", "به‌زودی"],
+  ].filter(([id]) => usedStatus.has(id));
+  if (statuses.length) {
+    blocks.push(`<div class="filter-block"><strong>وضعیت</strong>${statuses
+      .map(([id, label]) => `<label><input type="checkbox" data-filter="status" value="${id}"> ${label}</label>`)
+      .join("")}</div>`);
+  }
+  if (!blocks.length) return "";
   return `<details class="filters">
     <summary>فیلتر</summary>
-    <div class="filter-block"><strong>سوکت</strong>${sockets}</div>
-    <div class="filter-block"><strong>توان</strong>${watts}</div>
-    <div class="filter-block"><strong>وضعیت</strong>
-      <label><input type="checkbox" data-filter="status" value="available"> موجود</label>
-      <label><input type="checkbox" data-filter="status" value="unavailable"> ناموجود</label>
-      <label><input type="checkbox" data-filter="status" value="soon"> به‌زودی</label>
-      <label><input type="checkbox" data-filter="status" value="sample"> نمونه</label>
-    </div>
+    ${blocks.join("")}
   </details>
   <script>if (matchMedia("(min-width: 900px)").matches) document.currentScript.previousElementSibling.open = true;</script>`;
 }
@@ -296,7 +364,7 @@ function listing(site, catalog, files, { title, description, path, crumbs, produ
     <p class="crumbs">${crumbs}</p>
     <div class="section-head"><div><h1>${esc(title)}</h1><p>${esc(description || "")}</p></div></div>
     <div class="catalog" data-catalog>
-      ${filters(catalog)}
+      ${filters(catalog, products)}
       <div>
         <div class="toolbar">
           <span data-count>${faNum(products.length)} کالا</span>

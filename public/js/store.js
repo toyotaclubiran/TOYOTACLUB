@@ -78,14 +78,20 @@
     function apply() {
       var sockets = selected("socket");
       var watts = selected("watt");
+      var memories = selected("memory");
+      var sims = selected("sim");
       var statuses = selected("status");
       var query = (input && input.value || "").trim().toLowerCase();
       var visible = 0;
       cards.forEach(function (card) {
         var ok = true;
         var cardSockets = (card.getAttribute("data-sockets") || "").split(" ").filter(Boolean);
+        var cardMemory = (card.getAttribute("data-memory") || "").split(" ").filter(Boolean);
+        var cardSim = (card.getAttribute("data-sim") || "").split(" ").filter(Boolean);
         if (sockets.length && !sockets.some(function (socket) { return cardSockets.indexOf(socket) !== -1; })) ok = false;
         if (watts.length && watts.indexOf(card.getAttribute("data-watt") || "") === -1) ok = false;
+        if (memories.length && !memories.some(function (memory) { return cardMemory.indexOf(memory) !== -1; })) ok = false;
+        if (sims.length && !sims.some(function (sim) { return cardSim.indexOf(sim) !== -1; })) ok = false;
         if (statuses.length && statuses.indexOf(card.getAttribute("data-status") || "") === -1) ok = false;
         if (query && (card.getAttribute("data-search") || "").indexOf(query) === -1) ok = false;
         card.hidden = !ok;
