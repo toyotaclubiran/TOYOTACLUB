@@ -109,6 +109,17 @@ test("static build has inquiry UI, Netlify forms, address, and no prices", () =>
   assert.match(product, /ناموجود/);
   assert.match(monitor, /۴ \+ ۶۴|۴ \+ ۶۴ گیگابایت|۴ \+ ۶۴/);
   assert.match(checkout, /name="order"/);
+  const monitorCategory = fs.readFileSync(path.join(dist, "category/monitor/index.html"), "utf8");
+  const ledCategory = fs.readFileSync(path.join(dist, "category/led/index.html"), "utf8");
+  assert.match(monitorCategory, /حافظه/);
+  assert.match(monitorCategory, /سیم‌کارت 4G/);
+  assert.match(monitorCategory, /-640\.webp/);
+  assert.match(monitorCategory, /fetchpriority="high"/);
+  assert.doesNotMatch(monitorCategory, /data-filter="socket"/);
+  assert.doesNotMatch(monitorCategory, /نمونه/);
+  assert.match(ledCategory, /data-filter="socket"/);
+  assert.match(ledCategory, /توان/);
+  assert.doesNotMatch(ledCategory, /data-filter="memory"/);
   assert.match(fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8"), /eglxen-d45/);
   const torob = JSON.parse(fs.readFileSync(path.join(dist, "torob/products.json"), "utf8"));
   assert.equal(torob.api_version, "torob_api_v3");
