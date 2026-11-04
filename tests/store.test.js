@@ -15,13 +15,13 @@ test("D45 socket availability follows the inventory list", () => {
   assert.equal(bySocket.H11, false);
   assert.equal(bySocket["9005"], true);
   assert.equal(bySocket.H4, true);
-  assert.equal(d45.wattage, "۶۰ وات");
+  assert.equal(d45.wattage, catalog.home.compare.find((row) => row.model === "D45").watt);
 });
 
-test("D150 is 100W and 9005 is unavailable", () => {
+test("D150 uses current declared power and 9005 is unavailable", () => {
   const d150 = catalog.products.find((product) => product.id === "led-d150");
   const bySocket = Object.fromEntries(d150.variants.map((variant) => [variant.socket, variant.available]));
-  assert.equal(d150.specs.find((row) => row.label === "توان").value, "۱۰۰ وات");
+  assert.equal(d150.specs.find((row) => row.label === "توان اعلام‌شده").value, "۱۱۰ وات");
   assert.equal(bySocket["9005"], false);
   assert.equal(bySocket.H4, true);
 });
@@ -121,6 +121,30 @@ test("static build has inquiry UI, Netlify forms, address, and no prices", async
   assert.match(ledCategory, /توان/);
   assert.doesNotMatch(ledCategory, /data-filter="memory"/);
   assert.match(fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8"), /eglxen-d45/);
+  // Every emitted image URL and responsive candidate must exist in the deploy.
+  const htmlFiles = [];
+  function walk(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const file = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(file);
+      else if (file.endsWith(".html")) htmlFiles.push(file);
+    }
+  }
+  walk(dist);
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, "utf8");
+    for (const match of html.matchAll(/(?:src|srcset)="([^"]+)"/g)) {
+      for (const item of match[1].split(",")) {
+        const url = item.trim().split(/\s+/)[0];
+        if (!url.startsWith("/images/")) continue;
+        assert.ok(fs.existsSync(path.join(dist, url)), `${file}: missing ${url}`);
+      }
+    }
+  }
+  assert.match(home, /۱۱۰ وات/);
+  assert.doesNotMatch(home, /<td>۱۴۰ وات<\/td>/);
+  const cms = fs.readFileSync(path.join(dist, "admin/config.yml"), "utf8");
+  assert.equal((cms.match(/media_folder:/g) || []).length, 1);
   const torob = JSON.parse(fs.readFileSync(path.join(dist, "torob/products.json"), "utf8"));
   assert.equal(torob.api_version, "torob_api_v3");
   assert.equal(torob.products.length, 0);

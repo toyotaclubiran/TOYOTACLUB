@@ -6,7 +6,7 @@ backend:
   auth_endpoint: auth
 
 locale: fa
-local_backend: true
+local_backend: false
 site_url: https://toyotaclubiran.com
 display_url: https://toyotaclubiran.com
 publish_mode: simple
@@ -68,7 +68,7 @@ collections:
           - label: اسلایدهای اصلی
             name: slides
             widget: list
-            hint: سه اسلاید. عکس را در بنرها بگذارید؛ سایت WebP می‌سازد.
+            hint: تصاویر از پوشه آپلودها انتخاب می‌شوند و سایت نسخه بهینه می‌سازد.
             fields:
               - { label: برچسب کوچک, name: kicker, widget: string }
               - { label: تیتر, name: title, widget: string }
@@ -79,8 +79,6 @@ collections:
               - label: تصویر
                 name: image
                 widget: image
-                media_folder: public/images/banners
-                public_folder: /images/banners
               - { label: توضیح تصویر, name: alt, widget: string }
               - { label: سایه قوی سمت راست, name: strong, widget: boolean, required: false }
           - label: نوار اعتماد
@@ -100,8 +98,6 @@ collections:
               - label: تصویر
                 name: image
                 widget: image
-                media_folder: public/images/banners
-                public_folder: /images/banners
               - { label: عکس کالا است نه بنر, name: photo, widget: boolean, required: false }
           - label: مقایسه نور
             name: comparison
@@ -115,12 +111,10 @@ collections:
           - label: جدول سری D
             name: compare
             widget: list
+            hint: توان و پایه‌های موجود به صورت خودکار از اطلاعات کالا خوانده می‌شوند.
             fields:
               - { label: لینک, name: href, widget: string }
               - { label: مدل, name: model, widget: string }
-              - { label: توان, name: watt, widget: string }
-              - { label: روشنایی, name: light, widget: string }
-              - { label: سوکت‌های موجود, name: sockets, widget: string }
           - label: پرسش‌های رایج
             name: faqs
             widget: list
@@ -168,9 +162,7 @@ collections:
         name: image
         widget: image
         required: false
-        hint: "همین عکس روی کارت فهرست کالا نشان داده می‌شود. همان اولین عکس را بگذارید. فایل JPG کافی است؛ سایت WebP می‌سازد."
-        media_folder: public/images/products
-        public_folder: /images/products
+        hint: "همین عکس روی کارت فهرست کالا نشان داده می‌شود. اگر خالی باشد اولین عکس گالری نمایش داده می‌شود. فایل JPG کافی است؛ سایت WebP می‌سازد."
       - { label: نام انگلیسی, name: titleEn, widget: string, required: false }
       - { label: زیرعنوان, name: subtitle, widget: string, required: false }
       - { label: توضیح کوتاه, name: shortDescription, widget: text }
@@ -187,7 +179,7 @@ collections:
         widget: number
         value_type: int
         required: false
-        hint: "خالی یعنی استعلام قیمت. سوکت H4 قیمت جدا ندارد و همیشه استعلام است. تعداد موجودی ننویسید."
+        hint: "خالی یعنی استعلام قیمت. قیمت تمام پایه‌های یک سری از جمله H4 یکسان است. تعداد موجودی ننویسید."
       - label: وضعیت
         name: status
         widget: select
@@ -221,7 +213,7 @@ collections:
         hint: "موجود یا ناموجود. تعداد انبار ننویسید."
         fields:
           - { label: شناسه, name: id, widget: string }
-          - { label: سوکت, name: socket, widget: string, required: false, hint: "مثل H7 یا H4. H4 همیشه استعلام قیمت است." }
+          - { label: سوکت, name: socket, widget: string, required: false, hint: "مثل H7 یا H4. قیمت H4 با سایر پایه‌های همین سری یکسان است." }
           - { label: برچسب, name: label, widget: string }
           - { label: موجود, name: available, widget: boolean }
       - label: گزینه‌های اضافه
@@ -254,6 +246,4 @@ collections:
           - label: فایل
             name: src
             widget: image
-            media_folder: public/images/products
-            public_folder: /images/products
           - { label: توضیح عکس, name: alt, widget: string, required: false }

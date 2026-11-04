@@ -1,99 +1,66 @@
-"example": false
-"status": |-
-  active
-"price": null
-"compareAtPrice": null
-"brand": |-
-  EGLXEN
-"category": |-
-  led
-"dateAdded": |-
-  2026-10-07T10:00:00+03:30
-"dateUpdated": |-
-  2026-10-07T10:00:00+03:30
-"fitment":
-  "scope": |-
-    socket
-  "note": |-
-    برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
-  "toyota": []
-"guarantee": |
+example: false
+status: active
+price: null
+compareAtPrice: null
+brand: EGLXEN
+category: led
+dateAdded: 2026-10-07T10:00:00+03:30
+dateUpdated: 2026-10-07T10:00:00+03:30
+fitment:
+  scope: socket
+  note: برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
+  toyota: []
+guarantee: ""
+id: led-d150
+seq: 150
+slug: eglxen-d150
+sku: TCI-D150
+title: هدلایت LED اگلزن EGLXEN مدل D150
+titleEn: EGLXEN D150 LED headlight
+subtitle: ۱۱۰ وات
+wattage: ۱۱۰ وات
+shortDescription: هدلایت EGLXEN مدل D150 با توان اعلام‌شده ۱۱۰ وات. پیش از
+  سفارش، پایه و سازگاری چراغ بررسی می‌شود.
+description: >-
+  هدلایت EGLXEN مدل D150 با توان اعلام‌شده ۱۱۰ وات. وضعیت پایه‌های قابل عرضه در
+  بخش انتخاب سوکت مشخص است.
 
-"id": |-
-  led-d150
-"seq": 150
-"slug": |-
-  eglxen-d150
-"sku": |-
-  TCI-D150
-"title": |-
-  هدلایت LED اگلزن EGLXEN مدل D150
-"titleEn": |-
-  EGLXEN D150 LED headlight
-"subtitle": |-
-  ۱۰۰ وات
-"wattage": |-
-  ۱۰۰ وات
-"shortDescription": |-
-  قوی‌ترین مدل سری D با توان ۱۰۰ وات. برای نور حداکثری در جاده.
-"description": |-
-  D150 بالای سری اگلزن است: توان ۱۰۰ وات برای کسانی که بیشترین روشنایی را می‌خواهند.
 
-  سوکت‌های H7، H1، H11 و H4 موجودند. سوکت 9005 برای این مدل ناموجود است.
-"variants":
-  - "id": |-
-      h7
-    "socket": |-
-      H7
-    "label": |-
-      H7
-    "available": true
-  - "id": |-
-      h1
-    "socket": |-
-      H1
-    "label": |-
-      H1
-    "available": true
-  - "id": |-
-      h11
-    "socket": |-
-      H11
-    "label": |-
-      H11
-    "available": true
-  - "id": |-
-      9005
-    "socket": |-
-      9005
-    "label": |-
-      9005
-    "available": false
-  - "id": |-
-      h4
-    "socket": |-
-      H4
-    "label": |-
-      H4
-    "available": true
-"specs":
-  - "label": |-
-      برند
-    "value": |-
-      EGLXEN
-  - "label": |-
-      مدل
-    "value": |-
-      D150
-  - "label": |-
-      توان
-    "value": |-
-      ۱۰۰ وات
-"images":
-  - "src": |-
-      /images/products/eglxen-d150/1.jpg
-    "alt": |-
-      چیدمان چند سوکت لامپ LED خاکستری
-    "caption": |
-
+  توان اسمی، توان مصرفی و شار نوری معیارهای متفاوتی هستند. مقدار لومن و عملکرد
+  نهایی باید با اندازه‌گیری تأیید شود. سازگاری علاوه بر پایه، به فضای چراغ و
+  سامانه برق خودرو بستگی دارد.
+variants:
+  - id: h7
+    socket: H7
+    label: H7
+    available: true
+  - id: h1
+    socket: H1
+    label: H1
+    available: true
+  - id: h11
+    socket: H11
+    label: H11
+    available: true
+  - id: "9005"
+    socket: "9005"
+    label: "9005"
+    available: false
+  - id: h4
+    socket: H4
+    label: H4
+    available: true
+specs:
+  - label: برند
+    value: EGLXEN
+  - label: مدل
+    value: D150
+  - label: توان اعلام‌شده
+    value: ۱۱۰ وات
+images:
+  - src: /images/products/eglxen-d150/1.jpg
+    alt: چیدمان چند سوکت لامپ LED خاکستری
+    caption: ""
 image: /images/products/eglxen-d150/1.jpg
+claims: []
+available: true

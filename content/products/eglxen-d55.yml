@@ -1,108 +1,66 @@
-"example": false
-"status": |-
-  active
-"price": null
-"compareAtPrice": null
-"brand": |-
-  EGLXEN
-"category": |-
-  led
-"dateAdded": |-
-  2026-10-07T10:00:00+03:30
-"dateUpdated": |-
-  2026-10-07T10:00:00+03:30
-"fitment":
-  "scope": |-
-    socket
-  "note": |-
-    برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
-  "toyota": []
-"guarantee": |
+example: false
+status: active
+price: null
+compareAtPrice: null
+brand: EGLXEN
+category: led
+dateAdded: 2026-10-07T10:00:00+03:30
+dateUpdated: 2026-10-07T10:00:00+03:30
+fitment:
+  scope: socket
+  note: برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
+  toyota: []
+guarantee: ""
+id: led-d55
+seq: 55
+slug: eglxen-d55
+sku: TCI-D55
+title: هدلایت LED اگلزن EGLXEN مدل D55
+titleEn: EGLXEN D55 LED headlight
+subtitle: ۶۰ وات
+wattage: ۶۰ وات
+shortDescription: هدلایت EGLXEN مدل D55 با توان اعلام‌شده ۶۰ وات. پیش از سفارش،
+  پایه و سازگاری چراغ بررسی می‌شود.
+description: >-
+  هدلایت EGLXEN مدل D55 با توان اعلام‌شده ۶۰ وات. وضعیت پایه‌های قابل عرضه در
+  بخش انتخاب سوکت مشخص است.
 
-"id": |-
-  led-d55
-"seq": 55
-"slug": |-
-  eglxen-d55
-"sku": |-
-  TCI-D55
-"title": |-
-  هدلایت LED اگلزن EGLXEN مدل D55
-"titleEn": |-
-  EGLXEN D55 LED headlight
-"subtitle": |-
-  ۵۵ وات · High-Power
-"wattage": |-
-  ۵۵ وات
-"shortDescription": |-
-  هدلایت پرتوان EGLXEN مدل D55 با توان ۵۵ وات. همه سوکت‌های پرکاربرد موجود است.
-"description": |-
-  D55 برای کسی است که نور بیشتر و مصرف کمتر می‌خواهد. توان ۵۵ وات، روشنایی تا ۵۰۰ درصد بیشتر، حدود ۸۰ درصد صرفه‌جویی انرژی و عمر طولانی‌تر نسبت به لامپ معمولی.
 
-  سوکت‌های H7، H1، H11، 9005 و H4 موجودند و برای هر خودرویی با همان سوکت قابل استفاده‌اند.
-"variants":
-  - "id": |-
-      h7
-    "socket": |-
-      H7
-    "label": |-
-      H7
-    "available": true
-  - "id": |-
-      h1
-    "socket": |-
-      H1
-    "label": |-
-      H1
-    "available": true
-  - "id": |-
-      h11
-    "socket": |-
-      H11
-    "label": |-
-      H11
-    "available": true
-  - "id": |-
-      9005
-    "socket": |-
-      9005
-    "label": |-
-      9005
-    "available": true
-  - "id": |-
-      h4
-    "socket": |-
-      H4
-    "label": |-
-      H4
-    "available": true
-"specs":
-  - "label": |-
-      برند
-    "value": |-
-      EGLXEN
-  - "label": |-
-      مدل
-    "value": |-
-      D55
-  - "label": |-
-      توان
-    "value": |-
-      ۵۵ وات
-  - "label": |-
-      روشنایی
-    "value": |-
-      تا ۵۰۰ درصد بیشتر
-"claims":
-  - "title": |-
-      نور و دوام
-    "text": |-
-      روشنایی بیشتر، مصرف انرژی کمتر و عمر طولانی‌تر برای استفاده روزانه.
-"images":
-  - "src": |-
-      /images/products/eglxen-d55/1.jpg
-    "alt": |-
-      بسته‌بندی هدلایت EGLXEN مدل D55
-    "caption": |
-
+  توان اسمی، توان مصرفی و شار نوری معیارهای متفاوتی هستند. مقدار لومن و عملکرد
+  نهایی باید با اندازه‌گیری تأیید شود. سازگاری علاوه بر پایه، به فضای چراغ و
+  سامانه برق خودرو بستگی دارد.
+variants:
+  - id: h7
+    socket: H7
+    label: H7
+    available: true
+  - id: h1
+    socket: H1
+    label: H1
+    available: true
+  - id: h11
+    socket: H11
+    label: H11
+    available: true
+  - id: "9005"
+    socket: "9005"
+    label: "9005"
+    available: true
+  - id: h4
+    socket: H4
+    label: H4
+    available: true
+specs:
+  - label: برند
+    value: EGLXEN
+  - label: مدل
+    value: D55
+  - label: توان اعلام‌شده
+    value: ۶۰ وات
+claims: []
+images:
+  - src: /images/products/eglxen-d55/1.jpg
+    alt: بسته‌بندی هدلایت EGLXEN مدل D55
+    caption: ""
 image: /images/products/eglxen-d55/1.jpg
+available: true

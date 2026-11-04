@@ -37,10 +37,11 @@ function icon(name) {
   return `<span class="ico">${ICONS[name] || ""}</span>`;
 }
 function picture(base, widths, sizes, alt, ratio = 9 / 16, loading = "lazy") {
-  const stem = base.replace(/\.jpe?g$/, "");
+  const stem = base.replace(/\.(jpe?g|png)$/i, "");
+  if (!/\.(jpe?g|png)$/i.test(base)) return `<img src="${esc(base)}" alt="${esc(alt)}" loading="${loading}">`;
   const srcset = widths.map((w) => `${stem}-${w}.webp ${w}w`).join(", ");
   const w = widths[widths.length - 1];
-  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}"><img src="${base}" alt="${esc(alt)}" width="${w}" height="${Math.round(w * ratio)}" loading="${loading}" decoding="async"></picture>`;
+  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}"><img src="${esc(base)}" alt="${esc(alt)}" width="${w}" height="${Math.round(w * ratio)}" loading="${loading}" decoding="async"></picture>`;
 }
 
 function waText(site, product) {
@@ -272,6 +273,11 @@ function simModes(product) {
 
 function productCard(product, catalog, files, eager) {
   const images = productImages(product, files);
+  if (product.image && (!files || files.has(product.image))) {
+    const existing = images.findIndex((image) => image.src === product.image);
+    if (existing >= 0) images.splice(existing, 1);
+    images.unshift({ src: product.image, alt: product.title });
+  }
   const variants = variantList(product);
   const sockets = variants.map((item) => item.socket).filter(Boolean);
   const open = variants.filter((item) => item.available).map((item) => item.socket || item.label);
@@ -313,7 +319,7 @@ function filters(catalog, products) {
       .map((socket) => `<label><input type="checkbox" data-filter="socket" value="${esc(socket.id)}"> ${esc(socket.label)}</label>`)
       .join("")}</div>`);
   }
-  const watts = ["35", "45", "55", "60", "65", "75", "90", "100"].filter((watt) => usedWatts.has(watt));
+  const watts = [...usedWatts].sort((a, b) => Number(a) - Number(b));
   if (watts.length) {
     blocks.push(`<div class="filter-block"><strong>توان</strong>${watts
       .map((watt) => `<label><input type="checkbox" data-filter="watt" value="${watt}"> ${faNum(Number(watt))} وات</label>`)
@@ -410,7 +416,7 @@ function bannerTile(href, name, blurb, base) {
 
 function photoTile(href, name, blurb, src) {
   return `<a class="tile cine photo" href="${href}">
-    <div class="frame"><img src="${src}" alt="${esc(name)}" loading="lazy"></div>
+    <div class="frame">${src.startsWith("/images/products/") ? productImg(src, name, "", "(min-width: 900px) 24vw, 46vw") : picture(src, [480, 800], "(min-width: 900px) 24vw, 46vw", name, 0.75)}</div>
     <div class="tile-copy"><strong>${esc(name)}</strong><span>${esc(blurb)}</span></div>
   </a>`;
 }
@@ -495,12 +501,12 @@ function renderHome(site, catalog, files) {
       <h2>${esc(home.sections.compareTitle)}</h2>
       <p>${esc(home.sections.compareText)}</p>
       <div class="table-scroll"><table>
-        <thead><tr><th>مدل</th><th>توان</th><th>روشنایی</th><th>سوکت موجود</th></tr></thead>
+        <thead><tr><th>مدل</th><th>توان</th><th>سوکت موجود</th></tr></thead>
         <tbody>
           ${home.compare
             .map(
               (row) =>
-                `<tr><td><a href="${esc(row.href)}">${esc(row.model)}</a></td><td>${esc(row.watt)}</td><td>${esc(row.light)}</td><td>${esc(row.sockets)}</td></tr>`
+                `<tr><td><a href="${esc(row.href)}">${esc(row.model)}</a></td><td>${esc(catalog.products.find((p) => row.href === `/product/${p.slug}/`)?.wattage || row.watt)}</td><td>${esc((catalog.products.find((p) => row.href === `/product/${p.slug}/`)?.variants || []).filter((v) => v.available).map((v) => v.socket || v.label).join("، "))}</td></tr>`
             )
             .join("")}
         </tbody>
@@ -605,16 +611,6 @@ function variantFields(product) {
   return options;
 }
 
-function d45Features() {
-  return `<div class="features">
-    <article><strong>۱۱٬۰۰۰ لومن</strong><span>روشنایی</span></article>
-    <article><strong>۶۰ وات توان</strong><span>هر لامپ</span></article>
-    <article><strong>فن ۱۲٬۰۰۰ دور</strong><span>خنک‌کاری</span></article>
-    <article><strong>درایور دوگانه</strong><span>روشن‌شدن پایدار</span></article>
-    <article><strong>کن‌باس</strong><span>نصب روی خودروهای جدید</span></article>
-  </div>`;
-}
-
 function socketPills(product) {
   const variants = variantList(product);
   if (!variants.length) return "";
@@ -657,7 +653,6 @@ function renderProduct(site, catalog, files, product) {
         <h1>${esc(product.title)}</h1>
         ${product.wattage ? `<p class="chip">${esc(product.wattage)}</p>` : ""}
         <p>${esc(product.shortDescription || "")}</p>
-        ${product.id === "led-d45" ? d45Features() : ""}
         <div class="inquiry-card" id="inquiry">
           <div class="inquiry-actions">
             <a class="btn btn-primary btn-xl" href="tel:+${site.phoneIntl}">${coming ? "خبرم کن" : "استعلام قیمت"}</a>

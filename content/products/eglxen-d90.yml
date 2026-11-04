@@ -1,99 +1,66 @@
-"example": false
-"status": |-
-  active
-"price": null
-"compareAtPrice": null
-"brand": |-
-  EGLXEN
-"category": |-
-  led
-"dateAdded": |-
-  2026-10-07T10:00:00+03:30
-"dateUpdated": |-
-  2026-10-07T10:00:00+03:30
-"fitment":
-  "scope": |-
-    socket
-  "note": |-
-    برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
-  "toyota": []
-"guarantee": |
+example: false
+status: active
+price: null
+compareAtPrice: null
+brand: EGLXEN
+category: led
+dateAdded: 2026-10-07T10:00:00+03:30
+dateUpdated: 2026-10-07T10:00:00+03:30
+fitment:
+  scope: socket
+  note: برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
+  toyota: []
+guarantee: ""
+id: led-d90
+seq: 90
+slug: eglxen-d90
+sku: TCI-D90
+title: هدلایت LED اگلزن EGLXEN مدل D90
+titleEn: EGLXEN D90 LED headlight
+subtitle: ۹۰ وات
+wattage: ۹۰ وات
+shortDescription: هدلایت EGLXEN مدل D90 با توان اعلام‌شده ۹۰ وات. پیش از سفارش،
+  پایه و سازگاری چراغ بررسی می‌شود.
+description: >-
+  هدلایت EGLXEN مدل D90 با توان اعلام‌شده ۹۰ وات. وضعیت پایه‌های قابل عرضه در
+  بخش انتخاب سوکت مشخص است.
 
-"id": |-
-  led-d90
-"seq": 90
-"slug": |-
-  eglxen-d90
-"sku": |-
-  TCI-D90
-"title": |-
-  هدلایت LED اگلزن EGLXEN مدل D90
-"titleEn": |-
-  EGLXEN D90 LED headlight
-"subtitle": |-
-  ۹۰ وات
-"wattage": |-
-  ۹۰ وات
-"shortDescription": |-
-  هدلایت EGLXEN مدل D90 با توان ۹۰ وات. نور قوی، دمای پایدار و روشن‌شدن سریع.
-"description": |-
-  D90 برای مسیرهای تاریک و رانندگی طولانی ساخته شده است. توان ۹۰ وات، دمای کاری ثابت، روشن‌شدن سریع و عمر بالا.
 
-  سوکت‌های H7، H1، H11، 9005 و H4 موجودند.
-"variants":
-  - "id": |-
-      h7
-    "socket": |-
-      H7
-    "label": |-
-      H7
-    "available": true
-  - "id": |-
-      h1
-    "socket": |-
-      H1
-    "label": |-
-      H1
-    "available": true
-  - "id": |-
-      h11
-    "socket": |-
-      H11
-    "label": |-
-      H11
-    "available": true
-  - "id": |-
-      9005
-    "socket": |-
-      9005
-    "label": |-
-      9005
-    "available": true
-  - "id": |-
-      h4
-    "socket": |-
-      H4
-    "label": |-
-      H4
-    "available": true
-"specs":
-  - "label": |-
-      برند
-    "value": |-
-      EGLXEN
-  - "label": |-
-      مدل
-    "value": |-
-      D90
-  - "label": |-
-      توان
-    "value": |-
-      ۹۰ وات
-"images":
-  - "src": |-
-      /images/products/eglxen-d90/1.jpg
-    "alt": |-
-      جعبه هدلایت EGLXEN مدل D90
-    "caption": |
-
+  توان اسمی، توان مصرفی و شار نوری معیارهای متفاوتی هستند. مقدار لومن و عملکرد
+  نهایی باید با اندازه‌گیری تأیید شود. سازگاری علاوه بر پایه، به فضای چراغ و
+  سامانه برق خودرو بستگی دارد.
+variants:
+  - id: h7
+    socket: H7
+    label: H7
+    available: true
+  - id: h1
+    socket: H1
+    label: H1
+    available: true
+  - id: h11
+    socket: H11
+    label: H11
+    available: true
+  - id: "9005"
+    socket: "9005"
+    label: "9005"
+    available: true
+  - id: h4
+    socket: H4
+    label: H4
+    available: true
+specs:
+  - label: برند
+    value: EGLXEN
+  - label: مدل
+    value: D90
+  - label: توان اعلام‌شده
+    value: ۹۰ وات
+images:
+  - src: /images/products/eglxen-d90/1.jpg
+    alt: جعبه هدلایت EGLXEN مدل D90
+    caption: ""
 image: /images/products/eglxen-d90/1.jpg
+claims: []
+available: true

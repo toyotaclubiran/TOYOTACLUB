@@ -62,10 +62,9 @@ async function generateResponsiveImages() {
   const banners = path.join(root, "public", "images", "banners");
   await walk(banners, async (file) => {
     const name = path.basename(file);
-    if (/^hero-.*\.(jpe?g|png)$/i.test(name)) {
-      for (const width of [768, 1280]) await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
-    } else if (/^cat-.*\.(jpe?g|png)$/i.test(name)) {
-      for (const width of [480, 800]) await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
+    if (/\.(jpe?g|png)$/i.test(name) && name !== "before-after-headlight.jpg") {
+      for (const width of [480, 768, 800, 1280]) await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
+
     } else if (name === "before-after-headlight.jpg") {
       const before = path.join(banners, "headlight-before.webp");
       const after = path.join(banners, "headlight-after.webp");
@@ -76,6 +75,13 @@ async function generateResponsiveImages() {
       await sharp(file).extract({ left: mid, top: 0, width: meta.width - mid, height: meta.height }).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 76 }).toFile(after);
     }
   });
+  await walk(path.join(root, "public", "images", "uploads"), async (file) => {
+    if (!/\.(jpe?g|png)$/i.test(file)) return;
+    for (const width of [480, 640, 768, 800, 1200, 1280]) {
+      await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
+    }
+  });
+
 }
 
 function copyCmsBundle() {

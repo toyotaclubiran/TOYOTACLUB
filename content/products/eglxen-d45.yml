@@ -1,178 +1,90 @@
-"example": false
-"status": |-
-  active
-"price": null
-"compareAtPrice": null
-"brand": |-
-  EGLXEN
-"category": |-
-  led
-"dateAdded": |-
-  2026-10-07T10:00:00+03:30
-"dateUpdated": |-
-  2026-10-07T10:00:00+03:30
-"fitment":
-  "scope": |-
-    socket
-  "note": |-
-    برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
-  "toyota": []
-"guarantee": |
+example: false
+status: active
+price: null
+compareAtPrice: null
+brand: EGLXEN
+category: led
+dateAdded: 2026-10-07T10:00:00+03:30
+dateUpdated: 2026-10-07T10:00:00+03:30
+fitment:
+  scope: socket
+  note: برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
+  toyota: []
+guarantee: ""
+id: led-d45
+seq: 45
+slug: eglxen-d45
+sku: TCI-D45
+title: هدلایت LED اگلزن EGLXEN مدل D45
+titleEn: EGLXEN D45 LED headlight
+subtitle: ۵۰ وات
+wattage: ۵۰ وات
+shortDescription: هدلایت EGLXEN مدل D45 با توان اعلام‌شده ۵۰ وات. پیش از سفارش،
+  پایه و سازگاری چراغ بررسی می‌شود.
+description: >-
+  هدلایت EGLXEN مدل D45 با توان اعلام‌شده ۵۰ وات. وضعیت پایه‌های قابل عرضه در
+  بخش انتخاب سوکت مشخص است.
 
-"id": |-
-  led-d45
-"seq": 45
-"slug": |-
-  eglxen-d45
-"sku": |-
-  TCI-D45
-"title": |-
-  هدلایت LED اگلزن EGLXEN مدل D45
-"titleEn": |-
-  EGLXEN D45 LED headlight
-"subtitle": |-
-  ۶۰ وات · ۱۱۰۰۰ لومن
-"wattage": |-
-  ۶۰ وات
-"shortDescription": |-
-  هدلایت LED اگلزن مدل D45 با درایور جدا، فن پرسرعت و چیپ خودرویی. نور سفید و پرقدرت برای رانندگی شب.
-"description": |-
-  مدل D45 انتخاب پرتوان سری اگلزن است: ۶۰ وات توان، ۱۱۰۰۰ لومن و بدنه نقره‌ای با جزئیات طلایی. درایور جدا پرش نور را کم می‌کند و فن ۱۲۰۰۰ دور، گرما را از لامپ دور نگه می‌دارد.
 
-  برای هر خودرویی با سوکت سازگار مناسب است. سوکت‌های H7، 9005 و H4 موجودند. H1 و H11 در حال حاضر ناموجود است.
-
-  در برخی خودروهای مجهز به کن‌باس ممکن است مقاومت بار لازم باشد. کابل شیلددار، نویز روی رادیو را کاهش می‌دهد.
-"variants":
-  - "id": |-
-      h7
-    "socket": |-
-      H7
-    "label": |-
-      H7
-    "available": true
-  - "id": |-
-      h1
-    "socket": |-
-      H1
-    "label": |-
-      H1
-    "available": false
-  - "id": |-
-      h11
-    "socket": |-
-      H11
-    "label": |-
-      H11
-    "available": false
-  - "id": |-
-      9005
-    "socket": |-
-      9005
-    "label": |-
-      9005
-    "available": true
-  - "id": |-
-      h4
-    "socket": |-
-      H4
-    "label": |-
-      H4
-    "available": true
-"specs":
-  - "label": |-
-      برند
-    "value": |-
-      EGLXEN
-  - "label": |-
-      مدل
-    "value": |-
-      D45
-  - "label": |-
-      توان
-    "value": |-
-      ۶۰ وات
-  - "label": |-
-      شار نوری
-    "value": |-
-      ۱۱۰۰۰ لومن
-  - "label": |-
-      چیپ
-    "value": |-
-      ۱۲ چیپ خودرویی در هر لامپ
-  - "label": |-
-      فن
-    "value": |-
-      ۱۲۰۰۰ دور در دقیقه
-  - "label": |-
-      درایور
-    "value": |-
-      درایور دوگانه، جدا از لامپ
-"claims":
-  - "title": |-
-      درایور دوگانه
-    "text": |-
-      کنترل دمای هوشمند و روشن‌شدن با توان کامل. عمر پیوسته بیش از ۳۰هزار ساعت. در بعضی خودروهای کن‌باس، مقاومت بار لازم است.
-  - "title": |-
-      فن و خنک‌کاری
-    "text": |-
-      فن ۱۲۰۰۰ دور با ساختار گرافین، صدای کم، و دوام طولانی در رانندگی پیوسته.
-  - "title": |-
-      چیپ LED
-    "text": |-
-      ۱۱هزار لومن و حدود ۲۰۰ درصد روشنایی بیشتر نسبت به هالوژن، با ۱۲ چیپ خودرویی در هر لامپ.
-"images":
-  - "src": |-
-      /images/products/eglxen-d45/1.jpg
-    "alt": |-
-      هدلایت EGLXEN مدل D45
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/2.jpg
-    "alt": |-
-      لامپ EGLXEN D45 سوکت H7
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/3.jpg
-    "alt": |-
-      نمای زاویه‌دار لامپ D45
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/4.jpg
-    "alt": |-
-      لامپ EGLXEN D45 سوکت H1
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/5.jpg
-    "alt": |-
-      لامپ EGLXEN D45 سوکت H11
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/6.jpg
-    "alt": |-
-      درایور هدلایت EGLXEN D45
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/7.jpg
-    "alt": |-
-      فن خنک‌کننده هدلایت EGLXEN
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/8.jpg
-    "alt": |-
-      چیپ LED هدلایت EGLXEN
-    "caption": |
-
-  - "src": |-
-      /images/products/eglxen-d45/9.jpg
-    "alt": |-
-      بسته‌بندی هدلایت EGLXEN مدل D45
-    "caption": |
-
+  توان اسمی، توان مصرفی و شار نوری معیارهای متفاوتی هستند. مقدار لومن و عملکرد
+  نهایی باید با اندازه‌گیری تأیید شود. سازگاری علاوه بر پایه، به فضای چراغ و
+  سامانه برق خودرو بستگی دارد.
+variants:
+  - id: h7
+    socket: H7
+    label: H7
+    available: true
+  - id: h1
+    socket: H1
+    label: H1
+    available: false
+  - id: h11
+    socket: H11
+    label: H11
+    available: false
+  - id: "9005"
+    socket: "9005"
+    label: "9005"
+    available: true
+  - id: h4
+    socket: H4
+    label: H4
+    available: true
+specs:
+  - label: برند
+    value: EGLXEN
+  - label: مدل
+    value: D45
+  - label: توان اعلام‌شده
+    value: ۵۰ وات
+claims: []
+images:
+  - src: /images/products/eglxen-d45/1.jpg
+    alt: هدلایت EGLXEN مدل D45
+    caption: ""
+  - src: /images/products/eglxen-d45/2.jpg
+    alt: لامپ EGLXEN D45 سوکت H7
+    caption: ""
+  - src: /images/products/eglxen-d45/3.jpg
+    alt: نمای زاویه‌دار لامپ D45
+    caption: ""
+  - src: /images/products/eglxen-d45/4.jpg
+    alt: لامپ EGLXEN D45 سوکت H1
+    caption: ""
+  - src: /images/products/eglxen-d45/5.jpg
+    alt: لامپ EGLXEN D45 سوکت H11
+    caption: ""
+  - src: /images/products/eglxen-d45/6.jpg
+    alt: درایور هدلایت EGLXEN D45
+    caption: ""
+  - src: /images/products/eglxen-d45/7.jpg
+    alt: فن خنک‌کننده هدلایت EGLXEN
+    caption: ""
+  - src: /images/products/eglxen-d45/8.jpg
+    alt: چیپ LED هدلایت EGLXEN
+    caption: ""
+  - src: /images/products/eglxen-d45/9.jpg
+    alt: بسته‌بندی هدلایت EGLXEN مدل D45
+    caption: ""
 image: /images/products/eglxen-d45/1.jpg
+available: true
