@@ -83,7 +83,8 @@ function businessJson(site) {
     description: site.seoDescription || site.description,
     url: site.url,
     telephone: `+${site.phoneIntl}`,
-    image: `${site.url}/images/hero/eglxen-d-series-studio.jpg`,
+    image: `${site.url}/images/brand/og.jpg`,
+    logo: `${site.url}/images/brand/logo-h-112.webp`,
     address: {
       "@type": "PostalAddress",
       addressRegion: site.province,
@@ -125,8 +126,12 @@ function layout(opts) {
   <meta property="og:title" content="${esc(fullTitle)}">
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:url" content="${esc(canon)}">
-  <meta property="og:image" content="${esc(site.url)}/images/hero/eglxen-d-series-studio.jpg">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="${esc(site.url)}/images/brand/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${esc(site.url)}/images/brand/og.jpg">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/css/store.css">
   ${json ? `<script type="application/ld+json">${jsonLd(json)}</script>` : ""}
@@ -143,10 +148,7 @@ function layout(opts) {
   <header class="site-header">
     <div class="wrap header-main">
       <a class="brand" href="/" aria-label="${esc(site.nameFa)}، ${esc(site.tagline)}">
-        <span class="wordmark">
-          <span class="wm-line"><span class="wm-toyota">Toyota</span> <span class="wm-club">Club</span></span>
-          <span class="wm-iran">IRAN</span>
-        </span>
+        <img class="brand-logo" src="/images/brand/logo-h-96.webp" srcset="/images/brand/logo-h-72.webp 334w, /images/brand/logo-h-96.webp 445w, /images/brand/logo-h-112.webp 519w" sizes="(max-width: 719px) 167px, 222px" alt="تویوتا کلاب ایران" width="222" height="48">
         <span class="brand-tagline">${esc(site.tagline)}</span>
       </a>
       <form class="search" action="/shop/" method="get" role="search">
@@ -186,7 +188,7 @@ function layout(opts) {
   <main id="content">${main}</main>
   <footer class="site-footer"><div class="wrap footer-grid">
     <div>
-      <strong>Toyota Club Iran</strong>
+      <img class="footer-logo" src="/images/brand/logo-h-72.webp" alt="تویوتا کلاب ایران" width="167" height="36">
       <p class="muted">فروشگاه مستقل آپشن و قطعه در لامرد. هدلایت EGLXEN و تجهیزات عمومی برای همه خودروها، و قطعاتی که سازگاری‌شان با تویوتا ثبت شده است.</p>
       <p class="muted">${esc(site.stockNote)}</p>
     </div>

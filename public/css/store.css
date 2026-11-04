@@ -68,11 +68,8 @@ h1, h2, h3 { line-height: 1.35; letter-spacing: -0.02em; }
 @media (max-width: 599px) {
   .brand-tagline { display: none; }
 }
-.wordmark { display: flex; flex-direction: column; line-height: 1; direction: ltr; }
-.wm-line { font-weight: 800; font-size: 22px; letter-spacing: -0.045em; }
-.wm-toyota { color: var(--red); }
-.wm-club { color: #fff; }
-.wm-iran { margin-top: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.46em; color: var(--muted); }
+.brand-logo { display: block; height: 48px; width: auto; }
+.footer-logo { display: block; height: 36px; width: auto; margin-bottom: 10px; }
 .search { position: relative; flex: 1; }
 .search-ico { position: absolute; inset-inline-end: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
 .search-ico .ico { width: 20px; height: 20px; }
@@ -483,7 +480,7 @@ body.product .tabs input:nth-of-type(4):checked ~ .tab-nav label:nth-child(4) { 
   body.home .trust article { flex: 0 0 78%; scroll-snap-align: start; }
   .search input { height: 42px; padding-inline: 10px 32px; font-size: 14px; }
   .header-main { min-height: 60px; gap: 8px; }
-  .wm-line { font-size: 16px; }
+  .brand-logo { height: 36px; }
   .icon-btn, .cart-link { width: 40px; height: 40px; }
 }
 @media (max-width: 899px) {

@@ -9,6 +9,7 @@ locale: fa
 site_url: https://toyotaclubiran.com
 display_url: https://toyotaclubiran.com
 publish_mode: simple
+logo_url: /images/brand/emblem.webp
 
 media_folder: public/images/uploads
 public_folder: /images/uploads
