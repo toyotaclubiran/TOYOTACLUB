@@ -1,0 +1,99 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants":
+  - "id": |-
+      2-32
+    "label": |-
+      ۲ + ۳۲ گیگابایت
+    "available": true
+  - "id": |-
+      4-64
+    "label": |-
+      ۴ + ۶۴ گیگابایت
+    "available": true
+  - "id": |-
+      6-128
+    "label": |-
+      ۶ + ۱۲۸ گیگابایت
+    "available": true
+"available": true
+"specs":
+  - "label": |-
+      مدل
+    "value": |-
+      TS18
+  - "label": |-
+      پردازنده
+    "value": |-
+      هشت‌هسته
+  - "label": |-
+      صفحه
+    "value": |-
+      IPS با وضوح ۱۲۸۰×۷۲۰
+  - "label": |-
+      اندازه صفحه
+    "value": |-
+      هنگام استعلام اعلام می‌شود
+  - "label": |-
+      کارپلی و اندروید اتو
+    "value": |-
+      دارد
+  - "label": |-
+      دوربین
+    "value": |-
+      پشتیبانی از دوربین AHD
+  - "label": |-
+      خنک‌کننده
+    "value": |-
+      فن
+  - "label": |-
+      سیم‌کارت
+    "value": |-
+      4G
+  - "label": |-
+      صدا
+    "value": |-
+      DSP
+"claims": []
+"images":
+  - "src": |-
+      /images/products/android-monitor-ts18/1.jpg
+    "alt": |-
+      مانیتور اندروید TS18
+    "caption": |-
+      نمای دستگاه.
+"id": |-
+  monitor-ts18
+"seq": 301
+"slug": |-
+  android-monitor-ts18
+"sku": |-
+  TCI-TS18
+"category": |-
+  monitor
+"title": |-
+  مانیتور اندروید خودرو TS18 هشت‌هسته
+"titleEn": |-
+  TS18 8-core Android car monitor
+"subtitle": |-
+  CarPlay و Android Auto
+"shortDescription": |-
+  مانیتور اندروید TS18 با پردازنده هشت‌هسته، کارپلی، اندروید اتو و دوربین AHD.
+"description": |-
+  مشخصات TS18: پردازنده هشت‌هسته، صفحه IPS با وضوح ۱۲۸۰×۷۲۰، CarPlay و Android Auto، دوربین AHD، فن خنک‌کننده، سیم‌کارت 4G و پردازشگر صدای DSP. برای داشبورد خودروهای سواری، نه فقط تویوتا.
+
+  حافظه را بین ۲+۳۲، ۴+۶۴ و ۶+۱۲۸ گیگابایت انتخاب کنید. اندازه اینچ صفحه هنگام استعلام اعلام می‌شود.
+"fitment":
+  "scope": |-
+    unknown
+  "note": |-
+    برای خودروهای سواری. اندازه صفحه و قاب نصب را هنگام سفارش هماهنگ کنید.
+  "toyota": []

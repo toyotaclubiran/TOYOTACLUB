@@ -1,0 +1,78 @@
+"id": |-
+  d-led
+"seq": 210
+"slug": |-
+  d-socket-led-75w
+"sku": |-
+  TCI-DLED
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |-
+  EGLXEN
+"category": |-
+  xenon
+"title": |-
+  لامپ LED سوکت D اگلزن EGLXEN، ۷۵ وات
+"titleEn": |-
+  EGLXEN D-socket LED 75W
+"subtitle": |-
+  جایگزین لامپ زنون · D2S و D4S
+"wattage": |-
+  ۷۵ وات
+"shortDescription": |-
+  جایگزین LED برای لامپ زنون. توان ۷۵ وات، در پایه D2S و D4S.
+"description": |-
+  اگر خودروی شما زنون فابریک با سوکت D دارد، این لامپ LED همان پایه را می‌گیرد و نور سفید و فوری می‌دهد. هیت‌سینک قرمز گرما را از چیپ دور می‌کند.
+
+  هر دو پایه D2S و D4S موجود است و توان هر کدام ۷۵ وات است.
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"fitment":
+  "scope": |-
+    socket
+  "note": |-
+    برای خودروهایی که لامپ زنون سوکت D2S یا D4S دارند. محدود به تویوتا نیست.
+  "toyota": []
+"variants":
+  - "id": |-
+      d2s
+    "socket": |-
+      D2S
+    "label": |-
+      D2S
+    "available": true
+  - "id": |-
+      d4s
+    "socket": |-
+      D4S
+    "label": |-
+      D4S
+    "available": true
+"specs":
+  - "label": |-
+      برند
+    "value": |-
+      EGLXEN
+  - "label": |-
+      نوع
+    "value": |-
+      LED جایگزین زنون
+  - "label": |-
+      توان
+    "value": |-
+      ۷۵ وات
+  - "label": |-
+      پایه‌ها
+    "value": |-
+      D2S و D4S
+"images":
+  - "src": |-
+      /images/products/d-socket-led-75w/1.jpg
+    "alt": |-
+      لامپ LED با هیت‌سینک قرمز کنار لامپ زنون
+    "caption": |
+

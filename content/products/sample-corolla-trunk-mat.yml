@@ -1,0 +1,44 @@
+"example": true
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs": []
+"claims": []
+"images": []
+"description": |-
+  نمونهٔ نمایشی این دسته است.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    نمونه سازگاری.
+  "toyota":
+    - "model": |-
+        corolla
+      "yearFrom": 2019
+      "yearTo": 2024
+"id": |-
+  ex-corolla-trunk
+"seq": 906
+"slug": |-
+  sample-corolla-trunk-mat
+"sku": |-
+  SAMPLE-COROLLA-TRUNK
+"category": |-
+  interior
+"title": |-
+  کفی صندوق کرولا
+"titleEn": |-
+  Sample Corolla trunk mat
+"subtitle": |-
+  محصول نمونه
+"shortDescription": |-
+  نمونه نمایشی برای کرولا.

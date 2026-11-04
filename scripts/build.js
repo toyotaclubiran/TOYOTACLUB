@@ -36,11 +36,64 @@ function write(rel, contents) {
   fs.writeFileSync(file, contents);
 }
 
-function build() {
+async function writeWebp(source, width, destination) {
+  const sharp = require("sharp");
+  if (fs.existsSync(destination) && fs.statSync(destination).mtimeMs >= fs.statSync(source).mtimeMs) return;
+  await sharp(source).resize({ width, withoutEnlargement: true }).webp({ quality: 76 }).toFile(destination);
+}
+
+async function generateResponsiveImages() {
+  const sharp = require("sharp");
+  async function walk(dir, visit) {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const file = path.join(dir, entry.name);
+      if (entry.isDirectory()) await walk(file, visit);
+      else await visit(file);
+    }
+  }
+  const products = path.join(root, "public", "images", "products");
+  await walk(products, async (file) => {
+    if (!/\.(jpe?g|png)$/i.test(file)) return;
+    for (const width of [640, 1200]) {
+      await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
+    }
+  });
+  const banners = path.join(root, "public", "images", "banners");
+  await walk(banners, async (file) => {
+    const name = path.basename(file);
+    if (/^hero-.*\.(jpe?g|png)$/i.test(name)) {
+      for (const width of [768, 1280]) await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
+    } else if (/^cat-.*\.(jpe?g|png)$/i.test(name)) {
+      for (const width of [480, 800]) await writeWebp(file, width, file.replace(/\.(jpe?g|png)$/i, `-${width}.webp`));
+    } else if (name === "before-after-headlight.jpg") {
+      const before = path.join(banners, "headlight-before.webp");
+      const after = path.join(banners, "headlight-after.webp");
+      if (fs.existsSync(before) && fs.existsSync(after) && fs.statSync(before).mtimeMs >= fs.statSync(file).mtimeMs) return;
+      const meta = await sharp(file).metadata();
+      const mid = Math.floor(meta.width / 2);
+      await sharp(file).extract({ left: 0, top: 0, width: mid, height: meta.height }).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 76 }).toFile(before);
+      await sharp(file).extract({ left: mid, top: 0, width: meta.width - mid, height: meta.height }).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 76 }).toFile(after);
+    }
+  });
+}
+
+function copyCmsBundle() {
+  const cmsDir = path.dirname(require.resolve("decap-cms"));
+  const target = path.join(dist, "admin");
+  fs.mkdirSync(target, { recursive: true });
+  for (const name of fs.readdirSync(cmsDir)) {
+    if (name.endsWith(".js")) fs.copyFileSync(path.join(cmsDir, name), path.join(target, name));
+  }
+}
+
+async function build() {
+  await generateResponsiveImages();
   const site = loadSite();
   const files = publicFiles();
   fs.rmSync(dist, { recursive: true, force: true });
   fs.cpSync(path.join(root, "public"), dist, { recursive: true });
+  copyCmsBundle();
 
   write("index.html", pages.renderHome(site, catalog, files));
   write("shop/index.html", pages.renderShop(site, catalog, files));
@@ -79,7 +132,7 @@ function build() {
     .map((url) => `  <url><loc>${site.url}${url}</loc></url>`)
     .join("\n")}\n</urlset>\n`;
   write("sitemap.xml", sitemap);
-  write("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
+  write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: ${site.url}/sitemap.xml\n`);
 
   const torob = handleTorobRequest({ page: 1, sort: "date_added_desc" }, catalog, site);
   write("torob/products.json", `${JSON.stringify(torob.body, null, 2)}\n`);
@@ -90,8 +143,12 @@ function build() {
 }
 
 if (require.main === module) {
-  const result = build();
-  console.log(`Built ${result.pages} routes. showPrices=${result.showPrices}`);
+  build()
+    .then((result) => console.log(`Built ${result.pages} routes. showPrices=${result.showPrices}`))
+    .catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
 }
 
 module.exports = { build };

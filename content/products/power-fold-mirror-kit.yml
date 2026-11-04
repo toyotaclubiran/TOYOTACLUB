@@ -1,0 +1,48 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      اقلام دیده شده
+    "value": |-
+      دو موتور، دکمه، ماژول، دسته سیم
+"claims": []
+"images":
+  - "src": |-
+      /images/products/power-fold-mirror-kit/1.jpg
+    "alt": |-
+      قطعات کیت آینه تاشو برقی
+    "caption": |
+
+"id": |-
+  fold-generic
+"seq": 361
+"slug": |-
+  power-fold-mirror-kit
+"sku": |-
+  TCI-FOLD
+"category": |-
+  comfort
+"title": |-
+  کیت آینه تاشو برقی
+"titleEn": |-
+  Power-fold mirror kit
+"shortDescription": |-
+  دو پوسته موتور آینه، دکمه، ماژول و دسته سیم. مدل خودرو را هنگام سفارش بگویید.
+"description": |-
+  دو موتور آینه، کلید، ماژول و دسته سیم برای جمع شدن برقی آینه‌ها. مدل خودرو را هنگام استعلام بگویید.
+"fitment":
+  "scope": |-
+    unknown
+  "note": |-
+    مدل خودرو را هنگام سفارش اعلام کنید.
+  "toyota": []

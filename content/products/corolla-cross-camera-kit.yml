@@ -1,0 +1,59 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      سازگاری
+    "value": |-
+      Corolla Cross / Frontlander 2023–2026
+  - "label": |-
+      نوع
+    "value": |-
+      دوربین عقب
+"claims": []
+"images":
+  - "src": |-
+      /images/products/corolla-cross-camera-kit/1.jpg
+    "alt": |-
+      قطعات کیت دوربین کرولا کراس
+    "caption": |
+
+"id": |-
+  cc-camera
+"seq": 371
+"slug": |-
+  corolla-cross-camera-kit
+"sku": |-
+  TCI-CC-CAMERA
+"category": |-
+  camera
+"title": |-
+  کیت دوربین عقب کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶
+"titleEn": |-
+  Corolla Cross / Frontlander 2023–2026 rear camera kit
+"shortDescription": |-
+  دوربین عقب، ماژول و دسته سیم برای Corolla Cross / Frontlander 2023–2026.
+"description": |-
+  کیت دوربین عقب برای کرولا کراس و فرانت‌لندر. سازگاری: Corolla Cross / Frontlander 2023–2026. شامل دوربین عقب، ماژول و دسته سیم.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    دوربین عقب برای Corolla Cross / Frontlander 2023–2026.
+  "toyota":
+    - "model": |-
+        corolla-cross
+      "yearFrom": 2023
+      "yearTo": 2026
+      "also":
+        - |-
+          Frontlander

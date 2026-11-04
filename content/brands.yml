@@ -1,0 +1,27 @@
+brands:
+  - id: any
+    name: همه خودروها
+  - id: toyota
+    name: تویوتا
+  - id: hyundai
+    name: هیوندای
+  - id: kia
+    name: کیا
+  - id: renault
+    name: رنو
+  - id: peugeot
+    name: پژو
+  - id: ikco
+    name: ایران‌خودرو
+  - id: bmw
+    name: بی‌ام‌و
+  - id: mercedes
+    name: مرسدس‌بنز
+  - id: changan
+    name: چانگان
+  - id: jac
+    name: جک
+  - id: mvm
+    name: ام‌وی‌ام
+  - id: other
+    name: سایر

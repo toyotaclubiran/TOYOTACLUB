@@ -89,8 +89,8 @@ test("digikala export is a spreadsheet with empty prices", () => {
   assert.match(csv, /استعلام|خالی/);
 });
 
-test("static build has inquiry UI, Netlify forms, address, and no prices", () => {
-  build();
+test("static build has inquiry UI, Netlify forms, address, and no prices", async () => {
+  await build();
   const dist = path.join(__dirname, "..", "dist");
   const home = fs.readFileSync(path.join(dist, "index.html"), "utf8");
   const product = fs.readFileSync(path.join(dist, "product/eglxen-d45/index.html"), "utf8");
@@ -124,4 +124,8 @@ test("static build has inquiry UI, Netlify forms, address, and no prices", () =>
   const torob = JSON.parse(fs.readFileSync(path.join(dist, "torob/products.json"), "utf8"));
   assert.equal(torob.api_version, "torob_api_v3");
   assert.equal(torob.products.length, 0);
+  const robots = fs.readFileSync(path.join(dist, "robots.txt"), "utf8");
+  assert.match(robots, /Disallow: \/admin\//);
+  assert.doesNotMatch(fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8"), /\/admin/);
+  assert.match(fs.readFileSync(path.join(dist, "admin/index.html"), "utf8"), /noindex/);
 });

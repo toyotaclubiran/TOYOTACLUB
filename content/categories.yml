@@ -1,0 +1,49 @@
+categories:
+  - id: led
+    name: هدلایت LED
+    blurb: سری EGLXEN از D45 تا D150، انتخاب با سوکت لامپ
+    group: lighting
+  - id: xenon
+    name: لامپ سوکت D
+    blurb: LED و زنون HID در سوکت D2S و D4S
+    group: lighting
+  - id: projector
+    name: لنز پروژکتور
+    blurb: به‌زودی به مجموعه اضافه می‌شود
+    group: lighting
+  - id: monitor
+    name: مانیتور خودرو
+    blurb: مانیتور اندروید و مولتی‌مدیا
+    group: multimedia
+  - id: parking
+    name: سنسور پارک
+    blurb: سنسور و هشدار دنده‌عقب
+    group: safety
+  - id: safety
+    name: ایمنی
+    blurb: نقطه کور و هشدار
+    group: safety
+  - id: comfort
+    name: آسایش و امکانات
+    blurb: صندوق برقی و آینه تاشو
+    group: options
+  - id: camera
+    name: دوربین
+    blurb: دوربین و ثبت وقایع
+    group: options
+  - id: interior
+    name: داخل کابین
+    blurb: نمونه‌های این دسته برای نمایش ساختار فروشگاه هستند
+    group: example
+  - id: exterior
+    name: بدنه و محافظ
+    blurb: نمونه‌های این دسته برای نمایش ساختار فروشگاه هستند
+    group: example
+  - id: wheels
+    name: چرخ و تعلیق
+    blurb: نمونه‌های این دسته برای نمایش ساختار فروشگاه هستند
+    group: example
+  - id: offroad
+    name: آفرود
+    blurb: نمونه‌های این دسته برای نمایش ساختار فروشگاه هستند
+    group: example

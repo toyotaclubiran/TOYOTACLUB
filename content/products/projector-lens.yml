@@ -1,0 +1,48 @@
+"example": false
+"status": |-
+  coming_soon
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs":
+  - "label": |-
+      وضعیت
+    "value": |-
+      به‌زودی
+"claims": []
+"images":
+  - "src": |-
+      /images/products/projector-lens/1.jpg
+    "alt": |-
+      ماژول لنز پروژکتور در دست
+    "caption": |
+
+"id": |-
+  projector
+"seq": 380
+"slug": |-
+  projector-lens
+"sku": |-
+  TCI-LENS
+"category": |-
+  projector
+"title": |-
+  لنز پروژکتور چراغ جلو
+"titleEn": |-
+  Projector headlight lens
+"shortDescription": |-
+  ماژول لنز پروژکتور چراغ جلو. به‌زودی به موجودی اضافه می‌شود.
+"description": |-
+  لنز پروژکتور چراغ جلو با شیشه شفاف و بدنه تیره. به‌زودی برای سفارش باز می‌شود.
+"fitment":
+  "scope": |-
+    unknown
+  "note": |-
+    به‌زودی. مدل خودرو را در فرم خبرم کن بنویسید.
+  "toyota": []

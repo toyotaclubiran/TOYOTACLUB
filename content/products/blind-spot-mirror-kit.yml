@@ -1,0 +1,48 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      اقلام دیده شده
+    "value": |-
+      دو شیشه آینه، حسگر، بوق، سیم‌کشی
+"claims": []
+"images":
+  - "src": |-
+      /images/products/blind-spot-mirror-kit/1.jpg
+    "alt": |-
+      شیشه آینه و قطعات هشدار نقطه کور
+    "caption": |
+
+"id": |-
+  bsm-mirrors
+"seq": 350
+"slug": |-
+  blind-spot-mirror-kit
+"sku": |-
+  TCI-BSM-MIRROR
+"category": |-
+  safety
+"title": |-
+  کیت هشدار نقطه کور با شیشه آینه
+"titleEn": |-
+  Blind-spot kit with mirror glass
+"shortDescription": |-
+  دو شیشه آینه با علامت هشدار، حسگر، بوق و دسته سیم.
+"description": |-
+  هشدار نقطه کور روی شیشه آینه، همراه حسگر، بوق و سیم‌کشی. مدل آینه را هنگام سفارش بگویید تا شیشه درست انتخاب شود.
+"fitment":
+  "scope": |-
+    unknown
+  "note": |-
+    مدل آینه را هنگام سفارش اعلام کنید.
+  "toyota": []

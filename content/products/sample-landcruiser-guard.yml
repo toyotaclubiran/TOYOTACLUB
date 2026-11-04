@@ -1,0 +1,44 @@
+"example": true
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs": []
+"claims": []
+"images": []
+"description": |-
+  نمونهٔ نمایشی این دسته است.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    نمونه سازگاری.
+  "toyota":
+    - "model": |-
+        land-cruiser
+      "yearFrom": 2016
+      "yearTo": 2021
+"id": |-
+  ex-lc-guard
+"seq": 902
+"slug": |-
+  sample-landcruiser-guard
+"sku": |-
+  SAMPLE-LC-GUARD
+"category": |-
+  offroad
+"title": |-
+  گارد سپر لندکروزر
+"titleEn": |-
+  Sample Land Cruiser bumper guard
+"subtitle": |-
+  محصول نمونه
+"shortDescription": |-
+  نمونه نمایشی برای دسته آفرود.

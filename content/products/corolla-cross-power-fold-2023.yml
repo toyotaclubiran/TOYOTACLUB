@@ -1,0 +1,55 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      سازگاری
+    "value": |-
+      Corolla Cross / Frontlander 2023–2026
+"claims": []
+"images":
+  - "src": |-
+      /images/products/corolla-cross-power-fold-2023/1.jpg
+    "alt": |-
+      کیت آینه تاشو برقی کرولا کراس
+    "caption": |
+
+"id": |-
+  cc-fold
+"seq": 360
+"slug": |-
+  corolla-cross-power-fold-2023
+"sku": |-
+  TCI-CC-FOLD-2326
+"category": |-
+  comfort
+"title": |-
+  کیت آینه تاشو برقی کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶
+"titleEn": |-
+  Corolla Cross / Frontlander power-fold mirror kit 2023-2026
+"shortDescription": |-
+  موتور تاشو، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه، برای کرولا کراس و فرانت‌لندر ۲۰۲۳ تا ۲۰۲۶.
+"description": |-
+  آینه‌های کرولا کراس و فرانت‌لندر را برقی و تاشو می‌کند. سازگاری: Corolla Cross / Frontlander 2023–2026. شامل موتور دو طرف، دسته سیم و پنل کلید شیشه با دکمه جمع شدن آینه.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    برای Corolla Cross و Frontlander، سال ۲۰۲۳ تا ۲۰۲۶.
+  "toyota":
+    - "model": |-
+        corolla-cross
+      "yearFrom": 2023
+      "yearTo": 2026
+      "also":
+        - |-
+          Frontlander

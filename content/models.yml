@@ -1,0 +1,31 @@
+models:
+  - id: prado
+    name: Prado
+    nameFa: پرادو
+    yearFrom: 2010
+    yearTo: 2024
+  - id: land-cruiser
+    name: Land Cruiser
+    nameFa: لندکروزر
+    yearFrom: 2008
+    yearTo: 2024
+  - id: hilux
+    name: Hilux
+    nameFa: هایلوکس
+    yearFrom: 2016
+    yearTo: 2024
+  - id: corolla-cross
+    name: Corolla Cross
+    nameFa: کرولا کراس
+    yearFrom: 2021
+    yearTo: 2026
+  - id: camry
+    name: Camry
+    nameFa: کمری
+    yearFrom: 2018
+    yearTo: 2024
+  - id: corolla
+    name: Corolla
+    nameFa: کرولا
+    yearFrom: 2019
+    yearTo: 2024
