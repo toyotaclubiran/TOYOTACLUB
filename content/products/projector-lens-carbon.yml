@@ -1,0 +1,52 @@
+"example": false
+"status": |-
+  coming_soon
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs":
+  - "label": |-
+      ظاهر
+    "value": |-
+      پوسته طرح کربن و حلقه آبی
+  - "label": |-
+      وضعیت
+    "value": |-
+      به‌زودی
+"claims": []
+"images":
+  - "src": |-
+      /images/products/projector-lens-carbon/1.jpg
+    "alt": |-
+      لنز پروژکتور با بدنه طرح کربن
+    "caption": |
+
+"id": |-
+  projector-carbon
+"seq": 381
+"slug": |-
+  projector-lens-carbon
+"sku": |-
+  TCI-LENS-CF
+"category": |-
+  projector
+"title": |-
+  لنز پروژکتور با بدنه طرح کربن
+"titleEn": |-
+  Carbon-look projector lens
+"shortDescription": |-
+  ماژول لنز با پوسته طرح فیبر کربن و حلقه آبی. به‌زودی.
+"description": |-
+  لنز پروژکتور با پوسته طرح کربن و حلقه آبی. به‌زودی برای سفارش باز می‌شود.
+"fitment":
+  "scope": |-
+    unknown
+  "note": |-
+    به‌زودی. مدل خودرو را در فرم خبرم کن بنویسید.
+  "toyota": []

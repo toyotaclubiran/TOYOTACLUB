@@ -1,0 +1,58 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      کد ماژول
+    "value": |-
+      ORS-3313
+  - "label": |-
+      تعداد سنسور
+    "value": |-
+      ۸
+  - "label": |-
+      اقلام دیده شده
+    "value": |-
+      سنسور، براکت، دسته سیم، ماژول
+"claims": []
+"images":
+  - "src": |-
+      /images/products/parking-sensor-8/1.jpg
+    "alt": |-
+      اجزای کیت سنسور پارک هشت‌تایی
+    "caption": |
+
+"id": |-
+  parking-ors3313
+"seq": 330
+"slug": |-
+  parking-sensor-8
+"sku": |-
+  TCI-PARK-3313
+"category": |-
+  parking
+"title": |-
+  کیت سنسور پارک ۸ سنسوره، ماژول ORS-3313
+"titleEn": |-
+  8-sensor parking assist kit ORS-3313
+"subtitle": |-
+  هشت سنسور، براکت، دسته سیم و ماژول
+"shortDescription": |-
+  کیت کمک پارک با هشت سنسور، براکت نصب، دسته سیم و ماژول ORS-3313.
+"description": |-
+  هشت سنسور، براکت نصب، دسته سیم و ماژول ORS-3313 برای هشدار فاصله هنگام پارک. روی خودروهای مختلف قابل نصب است.
+"fitment":
+  "scope": |-
+    universal
+  "note": |-
+    برای خودروهای مختلف. محل نصب را هنگام سفارش هماهنگ کنید.
+  "toyota": []

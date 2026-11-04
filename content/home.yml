@@ -1,0 +1,145 @@
+sections:
+  categories: دسته‌ها
+  categoriesLink: همه کالاها
+  socketsTitle: سوکت لامپ را انتخاب کنید
+  socketsText: هدلایت محدود به تویوتا نیست. کد سوکت را از روی لامپ فابریک بخوانید.
+  ledTitle: سری هدلایت EGLXEN
+  ledLink: مشاهده دسته
+  monitorsTitle: مانیتور خودرو
+  monitorsLink: مشاهده دسته
+  crossTitle: لوازم کرولا کراس
+  crossLink: مدل کرولا کراس
+  compareTitle: مقایسه سری D اگلزن
+  compareText: توان و سوکت‌های آماده ارسال. روشنایی فقط جایی آمده که روی کالا ثبت شده است.
+  brandsLabel: برندهای همین فروشگاه
+  brands:
+    - EGLXEN
+    - Toyota Club
+  modelsTitle: مدل تویوتا
+  modelsText: فقط برای قطعاتی که سازگاری تویوتا دارند. هدلایت با این انتخاب حذف نمی‌شود.
+  quotesTitle: نظر مشتریان
+  quotesEmpty: هنوز نظری منتشر نشده است. بعد از خرید، نظر واقعی همین‌جا می‌آید.
+  faqTitle: پرسش‌های رایج
+slides:
+  - kicker: EGLXEN
+    title: نور جاده، با انتخاب سوکت
+    highlight: سوکت
+    text: سری D اگلزن برای هر خودرویی که سوکت لامپش جور باشد. موجودی هر سوکت روی کارت کالا نوشته شده است.
+    href: /category/led/
+    cta: هدلایت LED
+    image: /images/banners/hero-led.jpg
+    alt: خودرو با چراغ LED روشن
+    strong: false
+  - kicker: مانیتور اندروید
+    title: صفحه بزرگ، داخل کابین
+    highlight: ""
+    text: مانیتور TS18 و T9. اندازه صفحه هنگام استعلام اعلام می‌شود.
+    href: /category/monitor/
+    cta: مانیتورها
+    image: /images/banners/hero-monitor.jpg
+    alt: مانیتور خودرو در کابین
+    strong: false
+  - kicker: کرولا کراس
+    title: قطعاتی که برای این مدل ثبت شده
+    highlight: ""
+    text: آینه تاشو برقی، دوربین و سنسور. هدلایت همچنان با سوکت انتخاب می‌شود، نه با مدل خودرو.
+    href: /model/corolla-cross/
+    cta: لوازم کرولا کراس
+    image: /images/banners/hero-corolla-cross.jpg
+    alt: تویوتا کرولا کراس
+    strong: true
+trust:
+  - icon: phone
+    title: قیمت با یک تماس
+    text: ""
+  - icon: bulb
+    title: پنج مدل سری D
+    text: از D45 تا D150
+  - icon: shield
+    title: سوکت را چک می‌کنیم
+    text: قبل از ارسال
+  - icon: truck
+    title: ارسال از لامرد
+    text: به سراسر ایران
+tiles:
+  - href: /category/led/
+    name: هدلایت LED
+    blurb: سری D اگلزن، بر اساس سوکت
+    image: /images/banners/cat-led.jpg
+    photo: false
+  - href: /category/xenon/
+    name: زنون و سوکت D
+    blurb: جایگزین D2S و D4S
+    image: /images/banners/cat-xenon.jpg
+    photo: false
+  - href: /category/monitor/
+    name: مانیتور خودرو
+    blurb: TS18 و T9
+    image: /images/banners/cat-monitor.jpg
+    photo: false
+  - href: /category/parking/
+    name: سنسور
+    blurb: پارک و نقطه کور
+    image: /images/banners/cat-sensors.jpg
+    photo: false
+  - href: /category/comfort/
+    name: آینه
+    blurb: تاشو برقی و راهنما
+    image: /images/banners/cat-mirror.jpg
+    photo: false
+  - href: /model/corolla-cross/
+    name: کرولا کراس
+    blurb: قطعات ثبت‌شده برای این مدل
+    image: /images/products/cc-power-fold.jpg
+    photo: true
+  - href: /category/camera/
+    name: دوربین
+    blurb: ثبت‌شده برای مدل‌های مشخص
+    image: /images/products/cc-dashcam.jpg
+    photo: true
+  - href: /category/projector/
+    name: لنز پروژکتور
+    blurb: به‌زودی
+    image: /images/products/projector-lens.jpg
+    photo: true
+compare:
+  - href: /product/eglxen-d45/
+    model: D45
+    watt: ۶۰ وات
+    light: ۱۱۰۰۰ لومن
+    sockets: H7، 9005، H4
+  - href: /product/eglxen-d55/
+    model: D55
+    watt: ۵۵ وات
+    light: —
+    sockets: H7، H1، H11، 9005، H4
+  - href: /product/eglxen-d65/
+    model: D65
+    watt: ۶۵ وات
+    light: —
+    sockets: H7، H1، H11، 9005
+  - href: /product/eglxen-d90/
+    model: D90
+    watt: ۹۰ وات
+    light: —
+    sockets: H7، H1، H11، 9005، H4
+  - href: /product/eglxen-d150/
+    model: D150
+    watt: ۱۰۰ وات
+    light: —
+    sockets: H7، H1، H11، H4
+comparison:
+  kicker: یک جاده، دو نور
+  title: هالوژن در برابر LED
+  text: نیمه چپ همان مسیر با نور هالوژن است و نیمه راست با نور LED. جداکننده را بکشید.
+  before: /images/banners/headlight-before.webp
+  after: /images/banners/headlight-after.webp
+faqs:
+  - q: چرا قیمت روی سایت نیست؟
+    a: قیمت‌ها با استعلام اعلام می‌شود. شماره ۰۹۱۷۴۴۵۰۰۴۰ یا فرم همین صفحه را استفاده کنید.
+  - q: موجودی چطور تأیید می‌شود؟
+    a: موجود یا ناموجود بودن روی کالا نوشته شده است. تعداد دقیق با فروش عوض می‌شود و پیش از ثبت نهایی سفارش تأیید می‌گردد.
+  - q: آیا فروشگاه فقط برای تویوتا است؟
+    a: هدلایت و بسیاری از تجهیزات برای هر خودرویی با سوکت یا نصب مناسب است. بخش مدل‌های تویوتا مخصوص قطعاتی است که سازگاری‌شان با تویوتا ثبت شده.
+  - q: ارسال به کدام شهرهاست؟
+    a: ارسال به سراسر ایران انجام می‌شود. هزینه و زمان ارسال همراه استعلام قیمت گفته می‌شود. فروشگاه در شهرستان لامرد استان فارس است.

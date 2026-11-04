@@ -1,0 +1,44 @@
+"example": true
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs": []
+"claims": []
+"images": []
+"description": |-
+  نمونهٔ نمایشی این دسته است.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    نمونه سازگاری.
+  "toyota":
+    - "model": |-
+        camry
+      "yearFrom": 2018
+      "yearTo": 2024
+"id": |-
+  ex-camry-cover
+"seq": 905
+"slug": |-
+  sample-camry-seat-cover
+"sku": |-
+  SAMPLE-CAMRY-COVER
+"category": |-
+  interior
+"title": |-
+  روکش صندلی کمری
+"titleEn": |-
+  Sample Camry seat cover
+"subtitle": |-
+  محصول نمونه
+"shortDescription": |-
+  نمونه نمایشی برای کمری.

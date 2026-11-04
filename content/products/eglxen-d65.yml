@@ -1,0 +1,149 @@
+"example": false
+"status": |-
+  active
+"price": null
+"compareAtPrice": null
+"brand": |-
+  EGLXEN
+"category": |-
+  led
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"fitment":
+  "scope": |-
+    socket
+  "note": |-
+    برای هر خودرویی با سوکت سازگار. محدود به تویوتا نیست.
+  "toyota": []
+"guarantee": |
+
+"id": |-
+  led-d65
+"seq": 65
+"slug": |-
+  eglxen-d65
+"sku": |-
+  TCI-D65
+"title": |-
+  هدلایت LED اگلزن EGLXEN مدل D65
+"titleEn": |-
+  EGLXEN D65 LED headlight
+"subtitle": |-
+  ۶۵ وات · طرح خاکستری
+"wattage": |-
+  ۶۵ وات
+"shortDescription": |-
+  هدلایت EGLXEN مدل D65 با بدنه خاکستری، دمای پایدار و روشن‌شدن سریع. توان ۶۵ وات.
+"description": |-
+  D65 نور بالا را با دمای کاری پایدار و روشن‌شدن سریع ترکیب می‌کند. توان ۶۵ وات، روشنایی بیشتر، مصرف کمتر و عمر طولانی‌تر برای استفاده هر روز.
+
+  در سوکت‌های H7، H1، H11 و 9005 موجود است. سوکت H4 برای این مدل ناموجود است.
+"variants":
+  - "id": |-
+      h7
+    "socket": |-
+      H7
+    "label": |-
+      H7
+    "available": true
+  - "id": |-
+      h1
+    "socket": |-
+      H1
+    "label": |-
+      H1
+    "available": true
+  - "id": |-
+      h11
+    "socket": |-
+      H11
+    "label": |-
+      H11
+    "available": true
+  - "id": |-
+      9005
+    "socket": |-
+      9005
+    "label": |-
+      9005
+    "available": true
+  - "id": |-
+      h4
+    "socket": |-
+      H4
+    "label": |-
+      H4
+    "available": false
+"specs":
+  - "label": |-
+      برند
+    "value": |-
+      EGLXEN
+  - "label": |-
+      مدل
+    "value": |-
+      D65
+  - "label": |-
+      توان
+    "value": |-
+      ۶۵ وات
+  - "label": |-
+      ویژگی
+    "value": |-
+      دمای ثابت، روشن‌شدن سریع، نور بالا
+"claims":
+  - "title": |-
+      نور پایدار
+    "text": |-
+      روشنایی بالا، صرفه‌جویی در مصرف و عمر طولانی برای مسیرهای شب.
+"images":
+  - "src": |-
+      /images/products/eglxen-d65/1.jpg
+    "alt": |-
+      هدلایت EGLXEN مدل D65
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/2.jpg
+    "alt": |-
+      لامپ EGLXEN D65 سوکت H7
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/3.jpg
+    "alt": |-
+      نمای زاویه‌دار لامپ D65
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/4.jpg
+    "alt": |-
+      نمای دیگر لامپ D65
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/5.jpg
+    "alt": |-
+      جزئیات بدنه لامپ D65
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/6.jpg
+    "alt": |-
+      لامپ EGLXEN D65 سوکت H1
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/7.jpg
+    "alt": |-
+      لامپ EGLXEN D65 سوکت H11
+    "caption": |
+
+  - "src": |-
+      /images/products/eglxen-d65/8.jpg
+    "alt": |-
+      بسته‌بندی هدلایت EGLXEN مدل D65
+    "caption": |
+

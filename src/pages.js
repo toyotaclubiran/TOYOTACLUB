@@ -6,6 +6,10 @@ function usableImages(product, files) {
 }
 
 function productImages(product, files) {
+  const listed = (product.images || []).filter((image) => image && image.src && (!files || files.has(image.src)));
+  if (listed.length) {
+    return listed.map((image) => ({ src: image.src, alt: image.alt || product.title, caption: image.caption || "" }));
+  }
   if (files && product.slug) {
     const prefix = `/images/products/${product.slug}/`;
     const found = [...files]
@@ -87,13 +91,6 @@ function businessJson(site) {
     areaServed: "IR",
   };
 }
-
-const faqs = [
-  ["چرا قیمت روی سایت نیست؟", "قیمت‌ها با استعلام اعلام می‌شود. شماره ۰۹۱۷۴۴۵۰۰۴۰ یا فرم همین صفحه را استفاده کنید."],
-  ["موجودی چطور تأیید می‌شود؟", "موجود یا ناموجود بودن روی کالا نوشته شده است. تعداد دقیق با فروش عوض می‌شود و پیش از ثبت نهایی سفارش تأیید می‌گردد."],
-  ["آیا فروشگاه فقط برای تویوتا است؟", "هدلایت و بسیاری از تجهیزات برای هر خودرویی با سوکت یا نصب مناسب است. بخش مدل‌های تویوتا مخصوص قطعاتی است که سازگاری‌شان با تویوتا ثبت شده."],
-  ["ارسال به کدام شهرهاست؟", "ارسال به سراسر ایران انجام می‌شود. هزینه و زمان ارسال همراه استعلام قیمت گفته می‌شود. فروشگاه در شهرستان لامرد استان فارس است."],
-];
 
 function layout(opts) {
   const { site, catalog, title, description, path, main, json, robots, product } = opts;
@@ -262,8 +259,9 @@ function simModes(product) {
   if (option) {
     const modes = [];
     option.choices.forEach((choice) => {
-      if (/بدون/.test(choice)) modes.push("no");
-      else if (/4G/.test(choice)) modes.push("yes");
+      const text = typeof choice === "string" ? choice : choice.choice;
+      if (/بدون/.test(text)) modes.push("no");
+      else if (/4G/.test(text)) modes.push("yes");
     });
     return [...new Set(modes)];
   }
@@ -382,6 +380,12 @@ function listing(site, catalog, files, { title, description, path, crumbs, produ
   return layout({ site, catalog, title, description, path, main });
 }
 
+function heroTitle(slide) {
+  const title = esc(slide.title || "");
+  if (!slide.highlight) return title;
+  return title.replace(esc(slide.highlight), `<span class="red">${esc(slide.highlight)}</span>`);
+}
+
 function heroSlide({ kicker, title, text, href, cta, base, alt, strong, loading }) {
   return `<div class="hero-slide${strong ? " shade-strong" : ""}">
     <div class="hero-visual">${picture(base, [768, 1280], "100vw", alt, 9 / 16, loading || "lazy")}</div>
@@ -412,6 +416,8 @@ function photoTile(href, name, blurb, src) {
 }
 
 function renderHome(site, catalog, files) {
+  const home = catalog.home;
+  const faqs = catalog.faqs;
   const led = catalog.products.filter((product) => product.category === "led" && !product.example);
   const monitors = catalog.products.filter((product) => product.category === "monitor");
   const cross = catalog.products.filter((product) => (product.fitment?.toyota || []).some((row) => row.model === "corolla-cross") && !product.example);
@@ -421,120 +427,104 @@ function renderHome(site, catalog, files) {
       <input type="radio" name="hero" id="h2">
       <input type="radio" name="hero" id="h3">
       <div class="hero-track">
-        ${heroSlide({
-          kicker: "EGLXEN",
-          title: `نور جاده، با انتخاب <span class="red">سوکت</span>`,
-          text: "سری D اگلزن برای هر خودرویی که سوکت لامپش جور باشد. موجودی هر سوکت روی کارت کالا نوشته شده است.",
-          href: "/category/led/",
-          cta: "هدلایت LED",
-          base: "/images/banners/hero-led.jpg",
-          alt: "خودرو با چراغ LED روشن",
-          loading: "eager",
-        })}
-        ${heroSlide({
-          kicker: "مانیتور اندروید",
-          title: "صفحه بزرگ، داخل کابین",
-          text: "مانیتور TS18 و T9. اندازه صفحه هنگام استعلام اعلام می‌شود.",
-          href: "/category/monitor/",
-          cta: "مانیتورها",
-          base: "/images/banners/hero-monitor.jpg",
-          alt: "مانیتور خودرو در کابین",
-        })}
-        ${heroSlide({
-          kicker: "کرولا کراس",
-          title: "قطعاتی که برای این مدل ثبت شده",
-          text: "آینه تاشو برقی، دوربین و سنسور. هدلایت همچنان با سوکت انتخاب می‌شود، نه با مدل خودرو.",
-          href: "/model/corolla-cross/",
-          cta: "لوازم کرولا کراس",
-          base: "/images/banners/hero-corolla-cross.jpg",
-          alt: "تویوتا کرولا کراس",
-          strong: true,
-        })}
+        ${home.slides
+          .map((slide, index) =>
+            heroSlide({
+              kicker: esc(slide.kicker),
+              title: heroTitle(slide),
+              text: esc(slide.text),
+              href: slide.href,
+              cta: esc(slide.cta),
+              base: slide.image,
+              alt: slide.alt,
+              strong: Boolean(slide.strong),
+              loading: index === 0 ? "eager" : "lazy",
+            })
+          )
+          .join("")}
       </div>
-      <div class="hero-dots"><label for="h1"></label><label for="h2"></label><label for="h3"></label></div>
+      <div class="hero-dots">${home.slides.map((_, index) => `<label for="h${index + 1}"></label>`).join("")}</div>
     </section>
     <div class="wrap"><div class="trust reveal">
-      <article>${icon("phone")}<div><strong>قیمت با یک تماس</strong><span>${esc(site.phoneDisplay)}</span></div></article>
-      <article>${icon("bulb")}<div><strong>پنج مدل سری D</strong><span>از D45 تا D150</span></div></article>
-      <article>${icon("shield")}<div><strong>سوکت را چک می‌کنیم</strong><span>قبل از ارسال</span></div></article>
-      <article>${icon("truck")}<div><strong>ارسال از لامرد</strong><span>به سراسر ایران</span></div></article>
+      ${home.trust
+        .map((item) => {
+          const text = item.icon === "phone" && !item.text ? site.phoneDisplay : item.text;
+          return `<article>${icon(item.icon)}<div><strong>${esc(item.title)}</strong><span>${esc(text)}</span></div></article>`;
+        })
+        .join("")}
     </div></div>
     <section class="section reveal"><div class="wrap">
-      <div class="section-head"><h2>دسته‌ها</h2><a class="link" href="/shop/">همه کالاها</a></div>
+      <div class="section-head"><h2>${esc(home.sections.categories)}</h2><a class="link" href="/shop/">${esc(home.sections.categoriesLink)}</a></div>
       <div class="tile-grid">
-        ${bannerTile("/category/led/", "هدلایت LED", "سری D اگلزن، بر اساس سوکت", "/images/banners/cat-led.jpg")}
-        ${bannerTile("/category/xenon/", "زنون و سوکت D", "جایگزین D2S و D4S", "/images/banners/cat-xenon.jpg")}
-        ${bannerTile("/category/monitor/", "مانیتور خودرو", "TS18 و T9", "/images/banners/cat-monitor.jpg")}
-        ${bannerTile("/category/parking/", "سنسور", "پارک و نقطه کور", "/images/banners/cat-sensors.jpg")}
-        ${bannerTile("/category/comfort/", "آینه", "تاشو برقی و راهنما", "/images/banners/cat-mirror.jpg")}
-        ${photoTile("/model/corolla-cross/", "کرولا کراس", "قطعات ثبت‌شده برای این مدل", "/images/products/cc-power-fold.jpg")}
-        ${photoTile("/category/camera/", "دوربین", "ثبت‌شده برای مدل‌های مشخص", "/images/products/cc-dashcam.jpg")}
-        ${photoTile("/category/projector/", "لنز پروژکتور", "به‌زودی", "/images/products/projector-lens.jpg")}
+        ${home.tiles
+          .map((tile) => (tile.photo ? photoTile(tile.href, tile.name, tile.blurb, tile.image) : bannerTile(tile.href, tile.name, tile.blurb, tile.image)))
+          .join("")}
       </div>
     </div></section>
     <section class="section reveal" id="compare-light"><div class="wrap ba-layout">
       <div>
-        <p class="kicker">یک جاده، دو نور</p>
-        <h2>هالوژن در برابر LED</h2>
-        <p>نیمه چپ همان مسیر با نور هالوژن است و نیمه راست با نور LED. جداکننده را بکشید.</p>
+        <p class="kicker">${esc(home.comparison.kicker)}</p>
+        <h2>${esc(home.comparison.title)}</h2>
+        <p>${esc(home.comparison.text)}</p>
       </div>
       <div class="ba" data-ba>
-        <img class="ba-after" src="/images/banners/headlight-after.webp" alt="نور LED روی جاده" width="800" height="900">
-        <div class="ba-before"><img src="/images/banners/headlight-before.webp" alt="نور هالوژن روی جاده" width="800" height="900"></div>
+        <img class="ba-after" src="${esc(home.comparison.after)}" alt="نور LED روی جاده" width="800" height="900">
+        <div class="ba-before"><img src="${esc(home.comparison.before)}" alt="نور هالوژن روی جاده" width="800" height="900"></div>
         <span class="ba-tag ba-tag-before">هالوژن</span>
         <span class="ba-tag ba-tag-after">LED</span>
         <button class="ba-handle" type="button" aria-label="کشیدن جداکننده هالوژن و LED"></button>
       </div>
     </div></section>
     <section class="section reveal" id="sockets"><div class="wrap">
-      <div class="section-head"><div><h2>سوکت لامپ را انتخاب کنید</h2><p>هدلایت محدود به تویوتا نیست. کد سوکت را از روی لامپ فابریک بخوانید.</p></div></div>
+      <div class="section-head"><div><h2>${esc(home.sections.socketsTitle)}</h2><p>${esc(home.sections.socketsText)}</p></div></div>
       <div class="socket-row">${catalog.sockets.map((socket) => `<a href="/socket/${esc(socket.id)}/">${esc(socket.label)}</a>`).join("")}</div>
     </div></section>
     <section class="section reveal"><div class="wrap">
-      <div class="section-head"><h2>سری هدلایت EGLXEN</h2><a class="link" href="/category/led/">مشاهده دسته</a></div>
+      <div class="section-head"><h2>${esc(home.sections.ledTitle)}</h2><a class="link" href="/category/led/">${esc(home.sections.ledLink)}</a></div>
       <div class="carousel">${led.map((product) => productCard(product, catalog, files)).join("")}</div>
     </div></section>
     <section class="section reveal"><div class="wrap">
-      <div class="section-head"><h2>مانیتور خودرو</h2><a class="link" href="/category/monitor/">مشاهده دسته</a></div>
+      <div class="section-head"><h2>${esc(home.sections.monitorsTitle)}</h2><a class="link" href="/category/monitor/">${esc(home.sections.monitorsLink)}</a></div>
       <div class="carousel">${monitors.map((product) => productCard(product, catalog, files)).join("")}</div>
     </div></section>
     <section class="section reveal"><div class="wrap">
-      <div class="section-head"><h2>لوازم کرولا کراس</h2><a class="link" href="/model/corolla-cross/">مدل کرولا کراس</a></div>
+      <div class="section-head"><h2>${esc(home.sections.crossTitle)}</h2><a class="link" href="/model/corolla-cross/">${esc(home.sections.crossLink)}</a></div>
       <div class="carousel">${cross.map((product) => productCard(product, catalog, files)).join("")}</div>
     </div></section>
     <section class="section reveal"><div class="wrap"><div class="compare">
-      <h2>مقایسه سری D اگلزن</h2>
-      <p>توان و سوکت‌های آماده ارسال. روشنایی فقط جایی آمده که روی کالا ثبت شده است.</p>
+      <h2>${esc(home.sections.compareTitle)}</h2>
+      <p>${esc(home.sections.compareText)}</p>
       <div class="table-scroll"><table>
         <thead><tr><th>مدل</th><th>توان</th><th>روشنایی</th><th>سوکت موجود</th></tr></thead>
         <tbody>
-          <tr><td><a href="/product/eglxen-d45/">D45</a></td><td>۶۰ وات</td><td>۱۱۰۰۰ لومن</td><td>H7، 9005، H4</td></tr>
-          <tr><td><a href="/product/eglxen-d55/">D55</a></td><td>۵۵ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
-          <tr><td><a href="/product/eglxen-d65/">D65</a></td><td>۶۵ وات</td><td>—</td><td>H7، H1، H11، 9005</td></tr>
-          <tr><td><a href="/product/eglxen-d90/">D90</a></td><td>۹۰ وات</td><td>—</td><td>H7، H1، H11، 9005، H4</td></tr>
-          <tr><td><a href="/product/eglxen-d150/">D150</a></td><td>۱۰۰ وات</td><td>—</td><td>H7، H1، H11، H4</td></tr>
+          ${home.compare
+            .map(
+              (row) =>
+                `<tr><td><a href="${esc(row.href)}">${esc(row.model)}</a></td><td>${esc(row.watt)}</td><td>${esc(row.light)}</td><td>${esc(row.sockets)}</td></tr>`
+            )
+            .join("")}
         </tbody>
       </table></div>
     </div></div></section>
     <section class="section reveal brand-strip"><div class="wrap">
-      <p>برندهای همین فروشگاه</p>
-      <div class="brands"><span>EGLXEN</span><span>Toyota Club</span></div>
+      <p>${esc(home.sections.brandsLabel)}</p>
+      <div class="brands">${home.sections.brands.map((item) => `<span>${esc(typeof item === "string" ? item : item.brand || item.name)}</span>`).join("")}</div>
     </div></section>
     <section class="section reveal" id="models"><div class="wrap">
-      <div class="section-head"><div><h2>مدل تویوتا</h2><p>فقط برای قطعاتی که سازگاری تویوتا دارند. هدلایت با این انتخاب حذف نمی‌شود.</p></div></div>
+      <div class="section-head"><div><h2>${esc(home.sections.modelsTitle)}</h2><p>${esc(home.sections.modelsText)}</p></div></div>
       <div class="model-grid">${catalog.models
         .map((model) => `<a href="/model/${esc(model.id)}/"><strong>${esc(model.name)}</strong><span>${esc(model.nameFa)}</span></a>`)
         .join("")}</div>
     </div></section>
     <section class="section reveal quotes"><div class="wrap">
-      <div class="section-head"><h2>نظر مشتریان</h2></div>
-      <p class="quote-empty">هنوز نظری منتشر نشده است. بعد از خرید، نظر واقعی همین‌جا می‌آید.</p>
+      <div class="section-head"><h2>${esc(home.sections.quotesTitle)}</h2></div>
+      <p class="quote-empty">${esc(home.sections.quotesEmpty)}</p>
     </div></section>
     <section class="ig-slot" hidden aria-hidden="true">
       <div class="wrap"><h2>اینستاگرام</h2></div>
     </section>
     <section class="section reveal"><div class="wrap faq">
-      <h2>پرسش‌های رایج</h2>
+      <h2>${esc(home.sections.faqTitle)}</h2>
       ${faqs.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}
     </div></section>`;
   return layout({
@@ -608,7 +598,7 @@ function variantFields(product) {
   const options = (product.options || [])
     .map(
       (option) => `<label>${esc(option.label)}<select name="option-${esc(option.id)}">${option.choices
-        .map((choice) => `<option>${esc(choice)}</option>`)
+        .map((choice) => `<option>${esc(typeof choice === "string" ? choice : choice.choice)}</option>`)
         .join("")}</select></label>`
     )
     .join("");
@@ -649,7 +639,8 @@ function renderProduct(site, catalog, files, product) {
   const toyota = (product.fitment?.toyota || [])
     .map((row) => {
       const model = modelById(catalog, row.model);
-      const also = row.also?.length ? ` / ${row.also.join(" / ")}` : "";
+      const names = (row.also || []).map((item) => (typeof item === "string" ? item : item.name)).filter(Boolean);
+      const also = names.length ? ` / ${names.join(" / ")}` : "";
       const year = (n) => String(n).replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
       return `${model ? model.name : row.model}${also} ${year(row.yearFrom)}–${year(row.yearTo)}`;
     })
@@ -698,7 +689,7 @@ function renderProduct(site, catalog, files, product) {
         <div class="p1">${paragraphs(product.description)}${product.fitment?.note ? `<p>${esc(product.fitment.note)}</p>` : ""}${toyota ? `<p>مناسب برای ${esc(toyota)}</p>` : ""}</div>
         <div class="p2">${specs ? `<dl class="specs">${specs}</dl>` : "<p>جزئیات بیشتر را از فروشگاه بپرسید.</p>"}</div>
         <div class="p3"><p>سوکت لامپ فابریک یا مدل خودرو را موقع سفارش بگویید تا قطعه درست برایتان کنار گذاشته شود. اگر به سیم‌کشی خودرو آشنا نیستید، نصب را به برق‌کار بسپارید. برای راهنمایی با ${phone} تماس بگیرید.</p></div>
-        <div class="p4">${faqs.map(([q, a]) => `<p><strong>${esc(q)}</strong><br>${esc(a)}</p>`).join("")}</div>
+        <div class="p4">${catalog.faqs.map(([q, a]) => `<p><strong>${esc(q)}</strong><br>${esc(a)}</p>`).join("")}</div>
       </div>
     </div>
     ${related.length ? `<h2>کالاهای مرتبط</h2><div class="product-grid">${related.map((item) => productCard(item, catalog, files)).join("")}</div>` : ""}

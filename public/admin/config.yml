@@ -1,0 +1,251 @@
+backend:
+  name: github
+  repo: toyotaclubiran/TOYOTACLUB
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+locale: fa
+site_url: https://toyotaclubiran.com
+display_url: https://toyotaclubiran.com
+publish_mode: simple
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: site
+    label: اطلاعات تماس
+    files:
+      - name: settings
+        label: فروشگاه
+        file: content/site.yml
+        fields:
+          - { label: نام انگلیسی, name: name, widget: string }
+          - { label: نام فارسی, name: nameFa, widget: string }
+          - { label: شعار, name: tagline, widget: string }
+          - { label: نشانی سایت, name: url, widget: string, hint: "https://toyotaclubiran.com را عوض نکنید." }
+          - { label: نمایش قیمت, name: showPrices, widget: boolean, hint: "خاموش بماند تا وقتی قیمت کالاها را وارد کرده‌اید. خالی بودن قیمت یعنی استعلام قیمت." }
+          - { label: تلفن, name: phone, widget: string, hint: "مثل 09174450040. واتساپ از همین شماره ساخته می‌شود." }
+          - { label: نشانی, name: address, widget: string }
+          - { label: استان, name: province, widget: string }
+          - { label: شهر, name: locality, widget: string }
+          - { label: کشور, name: country, widget: string }
+          - { label: یادداشت موجودی, name: stockNote, widget: text, hint: "تعداد موجودی ننویسید. فقط بگویید موجودی پیش از سفارش تأیید می‌شود." }
+          - { label: توضیح فروشگاه, name: description, widget: text }
+
+  - name: home
+    label: صفحه اول
+    files:
+      - name: home
+        label: متن‌ها و بنرها
+        file: content/home.yml
+        fields:
+          - label: عنوان بخش‌ها
+            name: sections
+            widget: object
+            fields:
+              - { label: عنوان دسته‌ها, name: categories, widget: string }
+              - { label: لینک همه کالاها, name: categoriesLink, widget: string }
+              - { label: عنوان سوکت, name: socketsTitle, widget: string }
+              - { label: توضیح سوکت, name: socketsText, widget: text }
+              - { label: عنوان هدلایت, name: ledTitle, widget: string }
+              - { label: لینک هدلایت, name: ledLink, widget: string }
+              - { label: عنوان مانیتور, name: monitorsTitle, widget: string }
+              - { label: لینک مانیتور, name: monitorsLink, widget: string }
+              - { label: عنوان کرولا کراس, name: crossTitle, widget: string }
+              - { label: لینک کرولا کراس, name: crossLink, widget: string }
+              - { label: عنوان جدول مقایسه, name: compareTitle, widget: string }
+              - { label: توضیح جدول, name: compareText, widget: text }
+              - { label: برچسب برندها, name: brandsLabel, widget: string }
+              - { label: نام برندها, name: brands, widget: list, field: { label: نام, name: brand, widget: string } }
+              - { label: عنوان مدل‌ها, name: modelsTitle, widget: string }
+              - { label: توضیح مدل‌ها, name: modelsText, widget: text }
+              - { label: عنوان نظرات, name: quotesTitle, widget: string }
+              - { label: متن خالی نظرات, name: quotesEmpty, widget: text }
+              - { label: عنوان پرسش‌ها, name: faqTitle, widget: string }
+          - label: اسلایدهای اصلی
+            name: slides
+            widget: list
+            hint: سه اسلاید. عکس را در بنرها بگذارید؛ سایت WebP می‌سازد.
+            fields:
+              - { label: برچسب کوچک, name: kicker, widget: string }
+              - { label: تیتر, name: title, widget: string }
+              - { label: کلمه رنگی داخل تیتر, name: highlight, widget: string, required: false }
+              - { label: متن, name: text, widget: text }
+              - { label: لینک دکمه, name: href, widget: string }
+              - { label: متن دکمه, name: cta, widget: string }
+              - label: تصویر
+                name: image
+                widget: image
+                media_folder: public/images/banners
+                public_folder: /images/banners
+              - { label: توضیح تصویر, name: alt, widget: string }
+              - { label: سایه قوی سمت راست, name: strong, widget: boolean, required: false }
+          - label: نوار اعتماد
+            name: trust
+            widget: list
+            fields:
+              - { label: آیکون, name: icon, widget: select, options: [phone, bulb, shield, truck] }
+              - { label: عنوان, name: title, widget: string }
+              - { label: توضیح, name: text, widget: string, required: false, hint: "برای آیکون phone خالی بگذارید تا شماره تلفن نشان داده شود." }
+          - label: کاشی دسته‌ها
+            name: tiles
+            widget: list
+            fields:
+              - { label: لینک, name: href, widget: string }
+              - { label: نام, name: name, widget: string }
+              - { label: توضیح, name: blurb, widget: string }
+              - label: تصویر
+                name: image
+                widget: image
+                media_folder: public/images/banners
+                public_folder: /images/banners
+              - { label: عکس کالا است نه بنر, name: photo, widget: boolean, required: false }
+          - label: مقایسه نور
+            name: comparison
+            widget: object
+            fields:
+              - { label: برچسب, name: kicker, widget: string }
+              - { label: عنوان, name: title, widget: string }
+              - { label: متن, name: text, widget: text }
+              - { label: تصویر هالوژن, name: before, widget: string }
+              - { label: تصویر LED, name: after, widget: string }
+          - label: جدول سری D
+            name: compare
+            widget: list
+            fields:
+              - { label: لینک, name: href, widget: string }
+              - { label: مدل, name: model, widget: string }
+              - { label: توان, name: watt, widget: string }
+              - { label: روشنایی, name: light, widget: string }
+              - { label: سوکت‌های موجود, name: sockets, widget: string }
+          - label: پرسش‌های رایج
+            name: faqs
+            widget: list
+            fields:
+              - { label: پرسش, name: q, widget: string }
+              - { label: پاسخ, name: a, widget: text }
+
+  - name: categories
+    label: دسته‌ها
+    files:
+      - name: categories
+        label: نام و توضیح دسته‌ها
+        file: content/categories.yml
+        fields:
+          - label: دسته‌ها
+            name: categories
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { label: شناسه, name: id, widget: string, hint: "شناسه را عوض نکنید." }
+              - { label: نام, name: name, widget: string }
+              - { label: توضیح, name: blurb, widget: text }
+              - { label: گروه, name: group, widget: string }
+
+  - name: products
+    label: کالاها
+    folder: content/products
+    create: true
+    format: yaml
+    extension: yml
+    slug: "{{fields.slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - { label: شناسه, name: id, widget: string }
+      - { label: ترتیب, name: seq, widget: number, value_type: int }
+      - { label: نامک, name: slug, widget: string, hint: "در آدرس صفحه می‌آید. بعد از انتشار عوض نکنید." }
+      - { label: کد کالا, name: sku, widget: string }
+      - label: دسته
+        name: category
+        widget: select
+        options: [led, xenon, projector, monitor, parking, safety, comfort, camera, interior, exterior, wheels, offroad]
+      - { label: نام کالا, name: title, widget: string }
+      - { label: نام انگلیسی, name: titleEn, widget: string, required: false }
+      - { label: زیرعنوان, name: subtitle, widget: string, required: false }
+      - { label: توضیح کوتاه, name: shortDescription, widget: text }
+      - { label: توضیح, name: description, widget: markdown }
+      - { label: توان, name: wattage, widget: string, required: false }
+      - label: برند
+        name: brand
+        widget: select
+        options: ["", EGLXEN]
+        required: false
+        hint: "فقط EGLXEN مجاز است. نام تأمین‌کننده دیگر ننویسید."
+      - label: قیمت تومان
+        name: price
+        widget: number
+        value_type: int
+        required: false
+        hint: "خالی یعنی استعلام قیمت. سوکت H4 قیمت جدا ندارد و همیشه استعلام است. تعداد موجودی ننویسید."
+      - label: وضعیت
+        name: status
+        widget: select
+        options:
+          - { label: فعال, value: active }
+          - { label: به‌زودی, value: coming_soon }
+      - { label: نمونه نمایشی, name: example, widget: boolean, required: false }
+      - { label: قابل عرضه, name: available, widget: boolean, hint: "فقط موجود یا ناموجود." }
+      - label: سازگاری
+        name: fitment
+        widget: object
+        fields:
+          - label: محدوده
+            name: scope
+            widget: select
+            options: [socket, universal, toyota, unknown]
+          - { label: توضیح سازگاری, name: note, widget: text }
+          - label: مدل‌های تویوتا
+            name: toyota
+            widget: list
+            required: false
+            fields:
+              - { label: مدل, name: model, widget: string, hint: "مثل corolla-cross" }
+              - { label: از سال, name: yearFrom, widget: number, value_type: int }
+              - { label: تا سال, name: yearTo, widget: number, value_type: int }
+              - { label: نام‌های دیگر, name: also, widget: list, required: false, field: { label: نام, name: name, widget: string } }
+      - label: گزینه‌ها
+        name: variants
+        widget: list
+        required: false
+        hint: "موجود یا ناموجود. تعداد انبار ننویسید."
+        fields:
+          - { label: شناسه, name: id, widget: string }
+          - { label: سوکت, name: socket, widget: string, required: false, hint: "مثل H7 یا H4. H4 همیشه استعلام قیمت است." }
+          - { label: برچسب, name: label, widget: string }
+          - { label: موجود, name: available, widget: boolean }
+      - label: گزینه‌های اضافه
+        name: options
+        widget: list
+        required: false
+        fields:
+          - { label: شناسه, name: id, widget: string }
+          - { label: عنوان, name: label, widget: string }
+          - { label: انتخاب‌ها, name: choices, widget: list, field: { label: مورد, name: choice, widget: string } }
+      - label: مشخصات
+        name: specs
+        widget: list
+        required: false
+        fields:
+          - { label: عنوان, name: label, widget: string }
+          - { label: مقدار, name: value, widget: string }
+      - label: نکته‌ها
+        name: claims
+        widget: list
+        required: false
+        fields:
+          - { label: عنوان, name: title, widget: string }
+          - { label: متن, name: text, widget: text }
+      - label: عکس‌ها
+        name: images
+        widget: list
+        hint: "اولین عکس، عکس اصلی است. JPG بگذارید تا سایت WebP بسازد."
+        fields:
+          - label: فایل
+            name: src
+            widget: image
+            media_folder: public/images/products
+            public_folder: /images/products
+          - { label: توضیح عکس, name: alt, widget: string, required: false }

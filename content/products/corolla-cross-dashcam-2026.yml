@@ -1,0 +1,59 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      سازگاری
+    "value": |-
+      Corolla Cross / Frontlander 2026
+  - "label": |-
+      دوربین عقب
+    "value": |-
+      دارد، همراه سوکت برق ACC
+"claims": []
+"images":
+  - "src": |-
+      /images/products/corolla-cross-dashcam-2026/1.jpg
+    "alt": |-
+      دوربین ثبت وقایع کرولا کراس ۲۰۲۶
+    "caption": |
+
+"id": |-
+  cc-dashcam
+"seq": 370
+"slug": |-
+  corolla-cross-dashcam-2026
+"sku": |-
+  TCI-CC-CAM-2026
+"category": |-
+  camera
+"title": |-
+  دوربین ثبت وقایع پشت آینه کرولا کراس و فرانت‌لندر ۲۰۲۶
+"titleEn": |-
+  Corolla Cross / Frontlander 2026 mirror dashcam
+"shortDescription": |-
+  بدنه نصب پشت آینه، دوربین عقب و سوکت برق ACC، برای کرولا کراس و فرانت‌لندر ۲۰۲۶.
+"description": |-
+  دوربین ثبت وقایع که پشت آینه وسط می‌نشیند، به‌همراه دوربین عقب و سوکت برق ACC. سازگاری: Corolla Cross / Frontlander 2026.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    برای Corolla Cross و Frontlander مدل ۲۰۲۶.
+  "toyota":
+    - "model": |-
+        corolla-cross
+      "yearFrom": 2026
+      "yearTo": 2026
+      "also":
+        - |-
+          Frontlander

@@ -1,0 +1,44 @@
+"example": true
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs": []
+"claims": []
+"images": []
+"description": |-
+  نمونهٔ نمایشی این دسته است.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    نمونه سازگاری.
+  "toyota":
+    - "model": |-
+        hilux
+      "yearFrom": 2016
+      "yearTo": 2024
+"id": |-
+  ex-hilux-liner
+"seq": 904
+"slug": |-
+  sample-hilux-bed-liner
+"sku": |-
+  SAMPLE-HILUX-LINER
+"category": |-
+  exterior
+"title": |-
+  لاینر کف وانت هایلوکس
+"titleEn": |-
+  Sample Hilux bed liner
+"subtitle": |-
+  محصول نمونه
+"shortDescription": |-
+  نمونه نمایشی برای دسته بدنه.

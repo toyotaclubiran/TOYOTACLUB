@@ -1,0 +1,44 @@
+"example": true
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": false
+"specs": []
+"claims": []
+"images": []
+"description": |-
+  نمونهٔ نمایشی این دسته است.
+"fitment":
+  "scope": |-
+    toyota
+  "note": |-
+    نمونه سازگاری.
+  "toyota":
+    - "model": |-
+        prado
+      "yearFrom": 2014
+      "yearTo": 2023
+"id": |-
+  ex-prado-mat
+"seq": 901
+"slug": |-
+  sample-prado-floor-mat
+"sku": |-
+  SAMPLE-PRADO-MAT
+"category": |-
+  interior
+"title": |-
+  کفپوش کابین پرادو
+"titleEn": |-
+  Sample Prado floor mat
+"subtitle": |-
+  محصول نمونه
+"shortDescription": |-
+  نمونه نمایشی برای دسته داخل کابین.

@@ -1,0 +1,48 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      اقلام دیده شده
+    "value": |-
+      ۲ رادار، بوق، سیم‌کشی، ۲ نشانگر آینه
+"claims": []
+"images":
+  - "src": |-
+      /images/products/blind-spot-sensor-kit/1.jpg
+    "alt": |-
+      سنسورها و نشانگرهای کیت نقطه کور
+    "caption": |
+
+"id": |-
+  bsm-sensors
+"seq": 351
+"slug": |-
+  blind-spot-sensor-kit
+"sku": |-
+  TCI-BSM-SENSOR
+"category": |-
+  safety
+"title": |-
+  کیت سنسور نقطه کور
+"titleEn": |-
+  Blind-spot sensor kit
+"shortDescription": |-
+  دو رادار، بوق، سیم‌کشی و دو نشانگر کوچک آینه.
+"description": |-
+  دو رادار، بوق، سیم‌کشی و دو نشانگر کوچک برای آینه. هشدار نقطه کور را بدون تعویض کامل آینه اضافه می‌کند.
+"fitment":
+  "scope": |-
+    universal
+  "note": |-
+    برای خودروهای مختلف. محل نصب را هنگام سفارش هماهنگ کنید.
+  "toyota": []

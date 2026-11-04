@@ -108,6 +108,31 @@ In Netlify: Domain management → the custom domain → HTTPS → provision or r
 
 هیچ تنظیم داخل مخزن، خطای ۵۰۰ را نمی‌سازد. گواهی HTTPS هنوز برای دامنه فروشگاه صادر نشده و گواهی پیش‌فرض `*.netlify.app` نشان داده می‌شود. صدور گواهی را از داشبورد نتفلی انجام دهید.
 
+## مدیریت سایت / Admin
+
+نشانی مدیریت: `/admin` (بعد از انتشار، `https://toyotaclubiran.com/admin`). این صفحه در نقشه سایت نیست و `noindex` است.
+
+متن‌ها در `content/` هستند. عکس JPG که از پنل آپلود می‌شود، هنگام ساخت سایت به WebP تبدیل می‌شود. فقط برند EGLXEN مجاز است. تعداد موجودی نوشته نمی‌شود. قیمت خالی یعنی «استعلام قیمت». سوکت H4 همیشه استعلام قیمت است.
+
+### راه‌اندازی یک‌باره ورود با گیت‌هاب
+
+این کار را فقط یک بار انجام دهید. بعد از آن با حساب `toyotaclubiran` وارد `/admin` می‌شوید و ذخیره، مستقیم روی شاخه `main` ثبت می‌شود و نتفلی سایت را دوباره می‌سازد.
+
+1. در گیت‌هاب بروید به Settings → Developer settings → OAuth Apps → New OAuth App. نشانی: `https://github.com/settings/developers`
+2. نام برنامه را بگذارید `Toyota Club Iran CMS`.
+3. Homepage URL را بگذارید `https://admirable-truffle-08ab78.netlify.app`.
+4. Authorization callback URL را دقیقاً بگذارید `https://api.netlify.com/auth/done`.
+5. Register application را بزنید. Client ID را کپی کنید.
+6. Generate a new client secret را بزنید و Client secret را کپی کنید. این رمز را در مخزن ننویسید.
+7. در نتفلی پروژه `admirable-truffle-08ab78` را باز کنید.
+8. بروید به Site configuration → Access & security → OAuth (در بعضی نماها: Access control → OAuth).
+9. Install provider → GitHub را بزنید.
+10. Client ID و Client secret همان برنامه گیت‌هاب را وارد و ذخیره کنید.
+11. سایت را یک بار دوباره منتشر کنید تا `/admin` بالا باشد.
+12. `https://toyotaclubiran.com/admin` را باز کنید و «با GitHub وارد شوید» را بزنید. با حساب `toyotaclubiran` اجازه دسترسی را تأیید کنید.
+
+اگر دکمه ورود خطا داد، callback باید همان `https://api.netlify.com/auth/done` باشد و OAuth در همان پروژه نتفلی نصب شده باشد.
+
 ## Brand / برند
 
 EGLXEN stays in titles and photos. Other supplier names are not written in the catalog. The parking-sensor photo no longer shows the supplier name on the module; the code ORS-3313 remains.

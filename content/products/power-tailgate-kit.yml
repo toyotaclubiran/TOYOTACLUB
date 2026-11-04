@@ -1,0 +1,48 @@
+"example": false
+"status": |-
+  active
+"price": null
+"brand": |
+
+"dateAdded": |-
+  2026-10-07T10:00:00+03:30
+"dateUpdated": |-
+  2026-10-07T10:00:00+03:30
+"variants": []
+"available": true
+"specs":
+  - "label": |-
+      اقلام دیده شده
+    "value": |-
+      دو جک، ماژول، موتور قفل، دکمه، دسته سیم
+"claims": []
+"images":
+  - "src": |-
+      /images/products/power-tailgate-kit/1.jpg
+    "alt": |-
+      قطعات کیت درب صندوق برقی
+    "caption": |
+
+"id": |-
+  tailgate
+"seq": 340
+"slug": |-
+  power-tailgate-kit
+"sku": |-
+  TCI-TAILGATE
+"category": |-
+  comfort
+"title": |-
+  کیت درب صندوق برقی
+"titleEn": |-
+  Power tailgate kit
+"shortDescription": |-
+  کیت صندوق برقی شامل دو جک، ماژول کنترل، موتور قفل، دکمه و دسته سیم.
+"description": |-
+  درب صندوق را با دکمه باز و بسته کنید. مجموعه شامل دو جک، جعبه کنترل، موتور قفل و دسته سیم است. مدل خودرو را هنگام استعلام بگویید.
+"fitment":
+  "scope": |-
+    unknown
+  "note": |-
+    مدل خودرو را هنگام سفارش اعلام کنید.
+  "toyota": []
