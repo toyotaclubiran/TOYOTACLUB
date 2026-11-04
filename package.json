@@ -1,0 +1,12 @@
+{
+  "name": "toyota-club-iran",
+  "private": true,
+  "description": "Toyota Club Iran storefront, built as a static site for Netlify.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
