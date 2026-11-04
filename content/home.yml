@@ -80,7 +80,7 @@ tiles:
     name: هدلایت LED EGLXEN
     blurb: هدلایت D45، D55، D65، D90، D150 | لامپ D2S و D4S
     image: /images/uploads/chatgpt-image-nov-5-2026-01_40_27-am.jpg
-    photo: false
+    photo: true
   - href: /category/xenon/
     name: لامپ زنون و LED مدل D2S و D4S
     blurb: لامپ‌های D2S و D4S در مدل‌های زنون و LED
