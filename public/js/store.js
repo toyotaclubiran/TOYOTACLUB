@@ -117,6 +117,13 @@
     apply();
   }
 
+  document.querySelectorAll("[data-open-chat]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var chat = document.querySelector(".chat-float");
+      if (chat) chat.open = !chat.open;
+    });
+  });
+
   document.querySelectorAll("[data-zoom]").forEach(function (button) {
     button.addEventListener("click", function () {
       var box = document.createElement("div");

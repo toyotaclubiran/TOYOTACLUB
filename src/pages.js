@@ -637,6 +637,7 @@ function renderProduct(site, catalog, files, product) {
     <div class="sticky-buy">
       <a class="btn btn-primary" href="#inquiry">${coming ? "خبرم کن" : "استعلام قیمت"}</a>
       <a class="btn btn-wa" href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ</a>
+      <button class="btn btn-line sticky-msg" type="button" data-open-chat aria-label="پیام">${icon("chat")}</button>
     </div>
   </article>`;
   const productLd = {
@@ -656,6 +657,7 @@ function renderProduct(site, catalog, files, product) {
     title: product.title,
     description: product.shortDescription,
     path: `/product/${product.slug}/`,
+    bodyClass: "product",
     json: productLd,
     main,
   });
