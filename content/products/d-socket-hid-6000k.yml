@@ -1,83 +1,50 @@
-"id": |-
-  d-hid
-"seq": 220
-"slug": |-
-  d-socket-hid-6000k
-"sku": |-
-  TCI-DHID
-"example": false
-"status": |-
-  active
-"price": null
-"brand": |-
-  EGLXEN
-"category": |-
-  xenon
-"title": |-
-  لامپ زنون HID سوکت D، ۶۰۰۰ کلوین، ۳۵ وات
-"titleEn": |-
-  D-socket HID xenon 6000K 35W
-"subtitle": |-
-  D2S و D4S
-"wattage": |-
-  ۳۵ وات
-"shortDescription": |-
-  لامپ زنون HID با دمای رنگ ۶۰۰۰ کلوین و توان ۳۵ وات، در پایه D2S و D4S. هر دو موجودند.
-"description": |-
-  نور سفید ۶۰۰۰ کلوین با توان ۳۵ وات، برای چراغ‌های زنون فابریک. پایه را بین D2S و D4S انتخاب کنید؛ هر دو موجود است.
-"dateAdded": |-
-  2026-10-07T10:00:00+03:30
-"dateUpdated": |-
-  2026-10-07T10:00:00+03:30
-"fitment":
-  "scope": |-
-    socket
-  "note": |-
-    برای خودروهای زنون سوکت D2S یا D4S. محدود به تویوتا نیست.
-  "toyota": []
-"variants":
-  - "id": |-
-      d2s
-    "socket": |-
-      D2S
-    "label": |-
-      D2S
-    "available": true
-  - "id": |-
-      d4s
-    "socket": |-
-      D4S
-    "label": |-
-      D4S
-    "available": true
-"specs":
-  - "label": |-
-      نوع
-    "value": |-
-      زنون HID
-  - "label": |-
-      دمای رنگ
-    "value": |-
-      ۶۰۰۰ کلوین
-  - "label": |-
-      توان
-    "value": |-
-      ۳۵ وات
-  - "label": |-
-      پایه‌ها
-    "value": |-
-      D2S و D4S
-"images":
-  - "src": |-
-      /images/products/d-socket-hid-6000k/1.jpg
-    "alt": |-
-      دو لامپ زنون، یکی ایستاده و یکی خوابیده
-    "caption": |
-
-  - "src": |-
-      /images/products/d-socket-hid-6000k/2.jpg
-    "alt": |-
-      یک جفت لامپ زنون ایستاده
-    "caption": |
-
-image: /images/products/d-socket-hid-6000k/1.jpg
+id: HID BULB لامپ زنون
+seq: 220
+slug: D2S-HID
+sku: QJG
+category: xenon
+title: لامپ زنون D2S 6000K
+image: /images/products/chatgpt-image-nov-5-2026-01_48_06-am.jpg
+titleEn: D-socket HID xenon 6000K 35W
+subtitle: D2S و D4S
+shortDescription: لامپ زنون HID با دمای رنگ ۶۰۰۰ کلوین و توان ۳۵ وات، در پایه
+  D2S و D4S. هر دو موجودند.
+description: نور سفید ۶۰۰۰ کلوین با توان ۳۵ وات، برای چراغ‌های زنون فابریک. پایه
+  را بین D2S و D4S انتخاب کنید؛ هر دو موجود است.
+wattage: ۳۵ وات
+brand: EGLXEN
+price: 1800000
+status: active
+example: false
+available: true
+dateUpdated: 2026-10-07T10:00:00+03:30
+fitment:
+  scope: socket
+  note: برای خودروهای زنون سوکت D2S یا D4S. محدود به تویوتا نیست.
+  toyota: []
+variants:
+  - id: d2s
+    socket: D2S
+    label: D2S
+    available: true
+  - id: d4s
+    socket: D4S
+    label: D4S
+    available: true
+dateAdded: 2026-10-07T10:00:00+03:30
+specs:
+  - label: نوع
+    value: زنون HID
+  - label: دمای رنگ
+    value: ۶۰۰۰ کلوین
+  - label: توان
+    value: ۳۵ وات
+  - label: پایه‌ها
+    value: D2S و D4S
+images:
+  - src: /images/products/d-socket-hid-6000k/1.jpg
+    alt: دو لامپ زنون، یکی ایستاده و یکی خوابیده
+    caption: ""
+  - src: /images/products/d-socket-hid-6000k/2.jpg
+    alt: یک جفت لامپ زنون ایستاده
+    caption: ""
