@@ -39,7 +39,7 @@ function write(rel, contents) {
 async function writeWebp(source, width, destination) {
   const sharp = require("sharp");
   if (fs.existsSync(destination) && fs.statSync(destination).mtimeMs >= fs.statSync(source).mtimeMs) return;
-  await sharp(source).resize({ width, withoutEnlargement: true }).webp({ quality: 76 }).toFile(destination);
+  await sharp(source).rotate().resize({ width, withoutEnlargement: true }).webp({ quality: 76 }).toFile(destination);
 }
 
 async function generateResponsiveImages() {

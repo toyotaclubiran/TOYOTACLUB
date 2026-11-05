@@ -7,6 +7,12 @@ function usableImages(product, files) {
 
 function productImages(product, files) {
   const listed = (product.images || []).filter((image) => image && image.src && (!files || files.has(image.src)));
+  // One main photo drives the card AND the detail page, even without a gallery.
+  if (product.image && (!files || files.has(product.image))) {
+    const existing = listed.findIndex((image) => image.src === product.image);
+    if (existing >= 0) listed.splice(existing, 1);
+    listed.unshift({ src: product.image, alt: product.title, caption: "" });
+  }
   if (listed.length) {
     return listed.map((image) => ({ src: image.src, alt: image.alt || product.title, caption: image.caption || "" }));
   }
@@ -235,8 +241,8 @@ function productImg(src, alt, className, sizes) {
 }
 
 function cardSrc(src) {
-  const match = String(src).match(/^(\/images\/products\/.+)\.(jpe?g|png|webp)$/i);
-  if (!match || /-640\.webp$/i.test(src)) return src;
+  const match = String(src).match(/^(\/images\/products\/.+)\.(jpe?g|png)$/i);
+  if (!match) return src;
   return `${match[1]}-640.webp`;
 }
 
@@ -273,11 +279,6 @@ function simModes(product) {
 
 function productCard(product, catalog, files, eager) {
   const images = productImages(product, files);
-  if (product.image && (!files || files.has(product.image))) {
-    const existing = images.findIndex((image) => image.src === product.image);
-    if (existing >= 0) images.splice(existing, 1);
-    images.unshift({ src: product.image, alt: product.title });
-  }
   const variants = variantList(product);
   const sockets = variants.map((item) => item.socket).filter(Boolean);
   const open = variants.filter((item) => item.available).map((item) => item.socket || item.label);

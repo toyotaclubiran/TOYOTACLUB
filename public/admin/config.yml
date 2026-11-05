@@ -149,6 +149,16 @@ collections:
     identifier_field: slug
     summary: "{{title}}"
     fields:
+      - label: عکس اصلی کالا — انتخاب از فایل
+        name: image
+        widget: image
+        required: false
+        media_folder: /public/images/products
+        public_folder: /images/products
+        choose_url: false
+        media_library:
+          allow_multiple: false
+        hint: "انتخاب تصویر ← بارگذاری ← انتخاب فایل از گوشی یا کامپیوتر ← انتخاب. سپس انتشار را بزنید؛ این عکس روی کارت و صفحه محصول نمایش داده می‌شود. JPG، PNG و WebP قابل استفاده‌اند."
       - { label: شناسه, name: id, widget: string }
       - { label: ترتیب, name: seq, widget: number, value_type: int }
       - { label: نامک, name: slug, widget: string, hint: "در آدرس صفحه می‌آید. بعد از انتشار عوض نکنید." }
@@ -158,16 +168,6 @@ collections:
         widget: select
         options: [led, xenon, projector, monitor, parking, safety, comfort, camera, interior, exterior, wheels, offroad]
       - { label: نام کالا, name: title, widget: string }
-      - label: عکس کارت
-        name: image
-        widget: image
-        required: false
-        media_folder: /public/images/products
-        public_folder: /images/products
-        choose_url: false
-        media_library:
-          allow_multiple: false
-        hint: "عکس را همین‌جا آپلود یا انتخاب کنید؛ پس از انتشار روی کارت کالا نمایش داده می‌شود."
       - { label: نام انگلیسی, name: titleEn, widget: string, required: false }
       - { label: زیرعنوان, name: subtitle, widget: string, required: false }
       - { label: توضیح کوتاه, name: shortDescription, widget: text }
@@ -243,10 +243,11 @@ collections:
         fields:
           - { label: عنوان, name: title, widget: string }
           - { label: متن, name: text, widget: text }
-      - label: عکس‌ها
+      - label: عکس‌های تکمیلی محصول
         name: images
         widget: list
-        hint: "اولین عکس، عکس اصلی است. JPG بگذارید تا سایت WebP بسازد."
+        required: false
+        hint: "اختیاری؛ برای نماهای دیگر محصول. عکس اصلی را در ابتدای فرم انتخاب کنید. JPG، PNG و WebP پذیرفته می‌شوند."
         fields:
           - label: فایل
             name: src
