@@ -144,7 +144,9 @@ test("static build has inquiry UI, Netlify forms, address, and no prices", async
   assert.match(home, /۱۱۰ وات/);
   assert.doesNotMatch(home, /<td>۱۴۰ وات<\/td>/);
   const cms = fs.readFileSync(path.join(dist, "admin/config.yml"), "utf8");
-  assert.equal((cms.match(/media_folder:/g) || []).length, 1);
+  assert.match(cms, /name: image[\s\S]*media_folder: \/public\/images\/products/);
+  assert.match(cms, /name: src[\s\S]*media_folder: \/public\/images\/products/);
+  assert.equal((cms.match(/media_folder: \/public\/images\/products/g) || []).length, 2);
   const torob = JSON.parse(fs.readFileSync(path.join(dist, "torob/products.json"), "utf8"));
   assert.equal(torob.api_version, "torob_api_v3");
   assert.equal(torob.products.length, 0);

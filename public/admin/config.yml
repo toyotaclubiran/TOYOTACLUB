@@ -162,7 +162,12 @@ collections:
         name: image
         widget: image
         required: false
-        hint: "همین عکس روی کارت فهرست کالا نشان داده می‌شود. اگر خالی باشد اولین عکس گالری نمایش داده می‌شود. فایل JPG کافی است؛ سایت WebP می‌سازد."
+        media_folder: /public/images/products
+        public_folder: /images/products
+        choose_url: false
+        media_library:
+          allow_multiple: false
+        hint: "عکس را همین‌جا آپلود یا انتخاب کنید؛ پس از انتشار روی کارت کالا نمایش داده می‌شود."
       - { label: نام انگلیسی, name: titleEn, widget: string, required: false }
       - { label: زیرعنوان, name: subtitle, widget: string, required: false }
       - { label: توضیح کوتاه, name: shortDescription, widget: text }
@@ -246,4 +251,9 @@ collections:
           - label: فایل
             name: src
             widget: image
+            media_folder: /public/images/products
+            public_folder: /images/products
+            choose_url: false
+            media_library:
+              allow_multiple: false
           - { label: توضیح عکس, name: alt, widget: string, required: false }
