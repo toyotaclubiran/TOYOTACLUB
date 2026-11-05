@@ -84,8 +84,10 @@ function statusBadge(product) {
 
 function businessJson(site) {
   return {
-    "@type": "AutoPartsStore",
-    name: site.name,
+    "@type": ["AutoPartsStore", "Organization"],
+    name: site.nameFa || site.name,
+    alternateName: site.name,
+    description: site.seoDescription || site.description,
     url: site.url,
     telephone: `+${site.phoneIntl}`,
     image: `${site.url}/images/hero/eglxen-d-series-studio.jpg`,
@@ -99,9 +101,19 @@ function businessJson(site) {
   };
 }
 
+function websiteJson(site) {
+  return {
+    "@type": "WebSite",
+    name: site.nameFa || site.name,
+    alternateName: site.name,
+    description: site.seoDescription || site.description,
+    url: site.url,
+  };
+}
+
 function layout(opts) {
   const { site, catalog, title, description, path, main, json, robots, product } = opts;
-  const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+  const fullTitle = opts.exactTitle || title.includes(site.name) ? title : `${title} | ${site.name}`;
   const desc = description || site.description;
   const canon = `${site.url}${path || "/"}`;
   const index = (catalog?.products || []).map((item) => ({ t: item.title, s: item.slug }));
@@ -122,6 +134,7 @@ function layout(opts) {
   <meta property="og:url" content="${esc(canon)}">
   <meta property="og:image" content="${esc(site.url)}/images/hero/eglxen-d-series-studio.jpg">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/css/store.css">
   ${json ? `<script type="application/ld+json">${jsonLd(json)}</script>` : ""}
 </head>
@@ -136,11 +149,12 @@ function layout(opts) {
   </div></div>
   <header class="site-header">
     <div class="wrap header-main">
-      <a class="brand" href="/" aria-label="Toyota Club Iran">
+      <a class="brand" href="/" aria-label="${esc(site.nameFa)}، ${esc(site.tagline)}">
         <span class="wordmark">
           <span class="wm-line"><span class="wm-toyota">Toyota</span> <span class="wm-club">Club</span></span>
           <span class="wm-iran">IRAN</span>
         </span>
+        <span class="brand-tagline">${esc(site.tagline)}</span>
       </a>
       <form class="search" action="/shop/" method="get" role="search">
         <label class="sr-only" for="q">جستجو</label>
@@ -537,11 +551,12 @@ function renderHome(site, catalog, files) {
   return layout({
     site,
     catalog,
-    title: `${site.name} | هدلایت، مانیتور و قطعات خودرو`,
-    description: site.description,
+    title: site.seoTitle,
+    exactTitle: true,
+    description: site.seoDescription || site.description,
     path: "/",
     bodyClass: "home",
-    json: { "@context": "https://schema.org", "@graph": [businessJson(site), { "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] },
+    json: { "@context": "https://schema.org", "@graph": [businessJson(site), websiteJson(site), { "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] },
     main,
   });
 }

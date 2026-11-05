@@ -60,7 +60,14 @@ h1, h2, h3 { line-height: 1.35; letter-spacing: -0.02em; }
 .top-links { display: flex; gap: 14px; align-items: center; }
 .site-header { position: sticky; top: 0; z-index: 40; background: rgba(7,8,12,.78); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.08); color: #f4f6f8; }
 .header-main { display: flex; align-items: center; gap: 12px; min-height: 72px; }
-.brand { display: flex; align-items: center; flex: 0 0 auto; text-decoration: none; }
+.brand { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; flex: 0 0 auto; min-width: 0; text-decoration: none; }
+.brand-tagline {
+  display: block; max-width: 16rem; color: #c5ccd6; font-size: 11px; font-weight: 500; line-height: 1.35;
+  text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+@media (max-width: 599px) {
+  .brand-tagline { display: none; }
+}
 .wordmark { display: flex; flex-direction: column; line-height: 1; direction: ltr; }
 .wm-line { font-weight: 800; font-size: 22px; letter-spacing: -0.045em; }
 .wm-toyota { color: var(--red); }

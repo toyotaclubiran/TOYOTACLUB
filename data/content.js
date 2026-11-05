@@ -15,12 +15,18 @@ function persianDigits(value) {
 function loadSite() {
   const site = readYaml("site.yml");
   const phone = String(site.phone || "").trim();
+  const seoDescription = String(site.seoDescription || site.description || "").trim();
+  const seoTitle = String(site.seoTitle || `${site.nameFa} | آپشن و نور خودرو، مانیتور و دوربین خودرو`).trim();
   return {
     ...site,
     phone,
     phoneIntl: phone.startsWith("0") ? `98${phone.slice(1)}` : phone.replace(/^\+/, ""),
     phoneDisplay: persianDigits(phone),
     showPrices: Boolean(site.showPrices),
+    tagline: String(site.tagline || "آپشن و نور خودرو، مانیتور و دوربین").trim(),
+    seoTitle,
+    seoDescription,
+    description: seoDescription,
   };
 }
 

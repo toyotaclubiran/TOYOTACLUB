@@ -24,7 +24,9 @@ collections:
         fields:
           - { label: نام انگلیسی, name: name, widget: string }
           - { label: نام فارسی, name: nameFa, widget: string }
-          - { label: شعار, name: tagline, widget: string }
+          - { label: شعار هدر, name: tagline, widget: string, hint: "زیر لوگو در هدر همه صفحه‌ها." }
+          - { label: عنوان سئو, name: seoTitle, widget: string, hint: "عنوان صفحه اول و og:title." }
+          - { label: توضیح سئو, name: seoDescription, widget: text, hint: "توضیح صفحه اول، og:description، و توضیح Organization و WebSite." }
           - { label: نشانی سایت, name: url, widget: string, hint: "https://toyotaclubiran.com را عوض نکنید." }
           - { label: نمایش قیمت, name: showPrices, widget: boolean, hint: "خاموش بماند تا وقتی قیمت کالاها را وارد کرده‌اید. خالی بودن قیمت یعنی استعلام قیمت." }
           - { label: تلفن, name: phone, widget: string, hint: "مثل 09174450040. واتساپ از همین شماره ساخته می‌شود." }
@@ -33,7 +35,6 @@ collections:
           - { label: شهر, name: locality, widget: string }
           - { label: کشور, name: country, widget: string }
           - { label: یادداشت موجودی, name: stockNote, widget: text, hint: "تعداد موجودی ننویسید. فقط بگویید موجودی پیش از سفارش تأیید می‌شود." }
-          - { label: توضیح فروشگاه, name: description, widget: text }
 
   - name: home
     label: صفحه اول

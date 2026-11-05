@@ -139,6 +139,25 @@ async function build() {
     .join("\n")}\n</urlset>\n`;
   write("sitemap.xml", sitemap);
   write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: ${site.url}/sitemap.xml\n`);
+  write(
+    "manifest.webmanifest",
+    `${JSON.stringify(
+      {
+        name: site.nameFa,
+        short_name: site.nameFa,
+        description: site.seoDescription || site.description,
+        lang: "fa",
+        dir: "rtl",
+        start_url: "/",
+        display: "standalone",
+        background_color: "#07080c",
+        theme_color: "#0c0d10",
+        icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+      },
+      null,
+      2
+    )}\n`
+  );
 
   const torob = handleTorobRequest({ page: 1, sort: "date_added_desc" }, catalog, site);
   write("torob/products.json", `${JSON.stringify(torob.body, null, 2)}\n`);
