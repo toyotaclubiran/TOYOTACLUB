@@ -383,10 +383,25 @@ img { max-width: 100%; }
 .tile.cine .tile-copy { position: relative; z-index: 1; min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; }
 .tile.cine strong { font-size: 1.12rem; }
 .tile.cine .tile-copy span { color: rgba(255,255,255,.78); font-size: 13px; }
-.tile.cine.photo .frame { background: radial-gradient(circle at 50% 40%, #2c3340 0%, #101218 70%); }
-.tile.cine.photo .frame img { object-fit: contain; padding: 14%; }
-.tile.cine.photo::after {
-  background: linear-gradient(to top, rgba(5,6,10,.94) 0%, rgba(5,6,10,.5) 48%, rgba(5,6,10,.18) 100%);
+/* Category photos: large, unobscured media above a separate caption. */
+.tile.cine.photo { display: flex; flex-direction: column; min-height: 0; }
+.tile.cine.photo .frame {
+  position: relative; inset: auto; flex: none; width: 100%; aspect-ratio: 4 / 3;
+  padding: 0; overflow: hidden; background: #191d25;
+}
+.tile.cine.photo .frame picture { position: absolute; inset: 0; display: block; }
+.tile.cine.photo .frame img { object-fit: contain; padding: 6px; }
+.tile.cine.photo::after { display: none; }
+.tile.cine.photo .tile-copy {
+  flex: 1; min-height: 0; padding: 14px 16px 18px;
+  justify-content: flex-start; gap: 6px; text-align: right;
+}
+.tile.cine.photo .tile-copy strong { line-height: 1.65; }
+.tile.cine.photo .tile-copy span { line-height: 1.8; }
+@media (max-width: 480px) {
+  .tile.cine.photo .tile-copy { padding: 10px 10px 14px; }
+  .tile.cine.photo .tile-copy strong { font-size: .95rem; }
+  .tile.cine.photo .tile-copy span { font-size: 12px; }
 }
 
 .socket-row { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
