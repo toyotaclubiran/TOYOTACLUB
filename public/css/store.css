@@ -248,6 +248,7 @@ img { max-width: 100%; }
 .ok-text { color: var(--ok); }
 .bad-text { color: var(--bad); }
 .inquiry-card { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 16px; box-shadow: none; color: #eef1f5; display: grid; gap: 14px; }
+.price-line { margin: 0; font-size: 1.35rem; font-weight: 800; }
 .inquiry-actions { display: grid; gap: 10px; }
 .btn-xl { min-height: 56px; width: 100%; font-size: 1.05rem; border-radius: 16px; }
 .socket-pills { display: flex; flex-wrap: wrap; gap: 8px; }

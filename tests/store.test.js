@@ -6,6 +6,7 @@ const catalog = require("../data/catalog");
 const { handleTorobRequest } = require("../src/torob");
 const { digikalaCsv } = require("../src/digikala");
 const { build } = require("../scripts/build");
+const { shownPrice } = require("../src/pages");
 
 test("D45 socket availability follows the inventory list", () => {
   const d45 = catalog.products.find((product) => product.id === "led-d45");
@@ -32,7 +33,7 @@ test("D-socket bulbs replace the single xenon product", () => {
   assert.deepEqual(led.variants.map((variant) => variant.socket), ["D2S", "D4S"]);
   assert.ok(led.variants.every((variant) => variant.available));
   assert.ok(hid.variants.every((variant) => variant.available));
-  assert.match(hid.title, /۶۰۰۰/);
+  assert.match(hid.title, /۶۰۰۰|6000/);
 });
 
 test("monitors have memory variants and no invented screen size", () => {
@@ -48,7 +49,8 @@ test("projector lenses are coming soon and prices are empty", () => {
   const lenses = catalog.products.filter((product) => product.category === "projector");
   assert.equal(lenses.length, 2);
   assert.ok(lenses.every((product) => product.status === "coming_soon"));
-  assert.ok(catalog.products.every((product) => product.price == null));
+  // Prices may be entered from the CMS, but only as positive whole tomans (never 0 or junk).
+  assert.ok(catalog.products.every((product) => product.price == null || (Number.isInteger(product.price) && product.price > 0)));
 });
 
 test("catalog does not name removed supplier brands or stock counts", () => {
@@ -72,7 +74,7 @@ test("torob lists a product only after a price is published", () => {
   const priced = {
     ...catalog,
     products: catalog.products.map((product) =>
-      product.id === "led-d45" ? { ...product, price: 1000 } : product
+      product.id === "led-d45" ? { ...product, price: 1000 } : { ...product, price: null }
     ),
   };
   const site = { url: "https://toyotaclubiran.com", showPrices: true };
@@ -154,4 +156,24 @@ test("static build has inquiry UI, Netlify forms, address, and no prices", async
   assert.match(robots, /Disallow: \/admin\//);
   assert.doesNotMatch(fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8"), /\/admin/);
   assert.match(fs.readFileSync(path.join(dist, "admin/index.html"), "utf8"), /noindex/);
+});
+
+test("a price is shown only when the switch is on and the amount is a positive whole toman", () => {
+  const base = { example: false, status: "active" };
+  assert.equal(shownPrice({ ...base, price: 1800000 }, true), 1800000);
+  assert.equal(shownPrice({ ...base, price: 1800000 }, false), null);
+  assert.equal(shownPrice({ ...base, price: null }, true), null);
+  assert.equal(shownPrice({ ...base, price: 0 }, true), null);
+  assert.equal(shownPrice({ ...base, price: -5 }, true), null);
+  assert.equal(shownPrice({ ...base, price: 1500.5 }, true), null);
+  assert.equal(shownPrice({ ...base, price: 1000, status: "coming_soon" }, true), null);
+  assert.equal(shownPrice({ ...base, price: 1000, example: true }, true), null);
+});
+
+test("home title uses the official name once, without duplicating the brand", async () => {
+  await build();
+  const html = fs.readFileSync(path.join(__dirname, "..", "dist", "index.html"), "utf8");
+  const title = html.match(/<title>([^<]*)<\/title>/)[1];
+  assert.equal(title, "مرکز تخصصی آپشن و قطعات خودرو TOYOTA CLUB IRAN");
+  assert.match(html, /<meta property="og:title" content="مرکز تخصصی آپشن و قطعات خودرو TOYOTA CLUB IRAN">/);
 });

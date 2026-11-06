@@ -1,4 +1,4 @@
-const { esc, faNum, paragraphs, jsonLd, waLink } = require("./format");
+const { esc, faNum, toman, paragraphs, jsonLd, waLink } = require("./format");
 const { variantList, isComingSoon, categoryById, modelById, relatedProducts, productIsAvailable } = require("./catalog-tools");
 
 function usableImages(product, files) {
@@ -85,7 +85,8 @@ function statusBadge(product) {
 function businessJson(site) {
   return {
     "@type": "AutoPartsStore",
-    name: site.name,
+    name: site.officialName || site.name,
+    alternateName: site.name,
     url: site.url,
     telephone: `+${site.phoneIntl}`,
     image: `${site.url}/images/hero/eglxen-d-series-studio.jpg`,
@@ -101,7 +102,7 @@ function businessJson(site) {
 
 function layout(opts) {
   const { site, catalog, title, description, path, main, json, robots, product } = opts;
-  const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+  const fullTitle = title.toLowerCase().includes(site.name.toLowerCase()) ? title : `${title} | ${site.name}`;
   const desc = description || site.description;
   const canon = `${site.url}${path || "/"}`;
   const index = (catalog?.products || []).map((item) => ({ t: item.title, s: item.slug }));
@@ -277,8 +278,18 @@ function simModes(product) {
   return [];
 }
 
+// A price is shown only when the site switch is on AND the product has a valid
+// positive whole-toman amount. Empty, zero or invalid prices keep "استعلام قیمت".
+function shownPrice(product, showPrices) {
+  if (!showPrices) return null;
+  if (!Number.isInteger(product.price) || product.price <= 0) return null;
+  if (product.example || isComingSoon(product)) return null;
+  return product.price;
+}
+
 function productCard(product, catalog, files, eager) {
   const images = productImages(product, files);
+  const cardPrice = shownPrice(product, catalog.showPrices);
   const variants = variantList(product);
   const sockets = variants.map((item) => item.socket).filter(Boolean);
   const open = variants.filter((item) => item.available).map((item) => item.socket || item.label);
@@ -295,7 +306,7 @@ function productCard(product, catalog, files, eager) {
       <h3><a href="/product/${esc(product.slug)}/">${esc(product.title)}</a></h3>
       <div class="chips">${chips}</div>
       <div class="card-actions">
-        <a class="btn btn-primary" href="/product/${esc(product.slug)}/#inquiry">استعلام قیمت</a>
+        <a class="btn btn-primary" href="/product/${esc(product.slug)}/#inquiry">${cardPrice !== null ? esc(toman(cardPrice)) : "استعلام قیمت"}</a>
         <a class="btn btn-wa" href="${esc(wa)}" aria-label="واتساپ">${icon("wa")}</a>
       </div>
     </div>
@@ -537,7 +548,7 @@ function renderHome(site, catalog, files) {
   return layout({
     site,
     catalog,
-    title: `${site.name} | هدلایت، مانیتور و قطعات خودرو`,
+    title: site.officialName || `${site.name} | هدلایت، مانیتور و قطعات خودرو`,
     description: site.description,
     path: "/",
     bodyClass: "home",
@@ -645,6 +656,7 @@ function renderProduct(site, catalog, files, product) {
   const specs = (product.specs || []).map((row) => `<div><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`).join("");
   const related = relatedProducts(catalog, product);
   const phone = `<a href="tel:+${site.phoneIntl}">${esc(site.phoneDisplay)}</a>`;
+  const pagePrice = shownPrice(product, site.showPrices);
   const main = `<article class="wrap page product">
     <p class="crumbs"><a href="/">خانه</a> / <a href="/category/${esc(product.category)}/">${esc(category ? category.name : "")}</a> / ${esc(product.title)}</p>
     <div class="product-layout">
@@ -655,8 +667,9 @@ function renderProduct(site, catalog, files, product) {
         ${product.wattage ? `<p class="chip">${esc(product.wattage)}</p>` : ""}
         <p>${esc(product.shortDescription || "")}</p>
         <div class="inquiry-card" id="inquiry">
+          ${pagePrice !== null ? `<p class="price-line">${esc(toman(pagePrice))}</p>` : ""}
           <div class="inquiry-actions">
-            <a class="btn btn-primary btn-xl" href="tel:+${site.phoneIntl}">${coming ? "خبرم کن" : "استعلام قیمت"}</a>
+            <a class="btn btn-primary btn-xl" href="tel:+${site.phoneIntl}">${coming ? "خبرم کن" : pagePrice !== null ? "تماس برای سفارش" : "استعلام قیمت"}</a>
             <a class="btn btn-wa btn-xl" href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ</a>
           </div>
           <form class="stack-form" name="${formName}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
@@ -690,7 +703,7 @@ function renderProduct(site, catalog, files, product) {
     </div>
     ${related.length ? `<h2>کالاهای مرتبط</h2><div class="product-grid">${related.map((item) => productCard(item, catalog, files)).join("")}</div>` : ""}
     <div class="sticky-buy">
-      <a class="btn btn-primary" href="#inquiry">${coming ? "خبرم کن" : "استعلام قیمت"}</a>
+      <a class="btn btn-primary" href="#inquiry">${coming ? "خبرم کن" : pagePrice !== null ? esc(toman(pagePrice)) : "استعلام قیمت"}</a>
       <a class="btn btn-wa" href="${esc(waLink(site.phoneIntl, waText(site, product)))}">واتساپ</a>
       <button class="btn btn-line sticky-msg" type="button" data-open-chat aria-label="پیام">${icon("chat")}</button>
     </div>
@@ -800,6 +813,7 @@ function renderNotFound(site, catalog) {
 }
 
 module.exports = {
+  shownPrice,
   renderHome,
   renderShop,
   renderCategory,

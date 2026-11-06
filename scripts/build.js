@@ -96,6 +96,7 @@ function copyCmsBundle() {
 async function build() {
   await generateResponsiveImages();
   const site = loadSite();
+  catalog.showPrices = site.showPrices; // product cards read this switch
   const files = publicFiles();
   fs.rmSync(dist, { recursive: true, force: true });
   fs.cpSync(path.join(root, "public"), dist, { recursive: true });

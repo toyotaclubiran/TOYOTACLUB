@@ -24,6 +24,7 @@ collections:
         fields:
           - { label: نام انگلیسی, name: name, widget: string }
           - { label: نام فارسی, name: nameFa, widget: string }
+          - { label: نام رسمی مجموعه (عنوان گوگل و صفحه اصلی), name: officialName, widget: string, required: false, hint: "این نام در عنوان صفحه اصلی و نتایج گوگل می‌آید. گوگل ممکن است چند روز تا چند هفته طول بکشد تا عنوان جدید را نشان بدهد." }
           - { label: شعار, name: tagline, widget: string }
           - { label: نشانی سایت, name: url, widget: string, hint: "https://toyotaclubiran.com را عوض نکنید." }
           - { label: نمایش قیمت, name: showPrices, widget: boolean, hint: "خاموش بماند تا وقتی قیمت کالاها را وارد کرده‌اید. خالی بودن قیمت یعنی استعلام قیمت." }
@@ -159,10 +160,10 @@ collections:
         media_library:
           allow_multiple: false
         hint: "انتخاب تصویر ← بارگذاری ← انتخاب فایل از گوشی یا کامپیوتر ← انتخاب. سپس انتشار را بزنید؛ این عکس روی کارت و صفحه محصول نمایش داده می‌شود. JPG، PNG و WebP قابل استفاده‌اند."
-      - { label: شناسه, name: id, widget: string }
+      - { label: "⚠ شناسه فنی (تغییر ندهید)", name: id, widget: string, hint: "کلید داخلی کالا برای ترب و آزمایش‌ها. اگر عوض شود اطلاعات کالا به هم می‌ریزد. فقط برنامه‌نویس عوض کند." }
       - { label: ترتیب, name: seq, widget: number, value_type: int }
-      - { label: نامک, name: slug, widget: string, hint: "در آدرس صفحه می‌آید. بعد از انتشار عوض نکنید." }
-      - { label: کد کالا, name: sku, widget: string }
+      - { label: "⚠ نامک — آدرس صفحه (تغییر ندهید)", name: slug, widget: string, hint: "بخشی از آدرس صفحه کالا است. با تغییر آن آدرس قدیمی و لینک‌های گوگل از کار می‌افتد. فقط انگلیسی کوچک و خط تیره." }
+      - { label: "⚠ کد کالا SKU (تغییر ندهید)", name: sku, widget: string, hint: "کد داخلی فروشگاه؛ در خروجی ترب و دیجی‌کالا هم می‌آید." }
       - label: دسته
         name: category
         widget: select
@@ -184,7 +185,7 @@ collections:
         widget: number
         value_type: int
         required: false
-        hint: "خالی یعنی استعلام قیمت. قیمت تمام پایه‌های یک سری از جمله H4 یکسان است. تعداد موجودی ننویسید."
+        hint: "فقط عدد، به تومان، بدون نقطه و ویرگول (مثلاً 1800000). خالی یا صفر یعنی استعلام قیمت. قیمت فقط وقتی روی سایت دیده می‌شود که «نمایش قیمت» در اطلاعات تماس روشن باشد. تعداد موجودی ننویسید."
       - label: وضعیت
         name: status
         widget: select
