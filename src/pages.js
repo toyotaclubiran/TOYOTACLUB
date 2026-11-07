@@ -110,6 +110,7 @@ function layout(opts) {
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8">
+  ${path === "/" ? '<meta name="enamad" content="65254936" />' : ""}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(fullTitle)}</title>
   <meta name="description" content="${esc(desc)}">
